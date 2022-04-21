@@ -22,7 +22,7 @@ mongoose
   //   useUnifiedTopology: true,
   //   useCreateIndex: true,
   //   useFindAndModify: false,
-  // } 몽고DB 버전 6.0이상에선 자동처리
+  // } 몽고DB 버전 6.0이상에선 자동처리 
 
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));

@@ -31,7 +31,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
               navigate("/");
           }
         }
-      });
+      }); 
     }, []);
 
     return <SpecificComponent />;

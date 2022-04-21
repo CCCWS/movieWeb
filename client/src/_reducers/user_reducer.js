@@ -12,7 +12,7 @@ export default function userData(state = {}, action) {
     case REGISTER_INFO:
       return { ...state, register: action.payload };
       break;
-
+  
     case AUTH_INFO:
       return { ...state, userData: action.payload }; //payload에 모든 유저 정보가 들어감
       break;

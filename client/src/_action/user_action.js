@@ -20,7 +20,7 @@ export function registerInfo(data) {
     .post("/api/user/register", data) //서버에서 받은 데이터를 저장
     .then((response) => response.data);
 
-  return {
+  return { 
     //request를 reducer에  > user_reducer.js
     type: REGISTER_INFO,
     payload: request,

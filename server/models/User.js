@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: Number,
-    default: 0,
+    default: 0, 
   },
   image: String,
   token: {

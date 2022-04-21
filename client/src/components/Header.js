@@ -30,7 +30,7 @@ function Header() {
         alert("로그아웃");
       } else {
         alert("fail");
-      }
+      } 
     });
   };
 

@@ -17,7 +17,7 @@ function RegisterPage() {
   const emailSave = (event) => {
     setEmail(event.target.value);
   };
-
+ 
   const nameSave = (event) => {
     setName(event.target.value);
   };
