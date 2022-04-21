@@ -2,9 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  background-color: antiquewhite;
+  background-color: transparent;
   padding-left: 10px;
   padding-right: 10px;
+  color: white;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(31, 31, 31, 0.1) 5%,
+    rgba(31, 31, 31, 0.5) 25%,
+    rgba(31, 31, 31, 0.75) 50%,
+    rgba(31, 31, 31, 1) 90%,
+    rgba(31, 31, 31, 1) 100%
+  );
 }
 
 .logoImg {
@@ -12,7 +23,7 @@
   font-size: 30px;
 }
 
-.headerBtn { 
+.headerBtn {
   cursor: pointer;
   border: none;
   background-color: transparent;
