@@ -1,9 +1,8 @@
-import { useDispatch } from "react-redux";
-import { loginInfo } from "../../../_action/user_action";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginInfo } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
-import Auth from "../../../hoc/auth";
-import "./LoginPage.css";
+
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -32,7 +31,8 @@ function LoginPage() {
     dispatch(loginInfo(data)) // user_action으로 전달
       .then((response) => {
         if (response.payload.loginSuccess) {
-          alert("welcome");
+          // alert("welcome");
+          window.localStorage.setItem("userId", response.payload.userId);
           navigate("/");
         } else {
           alert("로그인 실패");
@@ -49,7 +49,6 @@ function LoginPage() {
             type="email"
             value={email}
             onChange={emailSave}
-            autoComplete="on"
             placeholder="이메일 입력"
           />
           <label>Password</label>
@@ -57,7 +56,6 @@ function LoginPage() {
             type="password"
             value={password}
             onChange={passwordSave}
-            autoComplete="on"
             placeholder="비밀번호 입력"
           />
 

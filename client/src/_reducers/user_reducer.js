@@ -5,7 +5,7 @@ export default function userData(state = {}, action) {
   //여러 데이터가 올 수 있기 때문에 switch문 사용
   switch (action.type) {
     case LOGIN_INFO:
-      console.log(action.payload);
+      // console.log(action.payload);
       return { ...state, loginSuccess: action.payload };
       break;
 

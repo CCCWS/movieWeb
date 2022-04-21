@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { auth } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
-import { createStore } from "redux";
 
 export default function (SpecificComponent, option, adminRoute = null) {
   //option에 올 수있는 값
@@ -13,9 +12,10 @@ export default function (SpecificComponent, option, adminRoute = null) {
   function AuthCheck(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     useEffect(() => {
       dispatch(auth()).then((response) => {
-        console.log(response);
+        // console.log(response);
 
         if (!response.payload.isAuth) {
           if (option) {

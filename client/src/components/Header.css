@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: antiquewhite;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.logoImg {
+  padding-right: 10px;
+  font-size: 30px;
+}
+
+.headerBtn {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.headerBtn:hover {
+  border-bottom: 2px solid rgb(255, 0, 0);
+}

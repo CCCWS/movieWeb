@@ -1,10 +1,9 @@
-import { Axios } from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerInfo } from "../../../_action/user_action";
+import { registerInfo } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
-import Auth from "../../../hoc/auth";
-import "./Register.css";
+
+
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -57,6 +56,7 @@ function RegisterPage() {
 
   return (
     <>
+
       <div className="register">
         <form onSubmit={register} className="registerBox">
           <label>email</label>

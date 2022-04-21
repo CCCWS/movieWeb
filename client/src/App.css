@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+/* #root {
+  padding: 10px;
+} */
+
+/* 메인 */
+.main {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 90vh;
+}
+
+/* 로그인 */
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+}
+
+/*회원가입*/
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 90vh;
+}
+
+.registerBox {
+  display: flex;
+  flex-direction: column;
+}
