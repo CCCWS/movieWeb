@@ -1,0 +1,15 @@
+.info {
+  position: absolute;
+  max-width: 500px;
+  bottom: 2rem;
+  margin-left: 32px;
+}
+
+.info h2 {
+  color: white;
+}
+
+.info p {
+  color: white;
+  font-size: 1rem;
+}

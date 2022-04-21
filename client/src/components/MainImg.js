@@ -7,10 +7,11 @@ function MainImg({ movieData }) {
   return (
     <>
       <div className="mainImgCarousel">
-        <Carousel>
+        <Carousel autoplay>
           {movieData.map((data) => (
             <div key={data.id} className="CarouselMap">
               <img src={`${IMG_URL}original${data.backdrop_path}`} />
+
               <div className="titleName">
                 {data.title} {data.name}
               </div>

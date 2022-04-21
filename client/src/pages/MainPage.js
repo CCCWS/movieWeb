@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMG_URL } from "../config";
 
 import MainImg from "../components/MainImg";
+import MainImage from "../components/MainImage";
 
 function MainPage() {
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = `${API_URL}trending/all/week?api_key=${API_KEY}&language=ko&page=1`;
+    const url = `${API_URL}discover/movie?api_key=${API_KEY}&year=2022&sort_by=popularity.desc&language=ko&page=1`;
 
     const getMovie = async () => {
       const res = await (await fetch(url)).json();
@@ -31,6 +32,11 @@ function MainPage() {
           </div>
 
           <div>
+            <MainImage
+              image={`${IMG_URL}original${movie[1].backdrop_path}`}
+              title={movie[1].title}
+              text={movie[1].overview}
+            />
             <div>TOP RATED</div>
             <hr />
           </div>
@@ -38,7 +44,7 @@ function MainPage() {
           <div className="movieCard">
             {movie.map((data, index) => (
               <div key={index}>
-                <img src={`${IMG_URL}w200${data.poster_path}`} />
+                <img src={`${IMG_URL}original${data.poster_path}`} />
                 <div>
                   {data.title}
                   {data.name}
