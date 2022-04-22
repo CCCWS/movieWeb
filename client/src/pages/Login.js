@@ -4,7 +4,7 @@ import { loginInfo } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
 
 
-function LoginPage() {
+function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -67,4 +67,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;

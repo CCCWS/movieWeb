@@ -45,11 +45,11 @@ function Header() {
     navigate("/");
   };
   const logInPage = () => {
-    navigate("/LoginPage");
+    navigate("/Login");
   };
 
   const registerPage = () => {
-    navigate("/registerpage");
+    navigate("/register");
   };
 
   return (

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-function RegisterPage() {
+function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -99,4 +99,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;

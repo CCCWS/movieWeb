@@ -2,8 +2,7 @@ import React from "react";
 import { IMG_URL } from "../config";
 import { Carousel } from "antd";
 
-function MainImg({ movieData }) {
-  console.log(movieData);
+function ImageCarousel({ movieData }) {
   return (
     <>
       <div className="mainImgCarousel">
@@ -11,7 +10,6 @@ function MainImg({ movieData }) {
           {movieData.map((data) => (
             <div key={data.id} className="CarouselMap">
               <img src={`${IMG_URL}original${data.backdrop_path}`} />
-
               <div className="titleName">
                 {data.title} {data.name}
               </div>
@@ -23,4 +21,4 @@ function MainImg({ movieData }) {
   );
 }
 
-export default MainImg;
+export default ImageCarousel;
