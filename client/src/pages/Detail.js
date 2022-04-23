@@ -12,6 +12,7 @@ function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
   const [companies, setcompanies] = useState([]); //영화 제작사 저장
   const [movieActor, setMovieActor] = useState([]); //출연 배우
+  const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [movieTrailer, setMovieTrailer] = useState([]);
@@ -42,6 +43,7 @@ function Detail() {
 
     setMovieInfo(getInfo);
     setcompanies(getInfo.production_companies);
+    setGenres(getInfo.genres);
     setMovieActor(getActor.cast.slice(0, 40));
     setMovieTrailer(getTrailer.results);
 
@@ -72,7 +74,7 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(filterMovieTrailer[0]);
+  console.log(movieInfo);
   return (
     <div>
       <MovieHeader
@@ -89,7 +91,21 @@ function Detail() {
 
           <div ref={infoRef} className="movieInfo">
             <div className="movieDetail">
-              <img src={`${IMG_URL}original${movieInfo.poster_path}`} />
+              <div>
+                <img src={`${IMG_URL}original${movieInfo.poster_path}`} />
+                <div>{`❤ ${Math.round(movieInfo.popularity)}`}</div>
+              </div>
+
+              <div className="detailInfo">
+                <div className="averageScore">
+                  <div>회원 평점</div>
+                  <div className="vote_average">{movieInfo.vote_average}</div>
+                  <div>투표 회원수</div>
+                  <div className="vote_count">{movieInfo.vote_count}</div>
+                </div>
+
+                <div>test</div>
+              </div>
             </div>
 
             <div ref={storyRef} className="movieStory">

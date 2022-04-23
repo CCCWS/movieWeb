@@ -3,22 +3,19 @@
   background-position: center;
   width: 100%;
   height: 400px;
-  margin-bottom: 20px;
-  /* border: 10px solid rgb(31, 31, 31); */
 }
 
 .info {
   position: relative;
-  width: 90%;
-  top: 60%;
+  text-align: center;
+  width: 100%;
+  top: 300px;
   color: white;
-  font-size: 50px;
-  margin-left: 10%;
+  font-size: 45px;
 }
 
 @media (max-width: 412px) {
   .info {
     font-size: 40px;
-    margin-left: 10px;
   }
 }
