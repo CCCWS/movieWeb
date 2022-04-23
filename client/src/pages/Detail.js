@@ -77,7 +77,7 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(genres);
+  console.log(filterMovieTrailer);
   return (
     <div>
       <MovieHeader
@@ -104,7 +104,10 @@ function Detail() {
               </div>
 
               <div className="detailInfo">
-                <div className="detailTitle">{movieInfo.title}</div>
+                <div>
+                  <div className="detailTitle">{movieInfo.title}</div>
+                  <div className="dataAndTime">{`${movieInfo.release_date} / ${movieInfo.runtime}분`}</div>
+                </div>
 
                 <div className="averageScore">
                   <div>평균 평점</div>
@@ -140,8 +143,8 @@ function Detail() {
               ) : (
                 <iframe
                   className="youtube"
-                  src={`https://www.youtube.com/embed/${filterMovieTrailer[0].key}`}
-                  allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  src={`https://www.youtube.com/embed/${filterMovieTrailer[0].key}?showinfo=0`}
+                  // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               )}

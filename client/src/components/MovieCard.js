@@ -13,8 +13,10 @@ function MovieCard({ id, poster_path, name, title, IMG_URL }) {
         {title}
         {name}
       </div>
+
+      <div></div>
     </div>
   );
 }
 
-export default MovieCard;
+export default React.memo(MovieCard);

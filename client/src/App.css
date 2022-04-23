@@ -36,15 +36,12 @@ body {
   z-index: -1;
 }
 
-.readMoreBtn {
-  display: flex;
-  justify-content: center;
-}
-
 .movieCard {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(5, 20%);
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .movieCard div {
@@ -160,4 +157,13 @@ body {
 .loadingImg svg {
   width: 50px;
   height: 50px;
+}
+
+.test {
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }

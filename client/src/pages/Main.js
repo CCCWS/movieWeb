@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+
+import { useInView } from "react-intersection-observer";
+
 import { API_URL, API_KEY, IMG_URL } from "../config";
 
 import { Space } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
 
 function Main() {
+  const [readMore, setReadMore] = useInView();
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
@@ -26,6 +30,12 @@ function Main() {
   const pageCountUp = () => {
     setPageCount((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    if (setReadMore === true) {
+      pageCountUp();
+    }
+  }, [setReadMore]);
 
   return (
     <>
@@ -50,10 +60,11 @@ function Main() {
               <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
             ))}
           </div>
-
-          <div className="readMoreBtn">
-            <button onClick={pageCountUp}>더보기</button>
-          </div>
+          <Space className="test">
+            <div>스크롤해서 더보기</div>
+            <DoubleRightOutlined rotate={90} />
+          </Space>
+          <div ref={readMore}>.</div>
         </div>
       )}
     </>
