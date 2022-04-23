@@ -1,7 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Stylish&display=swap");
+
 * {
   box-sizing: border-box;
-  font-family: "Black Han Sans", sans-serif;
+  /* font-family: "Black Han Sans", sans-serif; */
+  font-family: "Stylish", sans-serif;
   color: rgb(255, 255, 255);
 }
 
@@ -145,4 +148,16 @@ body {
 .registerBox {
   display: flex;
   flex-direction: column;
+}
+
+/* 로딩이미지 */
+.loadingImg {
+  width: 100%;
+  min-height: 90vh;
+  justify-content: center;
+}
+
+.loadingImg svg {
+  width: 50px;
+  height: 50px;
 }

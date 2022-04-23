@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 
 import { API_KEY, API_URL, IMG_URL } from "../config";
 
+import { Space } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
 
@@ -83,7 +86,11 @@ function Detail() {
         lookTitle={lookTitle}
         lookTrailer={lookTrailer}
       />
-      {loading ? null : (
+      {loading ? (
+        <Space className="loadingImg">
+          <LoadingOutlined />
+        </Space>
+      ) : (
         <>
           <div ref={titleRef}>
             <TitleLargeImg IMG_URL={IMG_URL} {...movieInfo} />
@@ -97,6 +104,8 @@ function Detail() {
               </div>
 
               <div className="detailInfo">
+                <div className="detailTitle">{movieInfo.title}</div>
+
                 <div className="averageScore">
                   <div>평균 평점</div>
                   <div className="vote_average">{movieInfo.vote_average}</div>

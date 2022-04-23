@@ -1,8 +1,10 @@
 .titleLargeImg {
   background-size: cover;
   background-position: center;
+  position: absolute;
   width: 100%;
   height: 400px;
+  z-index: -1;
 }
 
 .info {

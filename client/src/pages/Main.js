@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMG_URL } from "../config";
 
+import { Space } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
-import TitleLargeImg from "../components/TitleLargeImg";
 
 function Main() {
   const [movie, setMovie] = useState([]);
@@ -27,7 +29,11 @@ function Main() {
 
   return (
     <>
-      {loading ? null : (
+      {loading ? (
+        <Space className="loadingImg">
+          <LoadingOutlined />
+        </Space>
+      ) : (
         <div className="MainPage">
           <div className="MainImg">
             <ImageCarousel movieData={movie.slice(0, 5)} />

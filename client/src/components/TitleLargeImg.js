@@ -20,7 +20,7 @@ function TitleLargeImg({ IMG_URL, backdrop_path, title }) {
     <>
       <div className="titleLargeImg" style={img}>
         <div className="info">
-          <div>{title}</div>
+          {/* <div>{title}</div> */}
         </div>
       </div>
     </>
