@@ -74,7 +74,7 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(movieInfo);
+  console.log(genres);
   return (
     <div>
       <MovieHeader
@@ -98,13 +98,17 @@ function Detail() {
 
               <div className="detailInfo">
                 <div className="averageScore">
-                  <div>회원 평점</div>
+                  <div>평균 평점</div>
                   <div className="vote_average">{movieInfo.vote_average}</div>
                   <div>투표 회원수</div>
                   <div className="vote_count">{movieInfo.vote_count}</div>
                 </div>
 
-                <div>test</div>
+                <div className="detailGenres">
+                  {genres.map((data) => (
+                    <div key={data.id}>{data.name}</div>
+                  ))}
+                </div>
               </div>
             </div>
 
