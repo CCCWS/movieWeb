@@ -2,7 +2,7 @@ import React from "react";
 
 import "./TitleLargeImg.css";
 
-function TitleLargeImg({ IMG_URL, backdrop_path, title, overview, tagline }) {
+function TitleLargeImg({ IMG_URL, backdrop_path, title }) {
   const img = {
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0)60%,
@@ -21,7 +21,6 @@ function TitleLargeImg({ IMG_URL, backdrop_path, title, overview, tagline }) {
       <div className="titleLargeImg" style={img}>
         <div className="info">
           <div>{title}</div>
-          {/* <div>{tagline}</div> */}
         </div>
       </div>
     </>

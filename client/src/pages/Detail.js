@@ -9,30 +9,44 @@ import TitleLargeImg from "../components/TitleLargeImg";
 import "./Detail.css";
 
 function Detail() {
-  const [movie, setMovie] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
+  const [companies, setcompanies] = useState([]); //영화 제작사 저장
+  const [movieActor, setMovieActor] = useState([]); //출연 배우
   const [loading, setLoading] = useState(true);
+
+  const [movieTrailer, setMovieTrailer] = useState([]);
 
   const { id } = useParams();
 
   const titleRef = useRef();
   const infoRef = useRef();
   const storyRef = useRef();
+  const trailerRef = useRef();
 
   const info = `${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
   const actor = `${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
   const reviews = `${API_URL}movie/${id}/reviews?api_key=${API_KEY}`; //영화 리뷰
   const test1 = `${API_URL}person/${"배우id"}?api_key=${API_KEY}`; //배우 상세정보
   const test2 = `${API_URL}person/${"배우id"}/credits?api_key=${API_KEY}`; //배우 출연작
-
-  const getMovie = async () => {
-    const res = await (await fetch(info)).json();
-    setMovie(res);
-    setLoading(false);
-  };
+  const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
+  const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}`; //트레일러 유튜브
 
   useEffect(() => {
-    getMovie();
+    getApi();
   }, []);
+
+  const getApi = async () => {
+    const getInfo = await (await fetch(info)).json();
+    const getActor = await (await fetch(actor)).json();
+    const getTrailer = await (await fetch(trailer)).json();
+
+    setMovieInfo(getInfo);
+    setcompanies(getInfo.production_companies);
+    setMovieActor(getActor.cast.slice(0, 40));
+    setMovieTrailer(getTrailer.results);
+
+    setLoading(false);
+  };
 
   const lookTitle = () => {
     titleRef.current.scrollIntoView({ behavior: "smooth" });
@@ -46,78 +60,80 @@ function Detail() {
     storyRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  console.log(movie);
+  const lookTrailer = () => {
+    trailerRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const filterCompanies = companies
+    .filter((data) => data.logo_path !== null)
+    .slice(0, 3);
+
+  const filterMovieTrailer = movieTrailer
+    .filter((data) => data.name.indexOf("Trailer") !== -1)
+    .slice(0, 1);
+
+  console.log(filterMovieTrailer[0]);
   return (
-    <>
+    <div>
       <MovieHeader
         lookInfo={lookInfo}
         lookStory={lookStory}
         lookTitle={lookTitle}
+        lookTrailer={lookTrailer}
       />
       {loading ? null : (
         <>
           <div ref={titleRef}>
-            <TitleLargeImg IMG_URL={IMG_URL} {...movie} />
+            <TitleLargeImg IMG_URL={IMG_URL} {...movieInfo} />
           </div>
 
+          <div ref={infoRef} className="movieInfo">
+            <div className="movieDetail">
+              <img src={`${IMG_URL}original${movieInfo.poster_path}`} />
+            </div>
 
-          
-          <hr />
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
-          <h1>d</h1>
+            <div ref={storyRef} className="movieStory">
+              <div className="section">줄거리</div>
+              {movieInfo.overview == "" ? (
+                <p className="notInfo"> 정보가 없습니다. </p>
+              ) : (
+                <>
+                  <div className="tagline">{movieInfo.tagline}</div>
+                  <p className="overview">{movieInfo.overview}</p>
+                </>
+              )}
+            </div>
+
+            <div ref={trailerRef} className="trailer">
+              <div className="section">예고편</div>
+              {filterMovieTrailer[0] === undefined ? (
+                <p className="notInfo"> 정보가 없습니다. </p>
+              ) : (
+                <iframe
+                  className="youtube"
+                  src={`https://www.youtube.com/embed/${filterMovieTrailer[0].key}`}
+                  allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </div>
+          </div>
+
           <div className="productionLogo">
-            {movie.production_companies.map((data) => {
+            {filterCompanies.map((data) => {
               {
                 return data.logo_path === null ? null : (
-                  <img key={data.id} src={`${IMG_URL}w200${data.logo_path}`} />
+                  <img
+                    key={data.id}
+                    src={`${IMG_URL}original${data.logo_path}`}
+                  />
                 );
               }
             })}
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 
