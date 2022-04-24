@@ -60,11 +60,15 @@ function Main() {
               <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
             ))}
           </div>
-          <Space className="test">
+
+          <div className="showScroll">
             <div>스크롤해서 더보기</div>
             <DoubleRightOutlined rotate={90} />
-          </Space>
-          <div ref={readMore}>.</div>
+          </div>
+
+          <div ref={readMore}>
+            <LoadingOutlined />
+          </div>
         </div>
       )}
     </>

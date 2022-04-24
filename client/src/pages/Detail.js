@@ -5,6 +5,7 @@ import { API_KEY, API_URL, IMG_URL } from "../config";
 
 import { Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { Image } from "antd";
 
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
@@ -99,7 +100,7 @@ function Detail() {
           <div ref={infoRef} className="movieInfo">
             <div className="movieDetail">
               <div>
-                <img src={`${IMG_URL}original${movieInfo.poster_path}`} />
+                <Image src={`${IMG_URL}original${movieInfo.poster_path}`} />
                 <div>{`❤ ${Math.round(movieInfo.popularity)}`}</div>
               </div>
 
