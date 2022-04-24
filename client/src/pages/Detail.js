@@ -54,10 +54,6 @@ function Detail() {
     setLoading(false);
   };
 
-  const lookTitle = () => {
-    titleRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
   const lookInfo = () => {
     infoRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -84,7 +80,6 @@ function Detail() {
       <MovieHeader
         lookInfo={lookInfo}
         lookStory={lookStory}
-        lookTitle={lookTitle}
         lookTrailer={lookTrailer}
       />
       {loading ? (
@@ -94,7 +89,11 @@ function Detail() {
       ) : (
         <>
           <div ref={titleRef}>
-            <TitleLargeImg IMG_URL={IMG_URL} {...movieInfo} />
+            <TitleLargeImg
+              IMG_URL={IMG_URL}
+              backdrop_path={movieInfo.backdrop_path}
+              DetailPage={true}
+            />
           </div>
 
           <div ref={infoRef} className="movieInfo">

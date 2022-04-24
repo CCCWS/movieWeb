@@ -1,7 +1,7 @@
 .movieInfo {
   padding-left: 10%;
   padding-right: 10%;
-  margin-top: 250px;
+  margin-top: 50px;
 }
 
 .movieInfo div {
@@ -127,6 +127,7 @@
   .movieInfo {
     padding-left: 10px;
     padding-right: 10px;
+    margin-top: 250px;
   }
 
   .movieDetail {

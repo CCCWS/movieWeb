@@ -46,7 +46,7 @@ function Main() {
       ) : (
         <div className="MainPage">
           <div className="MainImg">
-            <ImageCarousel movieData={movie.slice(0, 5)} />
+            <ImageCarousel movieData={movie.slice(0, 6)} />
           </div>
 
           <div>

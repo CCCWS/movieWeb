@@ -1,18 +1,16 @@
 import React from "react";
 import { IMG_URL } from "../config";
 import { Carousel } from "antd";
+import TitleLargeImg from "./TitleLargeImg";
 
 function ImageCarousel({ movieData }) {
   return (
     <>
       <div className="mainImgCarousel">
-        <Carousel autoplay>
+        <Carousel>
           {movieData.map((data) => (
-            <div key={data.id} className="CarouselMap">
-              <img src={`${IMG_URL}original${data.backdrop_path}`} />
-              <div className="titleName">
-                {data.title} {data.name}
-              </div>
+            <div className="mainImgCarousel" key={data.id}>
+              <TitleLargeImg IMG_URL={IMG_URL} {...data} />
             </div>
           ))}
         </Carousel>

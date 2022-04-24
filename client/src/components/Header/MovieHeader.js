@@ -1,10 +1,14 @@
 import React from "react";
 import "./MovieHeader.css";
 
-function MovieHeader({ lookInfo, lookStory, lookTitle, lookTrailer }) {
+function MovieHeader({ lookInfo, lookStory, lookTrailer }) {
+  const test = () => {
+    window.scrollTo(0, 0);
+  };
+  
   return (
     <div className="movieHeader">
-      <button onClick={lookTitle}>맨위로</button>
+      <button onClick={test}>맨위로</button>
       <button onClick={lookInfo}>정보</button>
       <button onClick={lookStory}>줄거리</button>
       <button onClick={lookTrailer}>예고편</button>
