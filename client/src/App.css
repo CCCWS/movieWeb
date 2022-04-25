@@ -8,6 +8,18 @@
   color: rgb(255, 255, 255);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ff444462, #ff932db7);
+}
+
 body {
   background-color: rgb(31, 31, 31);
   overflow-y: scroll;
