@@ -171,11 +171,3 @@ body {
   margin-bottom: 50px;
 }
 
-.ant-carousel .slick-dots li.slick-active button {
-  height: 10px;
-  height: 20px;
-}
-
-.ant-carousel .slick-dots li button {
-  height: 10px;
-}

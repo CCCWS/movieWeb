@@ -26,7 +26,7 @@ function MovieHeader({ lookInfo, lookStory, lookTrailer }) {
       </Link>
 
       <Link to="5" spy={true} smooth={true}>
-        <button>출연진</button>
+        <button>출연</button>
       </Link>
 
       <Link to="6" spy={true} smooth={true}>

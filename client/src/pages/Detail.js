@@ -74,7 +74,7 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(movieInfo);
+  console.log(movieActor);
   return (
     <div>
       <MovieHeader />
@@ -146,9 +146,27 @@ function Detail() {
               )}
             </div>
 
+            <div id="5">
+              <div className="section">출연</div>
 
-            <div className="actor" id="5">
-              test
+              <div className="actor">
+                {movieActor.map((data) => (
+                  <>
+                    <div
+                      className="actorImg"
+                      style={{
+                        backgroundImage: `url(${IMG_URL}original${data.profile_path})`,
+                      }}
+                    >
+                      <div className="actorName">
+                        {data.name}
+                        <br />
+                        {data.character}
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
             </div>
           </div>
 
