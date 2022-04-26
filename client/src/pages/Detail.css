@@ -1,12 +1,13 @@
 .movieInfo {
   padding-left: 10%;
   padding-right: 10%;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .movieInfo div {
   padding-left: 5px;
   padding-right: 5px;
+  margin-top: 10px;
 }
 
 .productionLogo {
@@ -127,7 +128,7 @@
   .movieInfo {
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 250px;
+    margin-top: 200px;
   }
 
   .movieDetail {

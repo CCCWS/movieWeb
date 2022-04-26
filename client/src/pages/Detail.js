@@ -74,7 +74,7 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(filterMovieTrailer);
+  console.log(movieInfo);
   return (
     <div>
       <MovieHeader />
@@ -144,6 +144,11 @@ function Detail() {
                   allowFullScreen
                 />
               )}
+            </div>
+
+
+            <div className="actor" id="5">
+              test
             </div>
           </div>
 

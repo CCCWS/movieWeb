@@ -12,13 +12,18 @@ function MovieCard({ id, poster_path, name, title, IMG_URL }) {
     nav(`./detail/${id}`);
   };
 
-  // useEffect(() => {
-  //   AOS.init();
-  // });
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <div className="movieCardItem" onClick={goDitail}>
-      <div className="movieCarePoster">
+      <div
+        className="movieCarePoster"
+        // data-aos="slide-up"
+        // data-aos-duration="1000"
+        // data-aos-once="false"
+      >
         <div className="focusPoster">
           <SearchOutlined />
         </div>

@@ -25,8 +25,13 @@ function MovieHeader({ lookInfo, lookStory, lookTrailer }) {
         <button>예고편</button>
       </Link>
 
-      <button>출연진</button>
-      <button>리뷰</button>
+      <Link to="5" spy={true} smooth={true}>
+        <button>출연진</button>
+      </Link>
+
+      <Link to="6" spy={true} smooth={true}>
+        <button>리뷰</button>
+      </Link>
     </div>
   );
 }

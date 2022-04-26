@@ -39,8 +39,8 @@ body {
 .movieCard {
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .movieCardItem {
@@ -97,6 +97,7 @@ body {
 .mainImgCarousel {
   width: 100%;
   height: 500px;
+  cursor: pointer;
 }
 
 @media (max-width: 1045px) {
@@ -168,4 +169,13 @@ body {
   width: 100%;
   font-size: 20px;
   margin-bottom: 50px;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  height: 10px;
+  height: 20px;
+}
+
+.ant-carousel .slick-dots li button {
+  height: 10px;
 }
