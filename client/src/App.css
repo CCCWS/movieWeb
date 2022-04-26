@@ -150,6 +150,9 @@ body {
   width: 100%;
   min-height: 90vh;
   justify-content: center;
+  z-index: 10;
+  filter: brightness(90%);
+  position: absolute;
 }
 
 .loadingImg svg {

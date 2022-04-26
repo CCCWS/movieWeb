@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { SearchOutlined } from "@ant-design/icons";
@@ -12,9 +12,9 @@ function MovieCard({ id, poster_path, name, title, IMG_URL }) {
     nav(`./detail/${id}`);
   };
 
-  useEffect(() => {
-    AOS.init();
-  });
+  // useEffect(() => {
+  //   AOS.init();
+  // });
 
   return (
     <div className="movieCardItem" onClick={goDitail}>

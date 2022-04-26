@@ -30,7 +30,7 @@ function Header() {
         alert("로그아웃");
       } else {
         alert("fail");
-      } 
+      }
     });
   };
 
@@ -53,7 +53,7 @@ function Header() {
   };
 
   return (
-    <div className="header">
+    <div className="header" id="1">
       <div>
         <span className="logoImg">로고</span>
         <button className="headerBtn" onClick={mainPage}>
@@ -82,4 +82,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default React.memo(Header);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { useInView } from "react-intersection-observer";
 
@@ -9,6 +9,9 @@ import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Main() {
   const [readMore, setReadMore] = useInView();
@@ -27,15 +30,19 @@ function Main() {
     getMovie();
   }, [pageCount]);
 
-  const pageCountUp = () => {
-    setPageCount((prev) => prev + 1);
-  };
-
   useEffect(() => {
+    const pageCountUp = () => {
+      setPageCount((prev) => prev + 1);
+    };
+
     if (setReadMore === true) {
       pageCountUp();
     }
   }, [setReadMore]);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <>
@@ -46,18 +53,23 @@ function Main() {
       ) : (
         <div className="MainPage">
           <div className="MainImg">
-            <ImageCarousel movieData={movie.slice(0, 6)} />
+            <ImageCarousel movieData={movie.slice(0, 5)} />
           </div>
 
           <div>
-            {/* <TitleLargeImg {...movie[1]} IMG_URL={IMG_URL} /> */}
             <div>TOP RATED</div>
             <hr />
           </div>
 
           <div className="movieCard">
             {movie.map((data, index) => (
-              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+              <div
+                data-aos="slide-up"
+                data-aos-duration="1000"
+                data-aos-once="false"
+              >
+                <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+              </div>
             ))}
           </div>
 

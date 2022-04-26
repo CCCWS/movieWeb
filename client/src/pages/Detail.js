@@ -23,10 +23,10 @@ function Detail() {
 
   const { id } = useParams();
 
-  const titleRef = useRef();
-  const infoRef = useRef();
-  const storyRef = useRef();
-  const trailerRef = useRef();
+  // const titleRef = useRef();
+  // const infoRef = useRef();
+  // const storyRef = useRef();
+  // const trailerRef = useRef();
 
   const info = `${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
   const actor = `${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
@@ -54,17 +54,17 @@ function Detail() {
     setLoading(false);
   };
 
-  const lookInfo = () => {
-    infoRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const lookInfo = () => {
+  //   infoRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  const lookStory = () => {
-    storyRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const lookStory = () => {
+  //   storyRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  const lookTrailer = () => {
-    trailerRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const lookTrailer = () => {
+  //   trailerRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
   const filterCompanies = companies
     .filter((data) => data.logo_path !== null)
@@ -77,18 +77,14 @@ function Detail() {
   console.log(filterMovieTrailer);
   return (
     <div>
-      <MovieHeader
-        lookInfo={lookInfo}
-        lookStory={lookStory}
-        lookTrailer={lookTrailer}
-      />
+      <MovieHeader />
       {loading ? (
         <Space className="loadingImg">
           <LoadingOutlined />
         </Space>
       ) : (
         <>
-          <div ref={titleRef}>
+          <div>
             <TitleLargeImg
               IMG_URL={IMG_URL}
               backdrop_path={movieInfo.backdrop_path}
@@ -96,7 +92,7 @@ function Detail() {
             />
           </div>
 
-          <div ref={infoRef} className="movieInfo">
+          <div className="movieInfo" id="2">
             <div className="movieDetail">
               <div>
                 <Image src={`${IMG_URL}original${movieInfo.poster_path}`} />
@@ -124,7 +120,7 @@ function Detail() {
               </div>
             </div>
 
-            <div ref={storyRef} className="movieStory">
+            <div className="movieStory" id="3">
               <div className="section">줄거리</div>
               {movieInfo.overview == "" ? (
                 <p className="notInfo"> 정보가 없습니다. </p>
@@ -136,7 +132,7 @@ function Detail() {
               )}
             </div>
 
-            <div ref={trailerRef} className="trailer">
+            <div className="trailer" id="4">
               <div className="section">예고편</div>
               {filterMovieTrailer[0] === undefined ? (
                 <p className="notInfo"> 정보가 없습니다. </p>
