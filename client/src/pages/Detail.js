@@ -12,6 +12,10 @@ import TitleLargeImg from "../components/TitleLargeImg";
 
 import "./Detail.css";
 
+import img from "../img/profile_none.PNG";
+
+import ActorList from "../components/ActorList";
+
 function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
   const [companies, setcompanies] = useState([]); //영화 제작사 저장
@@ -74,7 +78,6 @@ function Detail() {
     .filter((data) => data.name.indexOf("Trailer") !== -1)
     .slice(0, 1);
 
-  console.log(movieActor);
   return (
     <div>
       <MovieHeader />
@@ -146,27 +149,9 @@ function Detail() {
               )}
             </div>
 
-            <div id="5">
+            <div id="5" className="actorBox">
               <div className="section">출연</div>
-
-              <div className="actor">
-                {movieActor.map((data) => (
-                  <>
-                    <div
-                      className="actorImg"
-                      style={{
-                        backgroundImage: `url(${IMG_URL}original${data.profile_path})`,
-                      }}
-                    >
-                      <div className="actorName">
-                        {data.name}
-                        <br />
-                        {data.character}
-                      </div>
-                    </div>
-                  </>
-                ))}
-              </div>
+              <ActorList movieActor={movieActor} IMG_URL={IMG_URL} />
             </div>
           </div>
 

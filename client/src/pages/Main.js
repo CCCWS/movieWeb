@@ -28,20 +28,17 @@ function Main() {
 
   useEffect(() => {
     getMovie();
-  }, []);
+  }, [pageCount]);
 
   useEffect(() => {
-    console.log(setReadMore);
-
     if (setReadMore === true) {
       setPageCount((prev) => prev + 1);
-      getMovie();
     }
   }, [setReadMore]);
 
-  // useEffect(() => {
-  //   AOS.init();
-  // }, []);
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <>
@@ -60,7 +57,12 @@ function Main() {
             <hr />
           </div>
 
-          <div className="movieCard">
+          <div
+            className="movieCard"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             {movie.map((data, index) => (
               <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
             ))}
@@ -71,7 +73,7 @@ function Main() {
             <DoubleRightOutlined rotate={90} />
           </div>
 
-          <div ref={readMore}></div>
+          <div ref={readMore}>.</div>
         </div>
       )}
     </>

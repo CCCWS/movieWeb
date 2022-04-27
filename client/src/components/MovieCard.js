@@ -17,13 +17,11 @@ function MovieCard({ id, poster_path, name, title, IMG_URL }) {
   }, []);
 
   return (
-    <div className="movieCardItem" onClick={goDitail}>
-      <div
-        className="movieCarePoster"
-        // data-aos="slide-up"
-        // data-aos-duration="1000"
-        // data-aos-once="false"
-      >
+    <div
+      className="movieCardItem"
+      onClick={goDitail}
+    >
+      <div className="movieCarePoster">
         <div className="focusPoster">
           <SearchOutlined />
         </div>
