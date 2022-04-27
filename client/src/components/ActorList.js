@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../img/profile_none.PNG";
 
-function ActorList({ movieActor, IMG_URL }) {
-  const test = movieActor.slice(0, 8);
+import "./ActorList.css";
 
-  return (
-    <>
-      <div className="actor">
-        {movieActor.map((data) => (
+function ActorList({ movieActor, IMG_URL }) {
+  const [click, setClick] = useState(false);
+
+  const actor1 = movieActor.slice(0, 8);
+  const actor2 = movieActor.slice(9);
+
+  const onClick = () => {
+    setClick(!click);
+  };
+
+  const Actor = ({ data }) => {
+    return (
+      <>
+        {data.map((data) => (
           <div className="actorOne" key={data.id}>
             <div
               className="actorImg"
@@ -25,6 +34,16 @@ function ActorList({ movieActor, IMG_URL }) {
             </div>
           </div>
         ))}
+      </>
+    );
+  };
+
+  return (
+    <>
+      <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
+      <div className="actor">
+        <Actor data={actor1} />
+        {click ? <Actor data={actor2} /> : null}
       </div>
     </>
   );
