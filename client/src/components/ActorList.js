@@ -1,5 +1,4 @@
 import React from "react";
-
 import img from "../img/profile_none.PNG";
 
 function ActorList({ movieActor, IMG_URL }) {

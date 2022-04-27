@@ -1,29 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { API_KEY, API_URL, IMG_URL } from "../config";
 
 import { Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Image } from "antd";
 
+import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
+import ActorList from "../components/ActorList";
+import Trailer from "../components/Trailer";
+import Story from "../components/Story";
+import MovieDetail from "../components/MovieDetail";
+import ProductionLogo from "../components/ProductionLogo";
 
 import "./Detail.css";
-
-import img from "../img/profile_none.PNG";
-
-import ActorList from "../components/ActorList";
 
 function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
   const [companies, setcompanies] = useState([]); //영화 제작사 저장
   const [movieActor, setMovieActor] = useState([]); //출연 배우
-  const [genres, setGenres] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const [movieTrailer, setMovieTrailer] = useState([]);
+  const [genres, setGenres] = useState([]); //장르
+  const [loading, setLoading] = useState(true); //로딩 여부
+  const [movieTrailer, setMovieTrailer] = useState([]); //트레일러 영상
 
   const { id } = useParams();
 
@@ -70,14 +68,6 @@ function Detail() {
   //   trailerRef.current.scrollIntoView({ behavior: "smooth" });
   // };
 
-  const filterCompanies = companies
-    .filter((data) => data.logo_path !== null)
-    .slice(0, 3);
-
-  const filterMovieTrailer = movieTrailer
-    .filter((data) => data.name.indexOf("Trailer") !== -1)
-    .slice(0, 1);
-
   return (
     <div>
       <MovieHeader />
@@ -95,58 +85,20 @@ function Detail() {
             />
           </div>
 
-          <div className="movieInfo" id="2">
-            <div className="movieDetail">
-              <div>
-                <Image src={`${IMG_URL}original${movieInfo.poster_path}`} />
-                <div>{`❤ ${Math.round(movieInfo.popularity)}`}</div>
-              </div>
+          <div id="2" className="movieInfo">
+            <MovieDetail {...movieInfo} IMG_URL={IMG_URL} genres={genres} />
 
-              <div className="detailInfo">
-                <div>
-                  <div className="detailTitle">{movieInfo.title}</div>
-                  <div className="dataAndTime">{`${movieInfo.release_date} / ${movieInfo.runtime}분`}</div>
-                </div>
-
-                <div className="averageScore">
-                  <div>평균 평점</div>
-                  <div className="vote_average">{movieInfo.vote_average}</div>
-                  <div>투표 회원수</div>
-                  <div className="vote_count">{movieInfo.vote_count}</div>
-                </div>
-
-                <div className="detailGenres">
-                  {genres.map((data) => (
-                    <div key={data.id}>{data.name}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="movieStory" id="3">
+            <div id="3" className="movieStory">
               <div className="section">줄거리</div>
-              {movieInfo.overview == "" ? (
-                <p className="notInfo"> 정보가 없습니다. </p>
-              ) : (
-                <>
-                  <div className="tagline">{movieInfo.tagline}</div>
-                  <p className="overview">{movieInfo.overview}</p>
-                </>
-              )}
+              <Story
+                overview={movieInfo.overview}
+                tagline={movieInfo.tagline}
+              />
             </div>
 
-            <div className="trailer" id="4">
+            <div id="4" className="trailer">
               <div className="section">예고편</div>
-              {filterMovieTrailer[0] === undefined ? (
-                <p className="notInfo"> 정보가 없습니다. </p>
-              ) : (
-                <iframe
-                  className="youtube"
-                  src={`https://www.youtube.com/embed/${filterMovieTrailer[0].key}?showinfo=0`}
-                  // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
+              <Trailer movieTrailer={movieTrailer} />
             </div>
 
             <div id="5" className="actorBox">
@@ -156,16 +108,7 @@ function Detail() {
           </div>
 
           <div className="productionLogo">
-            {filterCompanies.map((data) => {
-              {
-                return data.logo_path === null ? null : (
-                  <img
-                    key={data.id}
-                    src={`${IMG_URL}original${data.logo_path}`}
-                  />
-                );
-              }
-            })}
+            <ProductionLogo companies={companies} IMG_URL={IMG_URL} />
           </div>
         </>
       )}
