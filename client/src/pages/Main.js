@@ -39,7 +39,7 @@ function Main() {
   useEffect(() => {
     AOS.init();
   }, []);
-
+  console.log(movie[19]);
   return (
     <>
       {loading ? (

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import "./Test.css";
 
 const array = [
@@ -19,7 +19,7 @@ function Test() {
             id={array.id}
             setCurrentIndex={setCurrentIndex}
             arrayContent={array.content}
-            isShow={array.id === currentIndex ? true : false}
+            show={array.id === currentIndex ? true : false}
           />
         );
       })}
@@ -27,24 +27,24 @@ function Test() {
   );
 }
 
-const Tag = ({ id, arrayContent, isShow, setCurrentIndex }) => {
+const Tag = ({ id, arrayContent, show, setCurrentIndex }) => {
+  const look = useRef();
   const element = useCallback((node) => {
     const observer = new IntersectionObserver(
       (entries, observer) => {
-        console.log(observer);
         setCurrentIndex(id);
       },
       {
         threshold: 1,
       }
     );
-
+    console.log(node);
     observer.observe(node);
   }, []);
 
   return (
     <div className="array">
-      <div isShow={isShow} ref={element} className={isShow ? "True" : "False"}>
+      <div ref={element} className={show ? "True" : "False"}>
         {arrayContent}
       </div>
     </div>

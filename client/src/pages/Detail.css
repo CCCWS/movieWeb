@@ -93,13 +93,24 @@
 
 .vote_average {
   display: flex;
-  background-color: rgb(131, 218, 0);
   width: 60px;
   height: 60px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
   font-size: 30px;
+}
+
+.vote_average_green {
+  background-color: #6c3;
+}
+
+.vote_average_yello {
+  background-color: #fc3;
+}
+
+.vote_average_red {
+  background-color: #f00;
 }
 
 .detailGenres {
@@ -131,7 +142,6 @@
   border-radius: 10px;
   height: 100px;
   width: 100px;
-
 }
 
 .actor {
@@ -199,5 +209,3 @@
     grid-template-columns: repeat(2, 50%);
   }
 }
-
-

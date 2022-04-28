@@ -13,6 +13,17 @@ function MovieDetail({
   genres,
   IMG_URL,
 }) {
+  const vote_average_color = () => {
+    if (vote_average >= 7) {
+      return "vote_average_green";
+    }
+    if (vote_average < 7 && vote_average >= 5) {
+      return "vote_average_yello";
+    } else {
+      return "vote_average_red";
+    }
+  };
+  console.log(vote_average_color());
   return (
     <>
       <div className="movieDetail">
@@ -29,7 +40,12 @@ function MovieDetail({
 
           <div className="averageScore">
             <div>평균 평점</div>
-            <div className="vote_average">{vote_average}</div>
+            <div
+              className={[`vote_average ${vote_average_color()}`].join(" ")}
+            >
+              {" "}
+              {vote_average}
+            </div>
             <div>투표 회원수</div>
             <div className="vote_count">{vote_count}</div>
           </div>
