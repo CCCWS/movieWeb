@@ -40,10 +40,12 @@ function ActorList({ movieActor, IMG_URL }) {
 
   return (
     <>
-      <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
       <div className="actor">
         <Actor data={actor1} />
         {click ? <Actor data={actor2} /> : null}
+      </div>
+      <div className="moreBtn">
+        <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
       </div>
     </>
   );

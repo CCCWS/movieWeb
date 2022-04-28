@@ -1,0 +1,25 @@
+.array {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  height: 500px;
+  margin-bottom: 500px;
+}
+
+.array div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.True {
+  transition: all ease 1s;
+  /* transform: rotate(3600deg); */
+  font-size: 50px;
+}
+
+.False {
+  font-size: 10px;
+}

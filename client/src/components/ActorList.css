@@ -1,4 +1,16 @@
-button{
-    background-color: transparent;
-    
+.moreBtn {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+}
+
+.moreBtn button {
+  background-color: transparent;
+  border: none;
+  height: 24px;
+}
+
+.moreBtn button:hover {
+  cursor: pointer;
+  border-bottom: 2px solid red;
 }
