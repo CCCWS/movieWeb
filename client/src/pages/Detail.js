@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
@@ -56,6 +59,9 @@ function Detail() {
     setLoading(false);
   };
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // const lookInfo = () => {
   //   infoRef.current.scrollIntoView({ behavior: "smooth" });
   // };
@@ -85,28 +91,52 @@ function Detail() {
             />
           </div>
 
-          <div id="2" className="movieInfo">
+          <div
+            id="2"
+            className="movieInfo"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             <MovieDetail {...movieInfo} IMG_URL={IMG_URL} genres={genres} />
-
-            <div id="3" className="movieStory">
+            <hr />
+            <div
+              id="3"
+              className="movieStory"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
               <div className="section">줄거리</div>
               <Story
                 overview={movieInfo.overview}
                 tagline={movieInfo.tagline}
               />
             </div>
-
-            <div id="4" className="trailer">
+            <hr />
+            <div
+              id="4"
+              className="trailer"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
               <div className="section">예고편</div>
               <Trailer movieTrailer={movieTrailer} />
             </div>
-
-            <div id="5" className="actorBox">
+            <hr />
+            <div
+              id="5"
+              className="actorBox"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
               <div className="section">출연</div>
               <ActorList movieActor={movieActor} IMG_URL={IMG_URL} />
             </div>
           </div>
-
+          <hr />
           <div className="productionLogo">
             <ProductionLogo companies={companies} IMG_URL={IMG_URL} />
           </div>

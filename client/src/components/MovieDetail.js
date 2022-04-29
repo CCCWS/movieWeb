@@ -39,11 +39,8 @@ function MovieDetail({
           </div>
 
           <div className="averageScore">
-            <div>평균 평점</div>
-            <div
-              className={[`vote_average ${vote_average_color()}`].join(" ")}
-            >
-              {" "}
+            <div>평점</div>
+            <div className={[`vote_average ${vote_average_color()}`].join(" ")}>
               {vote_average}
             </div>
             <div>투표 회원수</div>
@@ -52,7 +49,9 @@ function MovieDetail({
 
           <div className="detailGenres">
             {genres.map((data) => (
-              <div key={data.id}>{data.name}</div>
+              <div className="genres" key={data.id}>
+                {data.name}
+              </div>
             ))}
           </div>
         </div>

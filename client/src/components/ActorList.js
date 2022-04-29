@@ -28,9 +28,8 @@ function ActorList({ movieActor, IMG_URL }) {
               }}
             ></div>
             <div className="actorName">
-              {data.name}
-              <br />
-              {data.character}
+              <div>{data.name}</div>
+              <p>{data.character}</p>
             </div>
           </div>
         ))}

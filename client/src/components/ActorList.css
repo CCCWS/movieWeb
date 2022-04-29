@@ -1,3 +1,46 @@
+.actor {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.actorImg {
+  background-size: cover;
+  background-position: center;
+  border-radius: 100px;
+  height: 120px;
+  width: 120px;
+  border: 5px solid white;
+  margin-bottom: 10px;
+}
+
+.actorName {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actorName p {
+  text-align: center;
+  color: rgb(139, 139, 139);
+}
+
+.actorOne {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.actorImg:hover {
+  cursor: pointer;
+  transition: all ease 1s;
+  transform: scale(1.2);
+  border-color: red;
+}
+
 .moreBtn {
   display: flex;
   justify-content: flex-end;
@@ -13,8 +56,4 @@
 .moreBtn button:hover {
   cursor: pointer;
   border-bottom: 2px solid red;
-}
-
-.test2 {
-  display: none;
 }
