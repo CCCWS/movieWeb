@@ -124,7 +124,9 @@ function Detail() {
               <div className="section">예고편</div>
               <Trailer movieTrailer={movieTrailer} />
             </div>
+
             <hr />
+
             <div
               id="5"
               className="actorBox"

@@ -23,7 +23,6 @@ function MovieDetail({
       return "vote_average_red";
     }
   };
-  console.log(vote_average_color());
   return (
     <>
       <div className="movieDetail">
