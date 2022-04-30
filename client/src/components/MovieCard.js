@@ -6,27 +6,31 @@ import { SearchOutlined } from "@ant-design/icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function MovieCard({ id, poster_path, name, title, IMG_URL }) {
+function MovieCard({
+  id,
+  poster_path,
+  name,
+  title,
+  IMG_URL,
+  closeModal,
+  onModal,
+}) {
   const nav = useNavigate();
   const goDitail = () => {
-    nav(`./detail/${id}`);
+    nav(`/detail/${id}`);
+    {
+      onModal && closeModal();
+    }
   };
 
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
   return (
-    <div
-      className="movieCardItem"
-      onClick={goDitail}
-    >
+    <div className="movieCardItem" onClick={goDitail}>
       <div className="movieCarePoster">
         <div className="focusPoster">
           <SearchOutlined />
         </div>
 
-        <img src={`${IMG_URL}w200${poster_path}`} />
+        <img src={poster_path ? `${IMG_URL}w200${poster_path}` : null} />
       </div>
 
       <div className="movieCardTitle">

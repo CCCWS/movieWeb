@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import { Space } from "antd";
@@ -17,6 +17,8 @@ import MovieDetail from "../components/MovieDetail";
 import ProductionLogo from "../components/ProductionLogo";
 
 import "./Detail.css";
+
+import Modal from "../components/Modal";
 
 function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
@@ -43,9 +45,10 @@ function Detail() {
 
   useEffect(() => {
     getApi();
-  }, []);
+  }, [id]);
 
   const getApi = async () => {
+    setLoading(true);
     const getInfo = await (await fetch(info)).json();
     const getActor = await (await fetch(actor)).json();
     const getTrailer = await (await fetch(trailer)).json();
@@ -74,8 +77,19 @@ function Detail() {
   //   trailerRef.current.scrollIntoView({ behavior: "smooth" });
   // };
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [actorId, setActorId] = useState();
+
+  const openModal = useCallback(() => {
+    setModalOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalOpen(false);
+  }, []);
+
   return (
-    <div>
+    <div className="detailPage">
       <MovieHeader />
       {loading ? (
         <Space className="loadingImg">
@@ -83,6 +97,15 @@ function Detail() {
         </Space>
       ) : (
         <>
+          <Modal
+            closeModal={closeModal}
+            modalOpen={modalOpen}
+            actorId={actorId}
+            API_URL={API_URL}
+            API_KEY={API_KEY}
+            IMG_URL={IMG_URL}
+          />
+
           <div>
             <TitleLargeImg
               IMG_URL={IMG_URL}
@@ -135,7 +158,12 @@ function Detail() {
               data-aos-once="true"
             >
               <div className="section">출연</div>
-              <ActorList movieActor={movieActor} IMG_URL={IMG_URL} />
+              <ActorList
+                movieActor={movieActor}
+                IMG_URL={IMG_URL}
+                openModal={openModal}
+                setActorId={setActorId}
+              />
             </div>
           </div>
           <hr />

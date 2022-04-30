@@ -19,6 +19,11 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.actorName span {
+  color: rgb(139, 139, 139);
 }
 
 .actorName p {
@@ -27,11 +32,11 @@
 }
 
 .actorOne {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  justify-content: flex-start;
+  height: 230px;
 }
 
 .actorImg:hover {

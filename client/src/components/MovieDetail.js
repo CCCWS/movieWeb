@@ -27,7 +27,9 @@ function MovieDetail({
     <>
       <div className="movieDetail">
         <div>
-          <Image src={`${IMG_URL}original${poster_path}`} />
+          <Image
+            src={poster_path ? `${IMG_URL}original${poster_path}` : null}
+          />
           <div>{`❤ ${Math.round(popularity)}`}</div>
         </div>
 

@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import Header from "./components/Header/Header";
 import PageTop from "./components/PageTop";
 import Test from "./pages/Test";
+import Modal from "./components/Modal";
 
 import "./App.css";
 import Auth from "../src/hoc/auth";
@@ -23,6 +24,7 @@ function App() {
         <Route path={`/Register`} element={Auth(Register, false)} />
         <Route path={`/Detail/:id`} element={Auth(Detail, null)} />
         <Route path={`/test`} element={Auth(Test, null)} />
+        <Route path={`/modal`} element={Auth(Modal, null)} />
       </Routes>
     </BrowserRouter>
   );

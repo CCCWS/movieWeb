@@ -9,15 +9,16 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(45deg, #ff444462, #ff932db7);
+  border-radius: 100px;
 }
 
 body {
@@ -39,8 +40,10 @@ body {
 .movieCard {
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  margin-left: 10%;
-  margin-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+  overflow: auto;
 }
 
 .movieCardItem {
@@ -114,7 +117,7 @@ body {
 
 @media (max-width: 412px) {
   .movieCard {
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(1, 100%);
   }
 }
 
@@ -170,4 +173,3 @@ body {
   font-size: 20px;
   margin-bottom: 50px;
 }
-
