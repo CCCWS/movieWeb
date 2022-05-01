@@ -20,8 +20,14 @@ function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
     const getActor = await (await fetch(actor)).json();
     const getMovie = await (await fetch(movie)).json();
 
-    const sort = getMovie.cast.sort(function (a, b) {
-      return b.vote_average - a.vote_average;
+    const filterMovie = getMovie.cast.filter(
+      (data) => data.release_date !== ""
+    );
+
+    const sort = filterMovie.sort(function (a, b) {
+      return (
+        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+      );
     });
 
     setActorDetail(getActor);
@@ -67,7 +73,7 @@ function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
             />
 
             <div
-              className="movieCard"
+              className="movieCard movieCardModal"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-once="true"

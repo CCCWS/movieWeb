@@ -38,7 +38,10 @@ function TitleLargeImg({ IMG_URL, backdrop_path, DetailPage, title, name }) {
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (
         <div className="titleName">
-          {title} {name}
+          <div>
+            {title} {name}
+          </div>
+          <div>실시간 인기 영화 7위</div>
         </div>
       )}
     </div>

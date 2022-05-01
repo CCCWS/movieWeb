@@ -14,7 +14,7 @@ function Trailer({ movieTrailer }) {
           <div className="trailer" key={data.id}>
             <iframe
               className="youtube"
-              src={`https://www.youtube.com/embed/${data.key}?showinfo=0`}
+              src={`https://www.youtube.com/embed/${data.key}`}
               // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

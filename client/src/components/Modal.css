@@ -7,7 +7,18 @@
   left: 0;
   z-index: -1;
   transition: all ease 0.5s;
-  background-color: rgba(131, 131, 131, 0.795);
+
+  backdrop-filter: blur(20px);
+
+
+
+
+
+
+
+
+
+
   display: flex;
   align-items: center;
   justify-content: center;
