@@ -15,6 +15,7 @@ import Trailer from "../components/Trailer";
 import Story from "../components/Story";
 import MovieDetail from "../components/MovieDetail";
 import ProductionLogo from "../components/ProductionLogo";
+import Logo from "../components/Logo";
 
 import "./Detail.css";
 
@@ -27,6 +28,7 @@ function Detail() {
   const [genres, setGenres] = useState([]); //장르
   const [loading, setLoading] = useState(true); //로딩 여부
   const [movieTrailer, setMovieTrailer] = useState([]); //트레일러 영상
+  const [logoImg, setLogoImg] = useState([]);
 
   const { id } = useParams();
 
@@ -42,6 +44,7 @@ function Detail() {
   const test2 = `${API_URL}person/${"배우id"}/credits?api_key=${API_KEY}`; //배우 출연작
   const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
   const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}`; //트레일러 유튜브
+  const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
 
   useEffect(() => {
     getApi();
@@ -52,7 +55,9 @@ function Detail() {
     const getInfo = await (await fetch(info)).json();
     const getActor = await (await fetch(actor)).json();
     const getTrailer = await (await fetch(trailer)).json();
+    const getLogo = await (await fetch(logo)).json();
 
+    setLogoImg(getLogo.logos);
     setMovieInfo(getInfo);
     setcompanies(getInfo.production_companies);
     setGenres(getInfo.genres);
@@ -65,6 +70,7 @@ function Detail() {
   useEffect(() => {
     AOS.init();
   }, []);
+
   // const lookInfo = () => {
   //   infoRef.current.scrollIntoView({ behavior: "smooth" });
   // };
@@ -87,6 +93,8 @@ function Detail() {
   const closeModal = useCallback(() => {
     setModalOpen(false);
   }, []);
+
+  console.log(movieInfo);
 
   return (
     <div className="detailPage">
@@ -121,7 +129,12 @@ function Detail() {
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            <MovieDetail {...movieInfo} IMG_URL={IMG_URL} genres={genres} />
+            <MovieDetail
+              {...movieInfo}
+              IMG_URL={IMG_URL}
+              genres={genres}
+              logoImg={logoImg}
+            />
             <hr />
             <div
               id="3"

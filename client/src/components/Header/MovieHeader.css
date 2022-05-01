@@ -1,5 +1,5 @@
 .movieHeader {
-  width: 100px;
+  width: 10%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,8 @@
   background-color: transparent;
   border: none;
   color: rgb(255, 255, 255);
-  padding: 0px;
-  margin: 0px;
+  font-size: 12px;
+  height: 30px;
 }
 
 .movieHeader button:hover {
@@ -46,6 +46,6 @@
 
   .movieHeader button {
     margin-right: 10px;
-    margin-left:10px;
+    margin-left: 10px;
   }
 }

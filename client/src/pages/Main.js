@@ -19,7 +19,9 @@ function Main() {
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
 
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&year=2022&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+  // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+
   const getMovie = async () => {
     const res = await (await fetch(url)).json();
     setMovie([...movie, ...res.results]);

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_URL, API_KEY } from "../config";
+
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 import "./TitleLargeImg.css";
 
-function TitleLargeImg({ IMG_URL, backdrop_path, DetailPage, title, name }) {
-  const checkNull = backdrop_path ? `${IMG_URL}original${backdrop_path}` : null;
+function TitleLargeImg({
+  id,
+  IMG_URL,
+  backdrop_path,
+  DetailPage,
+  title,
+  name,
+}) {
+  const nav = useNavigate();
 
+  const checkNull = backdrop_path ? `${IMG_URL}original${backdrop_path}` : null;
   const styleDetail = {
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0.3)50%,
@@ -30,7 +42,6 @@ function TitleLargeImg({ IMG_URL, backdrop_path, DetailPage, title, name }) {
         rgba(31,31,31,1)100%),  
       url('${checkNull}')`,
   };
-
   const style = DetailPage === true ? styleDetail : styleMain;
   const where = DetailPage === true ? "fromDetail" : "fromMain";
 
@@ -41,7 +52,9 @@ function TitleLargeImg({ IMG_URL, backdrop_path, DetailPage, title, name }) {
           <div>
             {title} {name}
           </div>
-          <div>실시간 인기 영화 7위</div>
+          <button className="goDetailBtn" onClick={() => nav(`./detail/${id}`)}>
+            <ExclamationCircleOutlined /> 상세 정보
+          </button>
         </div>
       )}
     </div>
