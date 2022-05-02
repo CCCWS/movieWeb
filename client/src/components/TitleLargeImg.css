@@ -39,10 +39,20 @@
   border-radius: 5px;
   font-size: 20px;
   border: 2px solid black;
+  margin-top: 20px;
 }
 
 .goDetailBtn:hover {
   border: 2px solid red;
   transition: all ease 1s;
   background-color: rgb(71, 71, 71);
+}
+
+@media (max-width: 500px) {
+  .fromMain {
+    justify-content: center;
+  }
+  .titleName {
+    margin-left: 0px;
+  }
 }

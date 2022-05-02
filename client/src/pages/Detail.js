@@ -182,4 +182,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default React.memo(Detail);

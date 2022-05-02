@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { API_KEY, API_URL, IMG_URL } from "../config";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+import Logo from "./Logo";
 
 import "./TitleLargeImg.css";
 
-function TitleLargeImg({
-  id,
-  IMG_URL,
-  backdrop_path,
-  DetailPage,
-  title,
-  name,
-}) {
+function TitleLargeImg({ id, backdrop_path, DetailPage, title, name }) {
   const nav = useNavigate();
 
+  const [logoImg, setLogoImg] = useState([]);
+  const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
+  const getApi = async () => {
+    const getLogo = await (await fetch(logo)).json();
+    setLogoImg(getLogo.logos);
+  };
+
+  useEffect(() => {
+    if (DetailPage === undefined) {
+      getApi();
+    }
+  }, []);
+
   const checkNull = backdrop_path ? `${IMG_URL}original${backdrop_path}` : null;
-  const styleDetail = { //detail에서 호출했을 경우
+  const styleDetail = {
+    //detail에서 호출했을 경우
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0.3)50%,
       rgba(31,31,31,0.6)70%,
@@ -29,7 +38,8 @@ function TitleLargeImg({
       url('${checkNull}')`,
   };
 
-  const styleMain = { //main에서 호출했을 경우
+  const styleMain = {
+    //main에서 호출했을 경우
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0)60%,
       rgba(31,31,31,0.3)80%,
@@ -48,9 +58,7 @@ function TitleLargeImg({
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (
         <div className="titleName">
-          <div>
-            {title} {name}
-          </div>
+          <Logo logoImg={logoImg} />
           <button className="goDetailBtn" onClick={() => nav(`./detail/${id}`)}>
             <ExclamationCircleOutlined /> 상세 정보
           </button>

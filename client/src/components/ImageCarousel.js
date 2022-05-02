@@ -12,7 +12,7 @@ function ImageCarousel({ movieData }) {
         <Carousel>
           {movieData.map((data) => (
             <div className="mainImgCarousel" key={data.id}>
-              <TitleLargeImg IMG_URL={IMG_URL} {...data} />
+              <TitleLargeImg IMG_URL={IMG_URL} {...data} main={true}/>
             </div>
           ))}
         </Carousel>

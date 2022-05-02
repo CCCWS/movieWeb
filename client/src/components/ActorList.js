@@ -3,12 +3,7 @@ import img from "../img/profile_none.PNG";
 
 import "./ActorList.css";
 
-function ActorList({
-  movieActor,
-  IMG_URL,
-  setModalOpen,
-  setActorId,
-}) {
+function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
   const [click, setClick] = useState(false);
 
   const actor1 = movieActor.slice(0, 8);
@@ -49,7 +44,7 @@ function ActorList({
   );
 }
 
-export default ActorList;
+export default React.memo(ActorList);
 
 export const ActorOne = ({
   data,

@@ -10,21 +10,22 @@ function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
       setTrailerModalOpen(false);
     }
   };
-  console.log(trailerUrl);
+
   return (
     <>
-      {TrailerModalOpen === true && (
-        <div className={[`modal ${open}`].join(" ")} onClick={test}>
-          <div className="item">
-            <iframe
-              className="youtube"
-              src={`${trailerUrl}`}
-              // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
+      <div className={[`modal ${open}`].join(" ")} onClick={test}>
+        {TrailerModalOpen && (
+          <iframe
+            // data-aos="fade"
+            // data-aos-duration="3000"
+            // data-aos-once="true"
+            className="youtube youtubeModal"
+            src={`${trailerUrl}?autoplay=1`}
+            allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+      </div>
     </>
   );
 }

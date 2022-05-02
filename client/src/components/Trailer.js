@@ -24,6 +24,7 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
           movie.map((data) => (
             <div className="trailer" key={data.id}>
               <iframe
+                title="YouTube video player"
                 className="youtube"
                 src={`https://www.youtube.com/embed/${data.key}`}
                 // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -40,4 +41,4 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   );
 }
 
-export default Trailer;
+export default React.memo(Trailer);

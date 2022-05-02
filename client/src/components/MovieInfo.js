@@ -83,4 +83,4 @@ function MovieInfo({
   );
 }
 
-export default MovieInfo;
+export default React.memo(MovieInfo);

@@ -36,4 +36,4 @@ function MovieHeader({ lookInfo, lookStory, lookTrailer }) {
   );
 }
 
-export default MovieHeader;
+export default React.memo(MovieHeader);
