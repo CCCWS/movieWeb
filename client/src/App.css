@@ -21,104 +21,7 @@
 
 body {
   background-color: rgb(31, 31, 31);
-  overflow-y: scroll;
-}
-
-/* 메인 */
-.MainPage {
-  width: 100%;
-}
-
-.MainImg {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.movieCard {
-  display: grid;
-  grid-template-columns: repeat(5, 20%);
-  padding-left: 5%;
-  padding-right: 5%;
-  width: 100%;
-}
-
-.movieCardModal {
-  overflow: auto;
-}
-
-.movieCardItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.movieCarePoster {
-  width: 90%;
-  height: 90%;
-  position: relative;
-}
-
-.movieCarePoster img {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-
-.focusPoster {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  font-size: 50px;
-}
-
-.movieCarePoster:hover {
-  cursor: pointer;
-  transition: all 0.5s ease;
-  transform: scale(1.2);
-}
-
-.movieCarePoster:hover img {
-  filter: brightness(50%);
-}
-
-.movieCarePoster:hover .focusPoster {
-  transition: all 0.5s ease;
-  z-index: 1;
-  opacity: 1;
-}
-
-.movieCardTitle {
-  height: 30px;
-  font-size: 16px;
-}
-
-.mainImgCarousel {
-  width: 100%;
-  height: 600px;
-}
-
-@media (max-width: 1045px) {
-  .movieCard {
-    grid-template-columns: repeat(4, 25%);
-  }
-}
-
-@media (max-width: 860px) {
-  .movieCard {
-    grid-template-columns: repeat(3, 33%);
-  }
-}
-
-@media (max-width: 412px) {
-  .movieCard {
-    grid-template-columns: repeat(2, 50%);
-  }
+  /* overflow-y: scroll; */
 }
 
 /* 로그인 */
@@ -149,27 +52,37 @@ body {
   flex-direction: column;
 }
 
+
 /* 로딩이미지 */
-.loadingImg {
+.loading {
+  display: flex;
   width: 100%;
-  min-height: 90vh;
+  height: 90vh;
   justify-content: center;
-  z-index: 10;
-  filter: brightness(90%);
-  position: absolute;
+  align-items: center;
 }
 
-.loadingImg svg {
+.loading svg {
   width: 50px;
   height: 50px;
 }
 
-.showScroll {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  font-size: 16px;
-  margin-bottom: 50px;
+
+
+@media (max-width: 1045px) {
+  .movieCard {
+    grid-template-columns: repeat(4, 25%);
+  }
+}
+
+@media (max-width: 860px) {
+  .movieCard {
+    grid-template-columns: repeat(3, 33%);
+  }
+}
+
+@media (max-width: 412px) {
+  .movieCard {
+    grid-template-columns: repeat(2, 50%);
+  }
 }

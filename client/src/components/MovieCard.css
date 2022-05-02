@@ -1,0 +1,52 @@
+/* 포스터랑 제목 묶음 */
+.movieCardItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.movieCarePoster {
+  width: 90%;
+  height: 90%;
+  position: relative;
+}
+
+.movieCarePoster img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+/* 포스터 호버시 나타남 */
+.hoverPoster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  font-size: 50px;
+}
+
+.movieCarePoster:hover {
+  cursor: pointer;
+  transition: all 0.5s ease;
+  transform: scale(1.2);
+}
+
+.movieCarePoster:hover img {
+  filter: brightness(50%);
+}
+
+.movieCarePoster:hover .hoverPoster {
+  transition: all 0.5s ease;
+  z-index: 1;
+  opacity: 1;
+}
+
+.movieCardTitle {
+  height: 30px;
+  font-size: 16px;
+}

@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { SearchOutlined } from "@ant-design/icons";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
+import "./MovieCard.css";
 
 function MovieCard({
   id,
@@ -18,7 +17,7 @@ function MovieCard({
   const nav = useNavigate();
   const goDitail = () => {
     nav(`/detail/${id}`);
-    {
+    { //modal창에서 페이지 이동시 modal창 닫기
       onModal && closeModal();
     }
   };
@@ -26,7 +25,7 @@ function MovieCard({
   return (
     <div className="movieCardItem" onClick={goDitail}>
       <div className="movieCarePoster">
-        <div className="focusPoster">
+        <div className="hoverPoster">
           <SearchOutlined />
         </div>
 

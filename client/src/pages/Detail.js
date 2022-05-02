@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
-import { Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import AOS from "aos";
@@ -15,7 +14,6 @@ import Trailer from "../components/Trailer";
 import Story from "../components/Story";
 import MovieDetail from "../components/MovieDetail";
 import ProductionLogo from "../components/ProductionLogo";
-import Logo from "../components/Logo";
 
 import "./Detail.css";
 
@@ -43,7 +41,7 @@ function Detail() {
   const test1 = `${API_URL}person/${"배우id"}?api_key=${API_KEY}`; //배우 상세정보
   const test2 = `${API_URL}person/${"배우id"}/credits?api_key=${API_KEY}`; //배우 출연작
   const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
-  const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}`; //트레일러 유튜브
+  const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
   const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
 
   useEffect(() => {
@@ -94,15 +92,13 @@ function Detail() {
     setModalOpen(false);
   }, []);
 
-  console.log(movieInfo);
-
   return (
     <div className="detailPage">
       <MovieHeader />
       {loading ? (
-        <Space className="loadingImg">
+        <div className="loading">
           <LoadingOutlined />
-        </Space>
+        </div>
       ) : (
         <>
           <Modal

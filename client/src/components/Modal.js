@@ -52,7 +52,7 @@ function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
   };
 
   const open = modalOpen ? "modal_open" : null;
-
+  console.log();
   return (
     <div className={[`modal ${open}`].join(" ")} onClick={test}>
       <div className="item">

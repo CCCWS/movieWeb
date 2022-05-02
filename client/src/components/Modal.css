@@ -62,3 +62,7 @@
   transition: all ease 0.5s;
   background-color: red;
 }
+
+.movieCardModal {
+  overflow: auto;
+}

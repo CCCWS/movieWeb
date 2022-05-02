@@ -54,8 +54,10 @@ function MovieDetail({
             <>
               <div className="dataAndTime">
                 <div>
-                  {release_date} / {runtime}분 /{" "}
-                  {production_countries[0].iso_3166_1}
+                  {release_date} / {runtime}분
+                  {production_countries[0] == undefined
+                    ? null
+                    : ` / ${production_countries[0].iso_3166_1}`}
                 </div>
               </div>
             </>

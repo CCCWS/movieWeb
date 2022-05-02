@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-
 import { useInView } from "react-intersection-observer";
 
-import { API_URL, API_KEY, IMG_URL } from "../config";
-
-import { Space } from "antd";
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
+import { API_URL, API_KEY, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import "./Main.css";
+
 function Main() {
-  const [readMore, setReadMore] = useInView();
+  const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
+
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
@@ -24,7 +24,7 @@ function Main() {
 
   const getMovie = async () => {
     const res = await (await fetch(url)).json();
-    setMovie([...movie, ...res.results]);
+    setMovie([...movie, ...res.results]); //페이지 카운터가 증가했을때 기존 데이터에 추가 데이터를 합침
     setLoading(false);
   };
 
@@ -45,12 +45,12 @@ function Main() {
   return (
     <>
       {loading ? (
-        <Space className="loadingImg">
+        <div className="loading">
           <LoadingOutlined />
-        </Space>
+        </div>
       ) : (
         <div className="MainPage">
-          <div className="MainImg">
+          <div>
             <ImageCarousel movieData={movie.slice(0, 5)} />
           </div>
 

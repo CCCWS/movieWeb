@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Trailer.css";
 
 function Trailer({ movieTrailer }) {
   const filterMovieTrailer = movieTrailer
-    .filter((data) => data.name.indexOf("Trailer") !== -1)
+    .filter(
+      (data) =>
+        data.name.indexOf("예고") !== -1 || data.name.indexOf("티저") !== -1
+    )
     .slice(0, 3);
+
+    
+  const movie = movieTrailer.length > 3 ? filterMovieTrailer : movieTrailer;
   return (
     <div className="trailerBox">
-      {filterMovieTrailer[0] === undefined ? (
+      {movie[0] === undefined ? (
         <p className="notInfo"> 정보가 없습니다. </p>
       ) : (
-        filterMovieTrailer.map((data) => (
+        movie.map((data) => (
           <div className="trailer" key={data.id}>
             <iframe
               className="youtube"
