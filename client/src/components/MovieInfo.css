@@ -1,0 +1,86 @@
+/* MovieInfo의 내용을 모두 담은 틀 */
+.MovieInfo {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.mainPoster {
+  width: 350px;
+  border-radius: 5px;
+}
+
+.detailInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.logoHave {
+  font-size: 15px;
+  color: rgb(139, 139, 139);
+}
+
+.logoNot {
+  font-size: 30px;
+}
+
+.dataAndTime {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.averageScore {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.vote_average {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.vote_average_green {
+  background-color: #6c3;
+}
+
+.vote_average_yello {
+  background-color: #fc3;
+}
+
+.vote_average_red {
+  background-color: #f00;
+}
+
+/* 장르 버튼 */
+.detailGenres {
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.genres {
+  margin-right: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid white;
+  background-color: rgba(31, 31, 31, 0.3);
+}
+
+.genres:hover {
+  cursor: pointer;
+  border-color: red;
+  transition: all ease 0.5s;
+}

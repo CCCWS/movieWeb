@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import img from "../img/profile_none.PNG";
 
-import Modal from "./Modal";
 import "./ActorList.css";
 
-function ActorList({ movieActor, IMG_URL, openModal, setActorId }) {
+function ActorList({
+  movieActor,
+  IMG_URL,
+  setModalOpen,
+  setActorId,
+}) {
   const [click, setClick] = useState(false);
 
   const actor1 = movieActor.slice(0, 8);
@@ -22,7 +26,7 @@ function ActorList({ movieActor, IMG_URL, openModal, setActorId }) {
             key={data.id}
             data={data}
             IMG_URL={IMG_URL}
-            openModal={openModal}
+            setModalOpen={setModalOpen}
             setActorId={setActorId}
           />
         ))}
@@ -47,10 +51,16 @@ function ActorList({ movieActor, IMG_URL, openModal, setActorId }) {
 
 export default ActorList;
 
-export const ActorOne = ({ data, IMG_URL, openModal, setActorId, onModal }) => {
+export const ActorOne = ({
+  data,
+  IMG_URL,
+  setModalOpen,
+  setActorId,
+  onModal,
+}) => {
   const modal = () => {
-    openModal(true);
     setActorId(data.id);
+    setModalOpen(true);
   };
 
   return (

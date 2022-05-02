@@ -8,7 +8,14 @@ import "./Modal.css";
 
 import img from "../img/profile_none.PNG";
 
-function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
+function Modal({
+  setModalOpen,
+  modalOpen,
+  actorId,
+  API_URL,
+  API_KEY,
+  IMG_URL,
+}) {
   const [actorDetail, setActorDetail] = useState();
   const [actorMovie, setActorMovie] = useState();
   const [loading, setLoading] = useState(true);
@@ -42,17 +49,17 @@ function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
   }, [modalOpen]);
 
   const modalClose = () => {
-    closeModal(false);
+    setModalOpen(false);
   };
 
   const test = (event) => {
     if (event.target.parentNode.className == "detailPage") {
-      modalClose();
+      setModalOpen(false);
     }
   };
 
   const open = modalOpen ? "modal_open" : null;
-  console.log();
+
   return (
     <div className={[`modal ${open}`].join(" ")} onClick={test}>
       <div className="item">
@@ -84,7 +91,7 @@ function Modal({ closeModal, modalOpen, actorId, API_URL, API_KEY, IMG_URL }) {
                   {...data}
                   IMG_URL={IMG_URL}
                   onModal={true}
-                  closeModal={closeModal}
+                  setModalOpen={setModalOpen}
                 />
               ))}
             </div>

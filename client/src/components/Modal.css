@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   z-index: -1;
-  transition: all ease 0.5s;
+  transition: all ease 3s;
   backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@
 
 .modal_open {
   opacity: 1;
-  transition: all ease 0.5s;
+  transition: all ease 3s;
   z-index: 99;
 }
 

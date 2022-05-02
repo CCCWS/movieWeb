@@ -10,8 +10,6 @@ import ImageCarousel from "../components/ImageCarousel";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import "./Main.css";
-
 function Main() {
   const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
 

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL, API_KEY } from "../config";
 
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 
@@ -17,7 +16,7 @@ function TitleLargeImg({
   const nav = useNavigate();
 
   const checkNull = backdrop_path ? `${IMG_URL}original${backdrop_path}` : null;
-  const styleDetail = {
+  const styleDetail = { //detail에서 호출했을 경우
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0.3)50%,
       rgba(31,31,31,0.6)70%,
@@ -30,7 +29,7 @@ function TitleLargeImg({
       url('${checkNull}')`,
   };
 
-  const styleMain = {
+  const styleMain = { //main에서 호출했을 경우
     backgroundImage: `linear-gradient(to bottom,
       rgba(31,31,31,0)60%,
       rgba(31,31,31,0.3)80%,

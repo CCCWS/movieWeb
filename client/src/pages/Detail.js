@@ -11,13 +11,13 @@ import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
 import ActorList from "../components/ActorList";
 import Trailer from "../components/Trailer";
-import Story from "../components/Story";
-import MovieDetail from "../components/MovieDetail";
+import MovieInfo from "../components/MovieInfo";
 import ProductionLogo from "../components/ProductionLogo";
 
 import "./Detail.css";
 
 import Modal from "../components/Modal";
+import TrailerModal from "../components/TrailerModal";
 
 function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
@@ -29,11 +29,6 @@ function Detail() {
   const [logoImg, setLogoImg] = useState([]);
 
   const { id } = useParams();
-
-  // const titleRef = useRef();
-  // const infoRef = useRef();
-  // const storyRef = useRef();
-  // const trailerRef = useRef();
 
   const info = `${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
   const actor = `${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
@@ -69,28 +64,15 @@ function Detail() {
     AOS.init();
   }, []);
 
-  // const lookInfo = () => {
-  //   infoRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // const lookStory = () => {
-  //   storyRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // const lookTrailer = () => {
-  //   trailerRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
   const [modalOpen, setModalOpen] = useState(false);
+  const [TrailerModalOpen, setTrailerModalOpen] = useState(false);
+
+  const [trailerUrl, setTrailerUrl] = useState();
+
   const [actorId, setActorId] = useState();
 
-  const openModal = useCallback(() => {
-    setModalOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setModalOpen(false);
-  }, []);
+  //ActorList에서 이미지 클릭시 id와 true를 props로 전달
+  //detail에서 받은 props를 Madal에 넘겨줌
 
   return (
     <div className="detailPage">
@@ -102,12 +84,19 @@ function Detail() {
       ) : (
         <>
           <Modal
-            closeModal={closeModal}
+            setModalOpen={setModalOpen}
             modalOpen={modalOpen}
             actorId={actorId}
+            trailerUrl={trailerUrl}
             API_URL={API_URL}
             API_KEY={API_KEY}
             IMG_URL={IMG_URL}
+          />
+
+          <TrailerModal
+            trailerUrl={trailerUrl}
+            TrailerModalOpen={TrailerModalOpen}
+            setTrailerModalOpen={setTrailerModalOpen}
           />
 
           <div>
@@ -120,12 +109,12 @@ function Detail() {
 
           <div
             id="2"
-            className="movieInfo"
+            className="movieDetail"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            <MovieDetail
+            <MovieInfo
               {...movieInfo}
               IMG_URL={IMG_URL}
               genres={genres}
@@ -140,10 +129,14 @@ function Detail() {
               data-aos-once="true"
             >
               <div className="section">줄거리</div>
-              <Story
-                overview={movieInfo.overview}
-                tagline={movieInfo.tagline}
-              />
+              {movieInfo.overview == "" ? (
+                <p className="notInfo"> 정보가 없습니다. </p>
+              ) : (
+                <>
+                  <div className="tagline">{movieInfo.tagline}</div>
+                  <p className="overview">{movieInfo.overview}</p>
+                </>
+              )}
             </div>
             <hr />
             <div
@@ -154,7 +147,11 @@ function Detail() {
               data-aos-once="true"
             >
               <div className="section">예고편</div>
-              <Trailer movieTrailer={movieTrailer} />
+              <Trailer
+                movieTrailer={movieTrailer}
+                setTrailerModalOpen={setTrailerModalOpen}
+                setTrailerUrl={setTrailerUrl}
+              />
             </div>
 
             <hr />
@@ -170,7 +167,7 @@ function Detail() {
               <ActorList
                 movieActor={movieActor}
                 IMG_URL={IMG_URL}
-                openModal={openModal}
+                setModalOpen={setModalOpen}
                 setActorId={setActorId}
               />
             </div>

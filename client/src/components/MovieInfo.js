@@ -3,15 +3,15 @@ import React from "react";
 import Logo from "./Logo";
 
 import { Image } from "antd";
+import "./MovieInfo.css";
 
-function MovieDetail({
+function MovieInfo({
   poster_path,
   popularity,
   title,
   release_date,
   runtime,
   vote_average,
-  vote_count,
   genres,
   IMG_URL,
   name,
@@ -33,7 +33,7 @@ function MovieDetail({
 
   return (
     <>
-      <div className="movieDetail">
+      <div className="MovieInfo">
         <div>
           <Image
             className="mainPoster"
@@ -42,10 +42,10 @@ function MovieDetail({
           <div>{`❤ ${Math.round(popularity)}`}</div>
         </div>
 
-        <div className="detailInfo">
-          <div className="detailTitle">
-            <Logo logoImg={logoImg} />
-            <div>{title}</div>
+        <div className="detailInfo ">
+          <Logo logoImg={logoImg} />
+          <div className={logoImg[0] === undefined ? "logoNot" : "logoHave"}>
+            {title} {name}
           </div>
 
           {release_date === undefined ? (
@@ -83,4 +83,4 @@ function MovieDetail({
   );
 }
 
-export default MovieDetail;
+export default MovieInfo;

@@ -11,14 +11,15 @@ function MovieCard({
   name,
   title,
   IMG_URL,
-  closeModal,
+  setModalOpen,
   onModal,
 }) {
   const nav = useNavigate();
   const goDitail = () => {
     nav(`/detail/${id}`);
-    { //modal창에서 페이지 이동시 modal창 닫기
-      onModal && closeModal();
+    {
+      //modal창에서 페이지 이동시 modal창 닫기
+      onModal && setModalOpen(false);
     }
   };
 

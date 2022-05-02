@@ -24,6 +24,27 @@ body {
   /* overflow-y: scroll; */
 }
 
+/*메인*/
+.MainPage {
+  width: 100%;
+}
+
+/* .MainImg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+} */
+
+.showScroll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
 /* 로그인 */
 .loginPage {
   display: flex;
@@ -52,7 +73,6 @@ body {
   flex-direction: column;
 }
 
-
 /* 로딩이미지 */
 .loading {
   display: flex;
@@ -67,7 +87,14 @@ body {
   height: 50px;
 }
 
-
+/*movieCard*/
+.movieCard {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+}
 
 @media (max-width: 1045px) {
   .movieCard {

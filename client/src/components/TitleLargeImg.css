@@ -1,20 +1,27 @@
 .titleLargeImg {
+  display: flex;
   background-size: cover;
   background-position: center;
   width: 100%;
-  z-index: -1;
-  display: flex;
-  align-items: flex-end;
+  z-index: -10;
 }
 
+/* detail 페이지 설정 */
 .fromDetail {
   position: absolute;
   height: 100%;
 }
 
+@media (max-width: 800px) {
+  .fromDetail {
+    height: 500px;
+  }
+}
+
+/* main 페이지 설정 */
 .fromMain {
   height: 100%;
-  z-index: -1;
+  align-items: flex-end;
 }
 
 .titleName {
@@ -22,11 +29,6 @@
   flex-direction: column;
   margin-bottom: 50px;
   margin-left: 30px;
-
-  /* width: 100%;
-  height: 90%;
-  justify-content: center;
-  align-items: flex-end; */
 }
 
 .goDetailBtn {
@@ -43,10 +45,4 @@
   border: 2px solid red;
   transition: all ease 1s;
   background-color: rgb(71, 71, 71);
-}
-
-@media (max-width: 800px) {
-  .fromDetail {
-    height: 500px;
-  }
 }

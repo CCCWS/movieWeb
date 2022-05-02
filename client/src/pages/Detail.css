@@ -1,11 +1,57 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
-.movieInfo {
-  padding-left: 10%;
-  padding-right: 10%;
-  margin-top: 30px;
+.detailPage {
+  width: 100%;
 }
 
+/* detail 페이지 내부 항목을 모두 감싸는 틀 */
+.movieDetail {
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 20px;
+}
+
+/* 줄거리 */
+.movieStory {
+  width: 100%;
+}
+
+.notInfo {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: rgb(139, 139, 139);
+}
+
+.tagline {
+  font-family: "Do Hyeon", sans-serif;
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: rgb(255, 47, 47);
+}
+
+.overview {
+  line-height: 40px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* 소제목 */
+.section {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+/* 예고편 */
+.trailer {
+  width: 100%;
+}
+
+/* 출연 */
+.actorBox {
+  width: 100%;
+}
+
+/* 제작사 로고 */
 .productionLogo {
   display: flex;
   width: 100%;
@@ -19,138 +65,25 @@
   height: 65%;
 }
 
-.movieDetail {
-  width: 100%;
-  display: flex;
-  margin-bottom: 50px;
-}
-
-.mainPoster {
-  width: 300px;
-  height: 450px;
-  border-radius: 5px;
-}
-
-.movieStory {
-  width: 100%;
-}
-
-.section {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.tagline {
-  font-family: "Do Hyeon", sans-serif;
-  margin-bottom: 20px;
-  font-size: 30px;
-  color: rgb(255, 47, 47);
-}
-.notInfo {
-  font-size: 16px;
-  margin-bottom: 50px;
-}
-.overview {
-  line-height: 40px;
-  font-size: 16px;
-  margin-bottom: 50px;
-}
-
-.trailer {
-  width: 100%;
-}
-
-.detailInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-left: 20px;
-}
-
-.detailTitle {
-  display: flex;
-  width: 350px;
-  flex-direction: column;
-}
-
-.detailTitle div {
-  font-size: 15px;
-  color: rgb(139, 139, 139);
-  align-items: center;
-}
-
-.averageScore {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.vote_count {
-  font-size: 30px;
-}
-
-.vote_average {
-  display: flex;
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  font-size: 20px;
-  margin-left: 10px;
-}
-
-.vote_average_green {
-  background-color: #6c3;
-}
-
-.vote_average_yello {
-  background-color: #fc3;
-}
-
-.vote_average_red {
-  background-color: #f00;
-}
-
-.detailGenres {
-  display: flex;
-  font-size: 16px;
-  margin-bottom: 30px;
-}
-
-.dataAndTime {
-  font-size: 16px;
-  margin-top: 20px;
-}
-
 @media (max-width: 800px) {
   .productionLogo img {
     height: 50%;
   }
 
-  .movieInfo {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 200px;
+  .movieDetail {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 300px;
   }
 
-  .movieDetail {
+  .MovieInfo {
     flex-direction: column;
     align-items: center;
   }
 
-  .movieDetail img {
+  .MovieInfo img {
     margin-right: 0px;
   }
-
-  /* .detailTitle {
-    font-size: 45px;
-    text-align: center;
-    margin-top: 30px;
-  } */
 
   .dataAndTime {
     display: flex;
@@ -168,29 +101,11 @@
     margin-left: 0px;
     margin-top: 30px;
   }
-}
+  .logo2 {
+    width: 300px;
+  }
 
-.genres {
-  margin-right: 10px;
-  border-radius: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 2px solid white;
-  background-color: rgba(31, 31, 31, 0.3);
-}
-
-.genres:hover {
-  cursor: pointer;
-  border-color: red;
-  transition: all ease 0.5s;
-}
-
-.release_date {
-  font-size: 16px;
-  margin-top: 30px;
-}
-
-.runtime {
-  font-size: 16px;
-  margin-top: 30px;
+  .mainPoster {
+    width: 300px;
+  }
 }
