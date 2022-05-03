@@ -1,6 +1,7 @@
 import React from "react";
 
 import Logo from "./Logo";
+import MovieScore from "./MovieScore";
 
 import { Image } from "antd";
 import "./MovieInfo.css";
@@ -20,17 +21,6 @@ function MovieInfo({
   logoImg,
   production_countries,
 }) {
-  const vote_average_color = () => {
-    if (vote_average >= 7) {
-      return "vote_average_green";
-    }
-    if (vote_average < 7 && vote_average >= 5) {
-      return "vote_average_yello";
-    } else {
-      return "vote_average_red";
-    }
-  };
-
   return (
     <>
       <div className="MovieInfo">
@@ -65,9 +55,7 @@ function MovieInfo({
 
           <div className="averageScore">
             <div>평점</div>
-            <div className={[`vote_average ${vote_average_color()}`].join(" ")}>
-              {vote_average}
-            </div>
+            <MovieScore vote_average={vote_average} />
           </div>
 
           <div className="detailGenres">
