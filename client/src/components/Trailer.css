@@ -16,7 +16,7 @@
 .youtubeModal {
   transition: all ease 0.5s;
   overflow: hidden;
-  height: 550px;
+  height: 50%;
 }
 
 .trailerName {

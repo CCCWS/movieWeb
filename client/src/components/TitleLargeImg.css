@@ -54,5 +54,6 @@
   }
   .titleName {
     margin-left: 0px;
+    align-items: center;
   }
 }

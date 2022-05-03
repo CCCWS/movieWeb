@@ -1,27 +1,31 @@
 import React from "react";
+import ReactPlayer from "react-player";
 
 import "./Modal.css";
 
 function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
   const open = TrailerModalOpen ? "modal_open" : null;
 
-  const test = (event) => {
-    if (event.target.parentNode.className == "detailPage") {
+  const close = (event) => {
+    if (event.target.parentNode.className === "detailPage") {
       setTrailerModalOpen(false);
     }
   };
 
   return (
     <>
-      <div className={[`modal ${open}`].join(" ")} onClick={test}>
+      <div className={[`modal ${open}`].join(" ")} onClick={close}>
         {TrailerModalOpen && (
-          <iframe
+          <ReactPlayer
             // data-aos="fade"
             // data-aos-duration="3000"
             // data-aos-once="true"
             className="youtube youtubeModal"
-            src={`${trailerUrl}?autoplay=1`}
-            allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            url={`${trailerUrl}`}
+            playing={true}
+            width="100%"
+            height="450px"
+            // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         )}

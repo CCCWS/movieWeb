@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
 import "./Trailer.css";
 
 function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
+  const [playing, setPlaying] = useState(false);
   const filterMovieTrailer = movieTrailer
     .filter(
       (data) =>
@@ -12,8 +14,27 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const movie = movieTrailer.length > 3 ? filterMovieTrailer : movieTrailer;
 
   const open = (event) => {
-    setTrailerUrl(event.target.previousSibling.src);
+    handlePlayPause();
+    setTrailerUrl(event.target.previousSibling.title);
     setTrailerModalOpen(true);
+  };
+
+  // const abc = () => {
+  //   setPlay(true);
+  // };
+
+  const handlePlayPause = () => {
+    if(playing === true){
+      setPlaying(false);
+    
+    }
+      
+    console.log("t", playing);
+  };
+
+  const handlePause = () => {
+    // setPlaying(false);
+    console.log(playing);
   };
   return (
     <>
@@ -23,16 +44,23 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
         ) : (
           movie.map((data) => (
             <div className="trailer" key={data.id}>
-              <iframe
-                title="YouTube video player"
+              <ReactPlayer
+                title={`https://www.youtube-nocookie.com/embed/${data.key}&enablejsapi=1`}
                 className="youtube"
-                src={`https://www.youtube.com/embed/${data.key}`}
-                // allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                width="100%"
+                controls={true}
+                playing={playing}
+                muted={true}
+                onPause={handlePause}
+                url={`https://www.youtube-nocookie.com/embed/${data.key}&enablejsapi=1`}
                 allowFullScreen
               />
               <div onClick={open} className="trailerName">
                 {data.name}
               </div>
+              <button onClick={handlePlayPause}>
+                {playing ? "Pause" : "Play"}
+              </button>
             </div>
           ))
         )}
