@@ -41,27 +41,32 @@ function Modal({
     setActorMovie(sort);
     setLoading(false);
   };
+  const body = document.querySelector("body");
 
   useEffect(() => {
     if (modalOpen) {
+      body.classList.add("not-scroll");
       getApi();
     }
   }, [modalOpen]);
 
-  const modalClose = () => {
-    setModalOpen(false);
-  };
-
-  const test = (event) => {
-    if (event.target.parentNode.className == "detailPage") {
+  const modalClose = (event) => {
+    if (event.target.parentNode.className === "detailPage") {
+      setModalOpen(false);
+    } else {
       setModalOpen(false);
     }
+    body.classList.remove("not-scroll");
   };
+
 
   const open = modalOpen ? "modal_open" : null;
 
   return (
-    <div className={[`modal ${open}`].join(" ")} onClick={test}>
+    <div className={[`modal ${open}`].join(" ")} onClick={modalClose}>
+      <button onClick={modalClose} className="modalCloseBtn">
+        <CloseOutlined />
+      </button>
       <div className="item">
         {loading ? (
           <div className="loading">
@@ -69,9 +74,6 @@ function Modal({
           </div>
         ) : (
           <>
-            <button className="modalClose" onClick={modalClose}>
-              <CloseOutlined />
-            </button>
             <ActorOne
               data={actorDetail}
               IMG_URL={IMG_URL}

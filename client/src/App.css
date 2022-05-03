@@ -21,7 +21,8 @@
 
 body {
   background-color: rgb(31, 31, 31);
-  /* overflow-y: scroll; */
+  overflow: overlay;
+  /* overflow: hidden; */
 }
 
 /*메인*/

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import "./Trailer.css";
 
 function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
-  const [playing, setPlaying] = useState(false);
+  const [mute, setMute] = useState(false);
   const filterMovieTrailer = movieTrailer
     .filter(
       (data) =>
@@ -14,27 +14,17 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const movie = movieTrailer.length > 3 ? filterMovieTrailer : movieTrailer;
 
   const open = (event) => {
-    handlePlayPause();
+    onMute();
     setTrailerUrl(event.target.previousSibling.title);
     setTrailerModalOpen(true);
   };
 
-  // const abc = () => {
-  //   setPlay(true);
-  // };
-
-  const handlePlayPause = () => {
-    if(playing === true){
-      setPlaying(false);
-    
-    }
-      
-    console.log("t", playing);
+  const onMute = () => {
+    setMute(true); //modal창 띄울시 재생하던 영상을 음소거
   };
 
-  const handlePause = () => {
-    // setPlaying(false);
-    console.log(playing);
+  const playing = () => {
+    setMute(false); //다시 영상을 재생하면 음소거 해제
   };
   return (
     <>
@@ -45,22 +35,19 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
           movie.map((data) => (
             <div className="trailer" key={data.id}>
               <ReactPlayer
-                title={`https://www.youtube-nocookie.com/embed/${data.key}&enablejsapi=1`}
+                key={data.id}
+                title={`https://www.youtube-nocookie.com/embed/${data.key}`}
                 className="youtube"
                 width="100%"
                 controls={true}
-                playing={playing}
-                muted={true}
-                onPause={handlePause}
-                url={`https://www.youtube-nocookie.com/embed/${data.key}&enablejsapi=1`}
+                onPlay={playing}
+                muted={mute}
+                url={`https://www.youtube-nocookie.com/embed/${data.key}`}
                 allowFullScreen
               />
               <div onClick={open} className="trailerName">
                 {data.name}
               </div>
-              <button onClick={handlePlayPause}>
-                {playing ? "Pause" : "Play"}
-              </button>
             </div>
           ))
         )}

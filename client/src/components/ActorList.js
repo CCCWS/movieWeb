@@ -57,11 +57,10 @@ export const ActorOne = ({
     setActorId(data.id);
     setModalOpen(true);
   };
-
   return (
     <div className="actorOne" key={data.id}>
       <div
-        className="actorImg"
+        className={[`actorImg ${onModal ? null : "imgHover"}`].join(" ")}
         onClick={onModal ? null : modal}
         style={{
           backgroundImage:
@@ -69,7 +68,7 @@ export const ActorOne = ({
               ? `url(${img})`
               : `url(${IMG_URL}w200${data.profile_path})`,
         }}
-      ></div>
+      />
       <div className="actorName">
         <div>{data.name}</div>
         <p>{data.character}</p>
