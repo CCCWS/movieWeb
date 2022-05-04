@@ -25,24 +25,26 @@ function MovieCard({
   };
 
   return (
-    <div className="movieCardItem" onClick={goDitail}>
-      <div className="movieCarePoster">
-        <div className="hoverPoster">
-          <SearchOutlined />
+    <>
+      <div className="movieCardItem" onClick={goDitail}>
+        <div className="movieCarePoster">
+          <div className="hoverPoster">
+            <SearchOutlined />
+          </div>
+
+          <div className="movieCardScore">
+            <MovieScore vote_average={vote_average} MovieCard={true} />
+          </div>
+
+          <img src={poster_path ? `${IMG_URL}w300${poster_path}` : null} />
         </div>
 
-        <div className="movieCardScore">
-          <MovieScore vote_average={vote_average} MovieCard={true} />
+        <div className="movieCardTitle">
+          {title}
+          {name}
         </div>
-
-        <img src={poster_path ? `${IMG_URL}w200${poster_path}` : null} />
       </div>
-
-      <div className="movieCardTitle">
-        {title}
-        {name}
-      </div>
-    </div>
+    </>
   );
 }
 
