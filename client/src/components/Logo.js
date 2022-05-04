@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IMG_URL } from "../config";
 
 import "./Logo.css";
 
 function Logo({ logoImg }) {
-  const filterLogo = logoImg
-    .filter((data) => data.iso_639_1 === "en")
-    .slice(0, 1);
+  const [logo, setLogo] = useState("");
+  useEffect(() => {
+    const fillterEn = logoImg
+      .filter((data) => data.iso_639_1 === "en")
+      .slice(0, 1);
+    const fillterKo = logoImg
+      .filter((data) => data.iso_639_1 === "ko")
+      .slice(0, 1);
 
-  const logo = logoImg.length > 1 ? filterLogo : logoImg;
+    if (logoImg.length === 1) {
+      setLogo(logoImg);
+    } else {
+      if (fillterKo.length === 0) {
+        setLogo(fillterEn);
+      } else {
+        setLogo(fillterKo);
+      }
+    }
+  }, [logoImg]);
+
+  console.log(logo);
 
   return (
     <>
-      {logo.map((data, index) => (
-        <div
-          key={index}
-          className={
-            data.aspect_ratio > 0.8 && data.aspect_ratio < 1.2
-              ? "logo1"
-              : "logo2"
-          }
-        >
-          <img
-            className="logo"
+      {logo &&
+        logo.map((data, index) => (
+          <div
             key={index}
-            src={`${IMG_URL}w500${data.file_path}`}
-          />
-        </div>
-      ))}
+            className={
+              data.aspect_ratio > 0.8 && data.aspect_ratio < 1.3
+                ? "logo1"
+                : "logo2"
+            }
+          >
+            <img
+              className="logo"
+              key={index}
+              src={`${IMG_URL}w500${data.file_path}`}
+            />
+          </div>
+        ))}
     </>
   );
 }

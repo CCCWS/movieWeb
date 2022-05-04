@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  width: 90%;
-  height: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.842);
   border-radius: 5px;
   border: none;
-  margin-top: 20px;
+
+  width: 90%;
+  height: 90%;
 }
 
 .movieCarePoster {
@@ -55,17 +56,50 @@
 .movieCardTitle {
   display: flex;
   align-items: center;
-  height: 60px;
-  font-size: 16px;
+  font-size: 13px;
   color: black;
+  height: 50px;
 }
 
 .movieCardScore {
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 5px;
+  left: 0px;
 }
 
 .movieCardItem:hover .movieCardScore {
   filter: brightness(50%);
+}
+
+/*movieCard*/
+.movieCard {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 100%;
+}
+
+@media (max-width: 1045px) {
+  .movieCard {
+    grid-template-columns: repeat(4, 25%);
+  }
+}
+
+@media (max-width: 860px) {
+  .movieCard {
+    grid-template-columns: repeat(3, 33%);
+  }
+
+  .movieCard {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (max-width: 412px) {
+  .movieCard {
+    grid-template-columns: repeat(2, 50%);
+  }
 }

@@ -54,6 +54,7 @@ function TitleLargeImg({ id, backdrop_path, DetailPage, title, name }) {
   const style = DetailPage === true ? styleDetail : styleMain;
   const where = DetailPage === true ? "fromDetail" : "fromMain";
 
+
   return (
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (

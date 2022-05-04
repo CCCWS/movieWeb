@@ -45,26 +45,34 @@ function Modal({
 
   useEffect(() => {
     if (modalOpen) {
-      body.classList.add("not-scroll");
+      // body.classList.toggle("not-scroll");
       getApi();
+    } else {
+      // body.classList.remove("not-scroll");
     }
-  }, [modalOpen]);
+  }, [modalOpen, setModalOpen]);
 
   const modalClose = (event) => {
     if (event.target.parentNode.className === "detailPage") {
       setModalOpen(false);
-    } else {
-      setModalOpen(false);
+      // body.classList.toggle("not-scroll");
     }
-    body.classList.remove("not-scroll");
   };
 
+  const modalCloseBtn = () => {
+    setModalOpen(false);
+    // body.classList.toggle("not-scroll");
+  };
 
   const open = modalOpen ? "modal_open" : null;
 
+  window.onbeforeunload = function () {
+    return body.classList.remove("not-scroll");
+  };
+
   return (
     <div className={[`modal ${open}`].join(" ")} onClick={modalClose}>
-      <button onClick={modalClose} className="modalCloseBtn">
+      <button onClick={modalCloseBtn} className="modalCloseBtn">
         <CloseOutlined />
       </button>
       <div className="item">

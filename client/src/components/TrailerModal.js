@@ -11,7 +11,7 @@ function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
 
   useEffect(() => {
     if (TrailerModalOpen) {
-      body.classList.add("not-scroll");
+      // body.classList.add("not-scroll");
     }
   }, [TrailerModalOpen]);
 
@@ -19,15 +19,18 @@ function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
     //영상 영역 밖을 클릭시 클릭한 곳을 감지하여 modal 닫기
     if (event.target.parentNode.className === "detailPage") {
       setTrailerModalOpen(false);
-    } else {
-      setTrailerModalOpen(false);
+      // body.classList.remove("not-scroll");
     }
-    body.classList.remove("not-scroll");
+  };
+
+  const modalCloseBtn = () => {
+    setTrailerModalOpen(false);
+    // body.classList.remove("not-scroll");
   };
   return (
     <>
       <div className={[`modal ${open}`].join(" ")} onClick={modalClose}>
-        <button onClick={modalClose} className="modalCloseBtn">
+        <button onClick={modalCloseBtn} className="modalCloseBtn">
           <CloseOutlined />
         </button>
         {TrailerModalOpen && (
