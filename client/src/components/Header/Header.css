@@ -23,11 +23,12 @@
 }
 
 .headerBtn {
-  cursor: pointer;
-  border: none;
+  border: 2px solid transparent;
   background-color: transparent;
 }
 
 .headerBtn:hover {
   border-bottom: 2px solid rgb(255, 0, 0);
+  cursor: pointer;
+  transition: all ease 0.5s;
 }

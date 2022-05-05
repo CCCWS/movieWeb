@@ -1,32 +1,32 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactPlayer from "react-player";
 import { CloseOutlined } from "@ant-design/icons";
+import { IMG_URL } from "../config";
 
 import "./Modal.css";
 
-function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
-  const open = TrailerModalOpen ? "modal_open" : null;
-
-  const body = document.querySelector("body");
-
-  useEffect(() => {
-    if (TrailerModalOpen) {
-      // body.classList.add("not-scroll");
-    }
-  }, [TrailerModalOpen]);
+function TrailerModal({
+  TrailerModalOpen,
+  setTrailerModalOpen,
+  trailerUrl,
+  ///
+  stillCutUrl,
+  stillCutModalOpen,
+  setStillCutModalOpen,
+}) {
+  const open = TrailerModalOpen || stillCutModalOpen ? "modal_open" : null;
 
   const modalClose = (event) => {
-    //영상 영역 밖을 클릭시 클릭한 곳을 감지하여 modal 닫기
     if (event.target.parentNode.className === "detailPage") {
       setTrailerModalOpen(false);
-      // body.classList.remove("not-scroll");
+      setStillCutModalOpen(false);
     }
   };
-
   const modalCloseBtn = () => {
     setTrailerModalOpen(false);
-    // body.classList.remove("not-scroll");
+    setStillCutModalOpen(false);
   };
+
   return (
     <>
       <div className={[`modal ${open}`].join(" ")} onClick={modalClose}>
@@ -42,6 +42,12 @@ function TrailerModal({ TrailerModalOpen, setTrailerModalOpen, trailerUrl }) {
             height="60%"
             allowFullScreen
             controls={true}
+          />
+        )}
+        {stillCutModalOpen && (
+          <img
+            className="stillCutModal"
+            src={`${IMG_URL}original${stillCutUrl}`}
           />
         )}
       </div>

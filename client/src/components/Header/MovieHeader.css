@@ -13,9 +13,9 @@
 .movieHeader button {
   cursor: pointer;
   background-color: transparent;
-  border: none;
+  border: 2px solid transparent;
   color: rgb(255, 255, 255);
-  font-size: 12px;
+  font-size: 10px;
   height: 30px;
 }
 
@@ -23,9 +23,7 @@
   border-bottom: 2px solid red;
   margin-top: 30px;
   margin-bottom: 30px;
-
   transition: all 0.5s ease;
-  transform: scale(1.2);
 }
 
 @media (max-width: 800px) {

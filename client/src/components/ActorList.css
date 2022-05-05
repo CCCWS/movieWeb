@@ -1,5 +1,3 @@
-
-
 .actor {
   display: grid;
   grid-template-columns: repeat(4, 25%);
@@ -28,15 +26,15 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .actorName span {
   color: rgb(139, 139, 139);
 }
 
-.actorName p {
+.actorName div:nth-child(2) {
   text-align: center;
+  font-size: 12px;
   color: rgb(139, 139, 139);
 }
 
@@ -56,11 +54,13 @@
 
 .moreBtn button {
   background-color: transparent;
-  border: none;
   height: 24px;
+  border: 2px solid transparent;
+  padding-bottom: 25px;
 }
 
 .moreBtn button:hover {
   cursor: pointer;
   border-bottom: 2px solid red;
+  transition: all ease 0.5s;
 }

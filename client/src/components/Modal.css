@@ -22,7 +22,7 @@
   opacity: 1;
   transition: all ease 0.5s;
   z-index: 99;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .item {
@@ -61,4 +61,15 @@
 
 .movieCardModal {
   overflow: auto;
+}
+
+.stillCutModal {
+  width: 70%;
+}
+
+@media (max-width: 800px) {
+  .stillCutModal {
+    /* height: 60%; */
+    width: 100%;
+  }
 }

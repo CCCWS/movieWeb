@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
@@ -10,14 +10,14 @@ import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
 import ActorList from "../components/ActorList";
-import Trailer from "../components/Trailer";
 import MovieInfo from "../components/MovieInfo";
 import ProductionLogo from "../components/ProductionLogo";
-
-import "./Detail.css";
+import TrailerAndStillCut from "../components/TrailerAndStillCut";
 
 import Modal from "../components/Modal";
 import TrailerModal from "../components/TrailerModal";
+
+import "./Detail.css";
 
 function Detail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
@@ -27,6 +27,8 @@ function Detail() {
   const [loading, setLoading] = useState(true); //로딩 여부
   const [movieTrailer, setMovieTrailer] = useState([]); //트레일러 영상
   const [logoImg, setLogoImg] = useState([]);
+
+  const [stillCut, setStillCut] = useState();
 
   const { id } = useParams();
 
@@ -50,6 +52,7 @@ function Detail() {
     const getTrailer = await (await fetch(trailer)).json();
     const getLogo = await (await fetch(logo)).json();
 
+    setStillCut(getLogo.backdrops);
     setLogoImg(getLogo.logos);
     setMovieInfo(getInfo);
     setcompanies(getInfo.production_companies);
@@ -66,9 +69,10 @@ function Detail() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [TrailerModalOpen, setTrailerModalOpen] = useState(false);
+  const [stillCutModalOpen, setStillCutModalOpen] = useState(false);
 
   const [trailerUrl, setTrailerUrl] = useState();
-
+  const [stillCutUrl, setStillCutUrl] = useState();
   const [actorId, setActorId] = useState();
 
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
@@ -97,6 +101,10 @@ function Detail() {
             trailerUrl={trailerUrl}
             TrailerModalOpen={TrailerModalOpen}
             setTrailerModalOpen={setTrailerModalOpen}
+            //
+            stillCutUrl={stillCutUrl}
+            stillCutModalOpen={stillCutModalOpen}
+            setStillCutModalOpen={setStillCutModalOpen}
           />
 
           <div>
@@ -146,11 +154,14 @@ function Detail() {
               data-aos-duration="1000"
               data-aos-once="true"
             >
-              <div className="section">예고편</div>
-              <Trailer
+              <TrailerAndStillCut
                 movieTrailer={movieTrailer}
                 setTrailerModalOpen={setTrailerModalOpen}
                 setTrailerUrl={setTrailerUrl}
+                ///
+                stillCut={stillCut}
+                setStillCutModalOpen={setStillCutModalOpen}
+                setStillCutUrl={setStillCutUrl}
               />
             </div>
 
@@ -173,6 +184,7 @@ function Detail() {
             </div>
           </div>
           <hr />
+
           <div className="productionLogo">
             <ProductionLogo companies={companies} IMG_URL={IMG_URL} />
           </div>

@@ -7,7 +7,7 @@ import Logo from "./Logo";
 
 import "./TitleLargeImg.css";
 
-function TitleLargeImg({ id, backdrop_path, DetailPage, title, name }) {
+function TitleLargeImg({ id, backdrop_path, DetailPage, title, name, rank }) {
   const nav = useNavigate();
 
   const [logoImg, setLogoImg] = useState([]);
@@ -54,14 +54,13 @@ function TitleLargeImg({ id, backdrop_path, DetailPage, title, name }) {
   const style = DetailPage === true ? styleDetail : styleMain;
   const where = DetailPage === true ? "fromDetail" : "fromMain";
 
-
   return (
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (
         <div className="titleName">
           <Logo logoImg={logoImg} />
           <button className="goDetailBtn" onClick={() => nav(`./detail/${id}`)}>
-            <ExclamationCircleOutlined /> 상세 정보
+            <ExclamationCircleOutlined /> 상세 정보 {rank + 1}
           </button>
         </div>
       )}

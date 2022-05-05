@@ -6,8 +6,8 @@ import "./ActorList.css";
 function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
   const [click, setClick] = useState(false);
 
-  const actor1 = movieActor.slice(0, 8);
-  const actor2 = movieActor.slice(9);
+  const actor1 = movieActor.slice(0, 8); //페이지 로딩시 보여줄 리스트
+  const actor2 = movieActor.slice(9); //더보기 클릭시 보여질 리스트
 
   const onClick = () => {
     setClick(!click);
@@ -71,7 +71,7 @@ export const ActorOne = ({
       />
       <div className="actorName">
         <div>{data.name}</div>
-        <p>{data.character}</p>
+        <div>{data.character}</div>
 
         <span>{data.birthday}</span>
         <span>{data.place_of_birth}</span>

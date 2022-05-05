@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import "./Trailer.css";
 
+
+
 function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const [mute, setMute] = useState(false);
   const filterMovieTrailer = movieTrailer

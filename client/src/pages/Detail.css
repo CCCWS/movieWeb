@@ -41,6 +41,24 @@
   margin-bottom: 20px;
 }
 
+.sectionBtn {
+  font-size: 30px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.close {
+  color: rgb(139, 139, 139);
+}
+
+.sectionBtn:hover {
+  cursor: pointer;
+  border-bottom: 2px solid red;
+  transition: all ease 1s;
+}
+
 /* 예고편 */
 .trailer {
   width: 100%;

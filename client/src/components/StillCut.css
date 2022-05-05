@@ -1,0 +1,23 @@
+.stillCutBox {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.stillCutImg {
+  width: 95%;
+  height: 95%;
+  border-radius: 5px;
+}
+
+.stillCutImg:hover {
+  cursor: pointer;
+  filter: brightness(50%);
+}
+
+@media (max-width: 800px) {
+  .stillCutBox {
+    grid-template-columns: repeat(3, 33%);
+  }
+}

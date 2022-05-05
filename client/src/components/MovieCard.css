@@ -5,7 +5,7 @@
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.842);
+  background-color: rgba(255, 255, 255, 0.466);
   border-radius: 5px;
   border: none;
   width: 90%;
@@ -58,7 +58,7 @@
   justify-content: center;
   font-size: 13px;
   color: black;
-  height: 40px;
+  height: 50px;
 
   width: 100%;
 }

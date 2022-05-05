@@ -38,7 +38,6 @@ function MovieCard({
 
           <img src={poster_path ? `${IMG_URL}w300${poster_path}` : null} />
         </div>
-
         <div className="movieCardTitle">
           {title}
           {name}
