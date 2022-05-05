@@ -44,8 +44,8 @@ const ReviewValue = ({ data }) => {
             <div>{data.created_at.slice(0, 10)}</div>
           </div>
           <p className="overview" key={index}>
-            {`${data.content.slice(0, 400)} ${
-              data.content.length < 400 ? "" : "..."
+            {`${data.content.slice(0, 300)} ${
+              data.content.length < 300 ? "" : "..."
             }`}
           </p>
         </>
