@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import "./Trailer.css";
 
-
-
 function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const [mute, setMute] = useState(false);
   const filterMovieTrailer = movieTrailer
@@ -31,7 +29,7 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   return (
     <>
       <div className="trailerBox">
-        {movie[0] === undefined ? (
+        {movie.length === 0 ? (
           <p className="notInfo"> 정보가 없습니다. </p>
         ) : (
           movie.map((data) => (

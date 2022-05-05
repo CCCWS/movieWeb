@@ -1,0 +1,8 @@
+.reviweBox {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+}
+
+.reviewAuthor {
+  font-weight: 1000;
+}

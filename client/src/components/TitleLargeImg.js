@@ -57,12 +57,18 @@ function TitleLargeImg({ id, backdrop_path, DetailPage, title, name, rank }) {
   return (
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (
-        <div className="titleName">
-          <Logo logoImg={logoImg} />
-          <button className="goDetailBtn" onClick={() => nav(`./detail/${id}`)}>
-            <ExclamationCircleOutlined /> 상세 정보 {rank + 1}
-          </button>
-        </div>
+        <>
+          <div className="titleName">
+            <div className="rank">{`실시간 인기 ${rank + 1}위`}</div>
+            <Logo logoImg={logoImg} />
+            <button
+              className="goDetailBtn"
+              onClick={() => nav(`./detail/${id}`)}
+            >
+              <ExclamationCircleOutlined /> 상세 정보
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

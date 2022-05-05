@@ -13,6 +13,7 @@ import ActorList from "../components/ActorList";
 import MovieInfo from "../components/MovieInfo";
 import ProductionLogo from "../components/ProductionLogo";
 import TrailerAndStillCut from "../components/TrailerAndStillCut";
+import Review from "../components/Review";
 
 import Modal from "../components/Modal";
 import TrailerModal from "../components/TrailerModal";
@@ -27,6 +28,7 @@ function Detail() {
   const [loading, setLoading] = useState(true); //로딩 여부
   const [movieTrailer, setMovieTrailer] = useState([]); //트레일러 영상
   const [logoImg, setLogoImg] = useState([]);
+  const [review, setReview] = useState([]);
 
   const [stillCut, setStillCut] = useState();
 
@@ -51,7 +53,9 @@ function Detail() {
     const getActor = await (await fetch(actor)).json();
     const getTrailer = await (await fetch(trailer)).json();
     const getLogo = await (await fetch(logo)).json();
+    const getreview = await (await fetch(reviews)).json();
 
+    setReview(getreview.results);
     setStillCut(getLogo.backdrops);
     setLogoImg(getLogo.logos);
     setMovieInfo(getInfo);
@@ -182,8 +186,19 @@ function Detail() {
                 setActorId={setActorId}
               />
             </div>
+            <hr />
+
+            <div
+              id="6"
+              className="reviwe"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
+              <div className="section">리뷰</div>
+              <Review review={review} />
+            </div>
           </div>
-          <hr />
 
           <div className="productionLogo">
             <ProductionLogo companies={companies} IMG_URL={IMG_URL} />

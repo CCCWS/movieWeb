@@ -21,10 +21,17 @@ function StillCut({ stillCut, setStillCutUrl, setStillCutModalOpen }) {
   return (
     <>
       <div className="stillCutBox">
-        <StillCutImg data={stillCut1} imgClick={imgClick} />
-        {click ? <StillCutImg data={stillCut2} imgClick={imgClick} /> : null}
+        {stillCut.length === 0 ? (
+          <p className="notInfo"> 정보가 없습니다. </p>
+        ) : (
+          <>
+            <StillCutImg data={stillCut1} imgClick={imgClick} />
+            {click ? (
+              <StillCutImg data={stillCut2} imgClick={imgClick} />
+            ) : null}
+          </>
+        )}
       </div>
-
       {stillCut2.length > 0 ? (
         <div className="moreBtn">
           <button onClick={onClick}>{click ? "닫기" : "더보기"}</button>
