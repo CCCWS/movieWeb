@@ -16,6 +16,8 @@ function Logo({ logoImg }) {
     if (logoImg.length === 1) {
       //logoImg의 요소가 하나뿐이면 그대로 사용
       setLogo(logoImg);
+    } else if (fillterKo.length === 0 && fillterEn.length === 0) {
+      setLogo(logoImg.slice(0, 1));
     } else {
       if (fillterKo.length === 0) {
         //ko를 필터링해서 길이가 0이면 en필터
@@ -25,7 +27,6 @@ function Logo({ logoImg }) {
       }
     }
   }, [logoImg]);
-
   return (
     <>
       {logo &&

@@ -13,7 +13,7 @@ function Review({ review }) {
 
   return (
     <>
-      <div className="reviweBox">
+      <div>
         {review.length === 0 ? (
           <p className="notInfo"> 정보가 없습니다. </p>
         ) : (
@@ -38,17 +38,17 @@ const ReviewValue = ({ data }) => {
   return (
     <>
       {data.map((data, index) => (
-        <>
-          <div className="reviewAuthor">
+        <div key={index} className="reviweBox">
+          <div key={index} className="reviewAuthor">
             <div>{data.author}</div>
             <div>{data.created_at.slice(0, 10)}</div>
           </div>
-          <p className="overview" key={index}>
+          <p className="overview">
             {`${data.content.slice(0, 300)} ${
               data.content.length < 300 ? "" : "..."
             }`}
           </p>
-        </>
+        </div>
       ))}
     </>
   );

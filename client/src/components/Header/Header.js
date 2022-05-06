@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import SearchBar from "../SearchBar";
+
 import "./Header.css";
 
 import {
@@ -54,30 +56,34 @@ function Header() {
 
   return (
     <div className="header" id="1">
-      <div>
+      <div className="header-left">
         <span className="logoImg">로고</span>
         <button className="headerBtn" onClick={mainPage}>
           홈
         </button>
       </div>
-      {userAuth ? (
-        <>
-          <button className="headerBtn" onClick={logOut}>
-            로그아웃
-          </button>
-        </>
-      ) : (
-        <>
-          <div>
-            <button className="headerBtn" onClick={logInPage}>
-              로그인
+
+      <div className="header-right">
+        <SearchBar />
+        {userAuth ? (
+          <>
+            <button className="headerBtn" onClick={logOut}>
+              로그아웃
             </button>
-            <button className="headerBtn" onClick={registerPage}>
-              회원가입
-            </button>
-          </div>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <div>
+              <button className="headerBtn" onClick={logInPage}>
+                로그인
+              </button>
+              <button className="headerBtn" onClick={registerPage}>
+                회원가입
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
