@@ -10,14 +10,14 @@ import ImageCarousel from "../components/ImageCarousel";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function Main() {
+function TvMain() {
   const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
 
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
 
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+  const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
   // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
 
   const getMovie = async () => {
@@ -49,7 +49,7 @@ function Main() {
       ) : (
         <div className="MainPage">
           <div>
-            <ImageCarousel movieData={movie.slice(0, 5)} movie={true} />
+            <ImageCarousel movieData={movie.slice(0, 5)} tv={true}/>
           </div>
 
           <div>
@@ -80,4 +80,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default TvMain;

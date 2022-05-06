@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+import { SearchOutlined } from "@ant-design/icons";
 import "./SearchBar.css";
 
 function SearchBar() {
@@ -66,11 +67,12 @@ function SearchBar() {
 
   return (
     <form onSubmit={goResult}>
+      <SearchOutlined />
       <input
         value={value}
         onChange={onChange}
         type="text"
-        placeholder="검색어 입력"
+        placeholder={`검색어 입력`}
         onSubmit={goResult}
         className="searchInput"
       ></input>

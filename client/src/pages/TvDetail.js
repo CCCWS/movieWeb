@@ -20,7 +20,7 @@ import TrailerModal from "../components/TrailerModal";
 
 import "./Detail.css";
 
-function Detail() {
+function TvDetail() {
   const [movieInfo, setMovieInfo] = useState([]); //영화 정보 저장
   const [companies, setcompanies] = useState([]); //영화 제작사 저장
   const [movieActor, setMovieActor] = useState([]); //출연 배우
@@ -34,14 +34,14 @@ function Detail() {
 
   const { id } = useParams();
 
-  const info = `${API_URL}movie/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
-  const actor = `${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
-  const reviews = `${API_URL}movie/${id}/reviews?api_key=${API_KEY}`; //영화 리뷰
+  const info = `${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
+  const actor = `${API_URL}tv/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
+  const reviews = `${API_URL}tv/${id}/reviews?api_key=${API_KEY}`; //영화 리뷰
   const test1 = `${API_URL}person/${"배우id"}?api_key=${API_KEY}`; //배우 상세정보
   const test2 = `${API_URL}person/${"배우id"}/credits?api_key=${API_KEY}`; //배우 출연작
   const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
-  const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
-  const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
+  const trailer = `${API_URL}tv/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
+  const logo = `${API_URL}tv/${id}/images?api_key=${API_KEY}`;
 
   useEffect(() => {
     getApi();
@@ -82,6 +82,7 @@ function Detail() {
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
   //detail에서 받은 props를 Madal에 넘겨줌
 
+  console.log(movieInfo);
   return (
     <div className="detailPage">
       <MovieHeader />
@@ -116,7 +117,6 @@ function Detail() {
               IMG_URL={IMG_URL}
               backdrop_path={movieInfo.backdrop_path}
               DetailPage={true}
-      
             />
           </div>
 
@@ -210,4 +210,4 @@ function Detail() {
   );
 }
 
-export default React.memo(Detail);
+export default React.memo(TvDetail);

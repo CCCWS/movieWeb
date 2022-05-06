@@ -14,10 +14,15 @@ function MovieCard({
   setModalOpen,
   onModal,
   vote_average,
+  first_air_date,
 }) {
   const nav = useNavigate();
   const goDitail = () => {
-    nav(`/detail/${id}`);
+    if (first_air_date !== undefined) {
+      nav(`/TvDetail/${id}`);
+    } else {
+      nav(`/detail/${id}`);
+    }
     {
       //modal창에서 페이지 이동시 modal창 닫기
       onModal && setModalOpen(false);
@@ -30,17 +35,19 @@ function MovieCard({
         <div className="movieCarePoster">
           <div className="hoverPoster">
             <SearchOutlined />
+            <div>
+              {title}
+              {name}
+            </div>
           </div>
 
           <div className="movieCardScore">
             <MovieScore vote_average={vote_average} MovieCard={true} />
           </div>
 
-          <img src={poster_path ? `${IMG_URL}w300${poster_path}` : null} />
-        </div>
-        <div className="movieCardTitle">
-          {title}
-          {name}
+          <div className="movieCardImg">
+            <img src={poster_path ? `${IMG_URL}w300${poster_path}` : null} />
+          </div>
         </div>
       </div>
     </>

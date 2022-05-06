@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import { LoadingOutlined } from "@ant-design/icons";
+import "./SeachResult.css";
 
 function SeachResult() {
   const { id } = useParams();
@@ -54,6 +55,7 @@ function SeachResult() {
 
   return (
     <div>
+      <div className="searchValue">{`"${id}" 검색 결과`}</div>
       {loading ? (
         <div className="loading">
           <LoadingOutlined />
@@ -62,7 +64,8 @@ function SeachResult() {
         <>
           {movie.length > 0 || tv.length > 0 ? (
             <div>
-              <div>영화</div>
+              <div className="searchMovie">영화</div>
+              <hr />
               <div className="movieCard ">
                 {movie.map((data, index) => (
                   <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
@@ -70,7 +73,9 @@ function SeachResult() {
               </div>
 
               <div>
-                <div>TV</div>
+                <div className="searchTv">TV</div>
+                <hr />
+
                 <div className="movieCard ">
                   {tv.map((data, index) => (
                     <MovieCard key={index} {...data} IMG_URL={IMG_URL} />

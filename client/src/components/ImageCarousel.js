@@ -5,7 +5,7 @@ import TitleLargeImg from "./TitleLargeImg";
 
 import "./ImageCarousel.css";
 
-function ImageCarousel({ movieData }) {
+function ImageCarousel({ movieData, tv, movie }) {
   return (
     <>
       <div>
@@ -17,6 +17,8 @@ function ImageCarousel({ movieData }) {
                 {...data}
                 main={true}
                 rank={movieData.indexOf(data)}
+                tv={tv}
+                movie={movie}
               />
             </div>
           ))}

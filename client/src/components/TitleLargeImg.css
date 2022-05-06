@@ -3,7 +3,6 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-
 }
 
 .rank {
@@ -12,6 +11,11 @@
   color: rgb(255, 255, 255);
   font-style: italic;
   font-weight: 1000;
+}
+
+.not-find-logo {
+  z-index: 10;
+  font-size: 50px;
 }
 
 /* detail 페이지 설정 */

@@ -1,14 +1,14 @@
 .searchInput {
   background-color: rgb(46, 46, 46);
-  width: 100px;
+  width: 20px;
   border-radius: 5px;
   border: none;
 }
 
 .searchInput:hover {
-  width: 200px;
+  width: 80px;
   transition: all ease 0.5s;
-  background-color: red;
+  background-color: rgb(61, 61, 61);
 }
 
 .searchFail {

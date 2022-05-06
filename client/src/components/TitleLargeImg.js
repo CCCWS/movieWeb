@@ -7,19 +7,39 @@ import Logo from "./Logo";
 
 import "./TitleLargeImg.css";
 
-function TitleLargeImg({ id, backdrop_path, DetailPage, title, name, rank }) {
+function TitleLargeImg({
+  id,
+  backdrop_path,
+  DetailPage,
+  title,
+  name,
+  rank,
+  tv,
+  movie,
+}) {
   const nav = useNavigate();
 
   const [logoImg, setLogoImg] = useState([]);
-  const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
-  const getApi = async () => {
+
+  const getTv = async () => {
+    const logo = `${API_URL}tv/${id}/images?api_key=${API_KEY}`;
+    const getLogo = await (await fetch(logo)).json();
+    setLogoImg(getLogo.logos);
+  };
+
+  const getMovie = async () => {
+    const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
     const getLogo = await (await fetch(logo)).json();
     setLogoImg(getLogo.logos);
   };
 
   useEffect(() => {
     if (DetailPage === undefined) {
-      getApi();
+      if (tv === true) {
+        getTv();
+      } else if (movie === true) {
+        getMovie();
+      }
     }
   }, []);
 
@@ -60,7 +80,12 @@ function TitleLargeImg({ id, backdrop_path, DetailPage, title, name, rank }) {
         <>
           <div className="titleName">
             <div className="rank">{`실시간 인기 ${rank + 1}위`}</div>
-            <Logo logoImg={logoImg} />
+            {logoImg.length ? (
+              <Logo logoImg={logoImg} />
+            ) : (
+              <div className="not-find-logo">{name}</div>
+            )}
+
             <button
               className="goDetailBtn"
               onClick={() => nav(`./detail/${id}`)}

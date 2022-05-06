@@ -46,6 +46,11 @@ function Header() {
   const mainPage = () => {
     navigate("/");
   };
+
+  const TvMainPage = () => {
+    navigate("/tv");
+  };
+
   const logInPage = () => {
     navigate("/Login");
   };
@@ -59,7 +64,10 @@ function Header() {
       <div className="header-left">
         <span className="logoImg">로고</span>
         <button className="headerBtn" onClick={mainPage}>
-          홈
+          영화
+        </button>
+        <button className="headerBtn" onClick={TvMainPage}>
+          TV
         </button>
       </div>
 
