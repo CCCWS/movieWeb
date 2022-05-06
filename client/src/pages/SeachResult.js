@@ -37,6 +37,7 @@ function SeachResult() {
       );
     });
 
+    setTv(sortTv);
     setMovie(sortMovie);
     setLoading(false);
   };
@@ -46,23 +47,37 @@ function SeachResult() {
   }, [id]);
 
   const notFound = {
-    width: "100%",
-    height: "100%",
+    minWidth: "100%",
+    minHeight: "100%",
     display: "flex",
   };
 
   return (
-    <div className="movieCard ">
+    <div>
       {loading ? (
         <div className="loading">
           <LoadingOutlined />
         </div>
       ) : (
         <>
-          {movie.length > 0 ? (
-            movie.map((data, index) => (
-              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-            ))
+          {movie.length > 0 || tv.length > 0 ? (
+            <div>
+              <div>영화</div>
+              <div className="movieCard ">
+                {movie.map((data, index) => (
+                  <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                ))}
+              </div>
+
+              <div>
+                <div>TV</div>
+                <div className="movieCard ">
+                  {tv.map((data, index) => (
+                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                  ))}
+                </div>
+              </div>
+            </div>
           ) : (
             <div style={notFound}>검색 결과가 없습니다.</div>
           )}
