@@ -31,15 +31,21 @@ function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
 
   return (
     <>
-      <div className="actor">
-        <Actor data={actor1} />
-        {click ? <Actor data={actor2} /> : null}
-      </div>
-      <div className="moreBtn">
-        {actor2.length > 0 ? (
-          <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
-        ) : null}
-      </div>
+      {movieActor.length === 0 ? (
+        <p className="notInfo"> 정보가 없습니다. </p>
+      ) : (
+        <>
+          <div className="actor">
+            <Actor data={actor1} />
+            {click ? <Actor data={actor2} /> : null}
+          </div>
+          <div className="moreBtn">
+            {actor2.length > 0 ? (
+              <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
+            ) : null}
+          </div>
+        </>
+      )}
     </>
   );
 }

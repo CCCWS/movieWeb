@@ -2,7 +2,7 @@ import React from "react";
 import "./MovieHeader.css";
 import { Link } from "react-scroll";
 
-function MovieHeader({ lookInfo, lookStory, lookTrailer }) {
+function MovieHeader() {
   const test = () => {
     window.scrollTo(0, 0);
   };

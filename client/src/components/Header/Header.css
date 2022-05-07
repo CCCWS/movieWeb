@@ -7,7 +7,6 @@
   padding-right: 10px;
   color: white;
   position: relative;
-  z-index: 2;
   /* background: linear-gradient(
     to top,
     rgba(31, 31, 31, 0) 0%,
@@ -15,11 +14,12 @@
     rgba(31, 31, 31, 1) 100%
   ); */
   width: 100%;
+  z-index: 2;
 }
 
 .logoImg {
   padding-right: 10px;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .headerBtn {

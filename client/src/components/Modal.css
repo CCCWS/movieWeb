@@ -73,3 +73,19 @@
     width: 100%;
   }
 }
+
+.modalSectionBtn {
+  font-size: 20px;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.close {
+  color: rgb(139, 139, 139);
+}
+
+.modalSectionBtn:hover {
+  cursor: pointer;
+  border-bottom: 2px solid red;
+  transition: all ease 1s;
+}

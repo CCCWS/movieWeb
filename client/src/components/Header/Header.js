@@ -15,17 +15,17 @@ import {
 } from "@ant-design/icons";
 
 function Header() {
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   const [userAuth, setUserAuth] = useState(false);
   const [userName, setUserName] = useState("");
 
-  const state = useSelector((auth_user) => auth_user.user.userData);
+  const state = useSelector((auth_user) => auth_user.user.userData); //redux에 담긴 데이터를 가져옴
 
   const logOut = () => {
     axios.get("/api/user/logout").then((response) => {
       if (response.data.success) {
-        navigate("/");
+        nav("/");
         setUserAuth(false);
         setUserName("");
         localStorage.removeItem("userId");
@@ -44,19 +44,19 @@ function Header() {
   }, [state]);
 
   const mainPage = () => {
-    navigate("/");
+    nav("/");
   };
 
   const TvMainPage = () => {
-    navigate("/tv");
+    nav("/tv");
   };
 
   const logInPage = () => {
-    navigate("/Login");
+    nav("/login");
   };
 
   const registerPage = () => {
-    navigate("/register");
+    nav("/register");
   };
 
   return (
@@ -85,9 +85,9 @@ function Header() {
               <button className="headerBtn" onClick={logInPage}>
                 로그인
               </button>
-              <button className="headerBtn" onClick={registerPage}>
+              {/* <button className="headerBtn" onClick={registerPage}>
                 회원가입
-              </button>
+              </button> */}
             </div>
           </>
         )}

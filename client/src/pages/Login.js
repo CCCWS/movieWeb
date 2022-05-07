@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { loginInfo } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
 
-
 function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,13 +32,18 @@ function Login() {
         if (response.payload.loginSuccess) {
           // alert("welcome");
           window.localStorage.setItem("userId", response.payload.userId);
-          navigate("/");
+          nav("/");
         } else {
           alert("로그인 실패");
         }
       });
   };
- 
+
+  const registerPage = (event) => {
+    event.preventDefault();
+    nav("/register");
+  };
+
   return (
     <>
       <div className="loginPage">
@@ -60,7 +64,8 @@ function Login() {
           />
 
           <br />
-          <button type="submit">Login</button>
+          <button type="submit">로그인</button>
+          <button onClick={registerPage}>회원가입</button>
         </form>
       </div>
     </>

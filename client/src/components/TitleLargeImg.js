@@ -83,7 +83,9 @@ function TitleLargeImg({
             {logoImg.length ? (
               <Logo logoImg={logoImg} />
             ) : (
-              <div className="not-find-logo">{name}</div>
+              <div className="not-find-logo">
+                {name} {title}
+              </div>
             )}
 
             <button

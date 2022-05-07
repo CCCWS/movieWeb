@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path={`/`} element={Auth(Main, null)} />
         <Route path={`/tv`} element={Auth(TvMain, null)} />
-        <Route path={`/Login`} element={Auth(Login, false)} />
+        <Route path={`/login`} element={Auth(Login, false)} />
         <Route path={`/Register`} element={Auth(Register, false)} />
         <Route path={`/Detail/:id`} element={Auth(Detail, null)} />
         <Route path={`/TvDetail/:id`} element={Auth(TvDetail, null)} />

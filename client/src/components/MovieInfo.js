@@ -20,6 +20,7 @@ function MovieInfo({
   number_of_seasons,
   logoImg,
   production_countries,
+  first_air_date,
 }) {
   return (
     <>
@@ -39,7 +40,12 @@ function MovieInfo({
           </div>
 
           {release_date === undefined ? (
-            <div className="dataAndTime">{`${number_of_seasons}시즌  ${number_of_episodes}에피소드`}</div>
+            <div className="dataAndTime">
+              {`${first_air_date.slice(
+                0,
+                4
+              )} / ${number_of_seasons}시즌  ${number_of_episodes}에피소드`}
+            </div>
           ) : (
             <>
               <div className="dataAndTime">

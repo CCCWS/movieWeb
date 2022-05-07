@@ -64,7 +64,7 @@ function SeachResult() {
         <>
           {movie.length > 0 || tv.length > 0 ? (
             <div>
-              <div className="searchMovie">영화</div>
+              <div className="searchMovie">영화 {movie.length}</div>
               <hr />
               <div className="movieCard ">
                 {movie.map((data, index) => (
@@ -73,7 +73,7 @@ function SeachResult() {
               </div>
 
               <div>
-                <div className="searchTv">TV</div>
+                <div className="searchTv">TV {tv.length}</div>
                 <hr />
 
                 <div className="movieCard ">
