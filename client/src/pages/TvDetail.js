@@ -14,6 +14,7 @@ import MovieInfo from "../components/MovieInfo";
 import ProductionLogo from "../components/ProductionLogo";
 import TrailerAndStillCut from "../components/TrailerAndStillCut";
 import Review from "../components/Review";
+import SeasonInfo from "../components/SeasonInfo";
 
 import Modal from "../components/Modal";
 import TrailerModal from "../components/TrailerModal";
@@ -82,7 +83,6 @@ function TvDetail() {
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
   //detail에서 받은 props를 Madal에 넘겨줌
 
-  console.log(movieInfo);
   return (
     <div className="detailPage">
       <MovieHeader />
@@ -133,6 +133,7 @@ function TvDetail() {
               genres={genres}
               logoImg={logoImg}
             />
+            <SeasonInfo season={movieInfo.seasons} IMG_URL={IMG_URL} />
             <hr />
             <div
               id="3"

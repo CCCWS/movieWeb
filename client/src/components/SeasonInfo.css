@@ -1,0 +1,46 @@
+.selectSeason {
+  background-color: transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+}
+
+.selectSeason:hover {
+  cursor: pointer;
+  border: 2px solid red;
+  transition: all ease 0.5s;
+}
+
+.selectSeasonOp {
+  background-color: rgb(31, 31, 31);
+  transition: all ease 1s;
+}
+
+.seasonBox {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.seasonInfo {
+  width: 100%;
+}
+
+.seasonImg {
+  width: 300px;
+  margin-right: 10px;
+  background-color: black;
+}
+
+.seasonImg img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.seasonName {
+  font-size: 20px;
+}
+
+.seasonDate {
+  color: rgb(139, 139, 139);
+  font-size: 16px;
+}

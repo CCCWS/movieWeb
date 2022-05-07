@@ -69,6 +69,9 @@ function Header() {
         <button className="headerBtn" onClick={TvMainPage}>
           TV
         </button>
+        <button className="headerBtn" onClick={TvMainPage}>
+          찾기
+        </button>
       </div>
 
       <div className="header-right">

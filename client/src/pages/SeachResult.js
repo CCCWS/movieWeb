@@ -11,9 +11,9 @@ function SeachResult() {
   const [tv, setTv] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}`;
-  const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}`;
   const getApi = async () => {
+    const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}`;
+    const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}`;
     setLoading(true);
     const getSearchMovie = await (await fetch(MovieUrl)).json();
     const getSearchTv = await (await fetch(TvUrl)).json();
@@ -23,12 +23,13 @@ function SeachResult() {
     );
 
     const filterTv = getSearchTv.results.filter(
-      (data) => data.release_date !== ""
+      (data) => data.first_air_date !== ""
     );
 
     const sortTv = filterTv.sort(function (a, b) {
       return (
-        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+        new Date(b.first_air_date).getTime() -
+        new Date(a.first_air_date).getTime()
       );
     });
 
@@ -66,21 +67,29 @@ function SeachResult() {
             <div>
               <div className="searchMovie">영화 {movie.length}</div>
               <hr />
-              <div className="movieCard ">
-                {movie.map((data, index) => (
-                  <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-                ))}
-              </div>
+              {movie.length === 0 ? (
+                <div style={notFound}>검색 결과가 없습니다.</div>
+              ) : (
+                <div className="movieCard ">
+                  {movie.map((data, index) => (
+                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                  ))}
+                </div>
+              )}
 
               <div>
                 <div className="searchTv">TV {tv.length}</div>
                 <hr />
 
-                <div className="movieCard ">
-                  {tv.map((data, index) => (
-                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-                  ))}
-                </div>
+                {tv.length === 0 ? (
+                  <div style={notFound}>검색 결과가 없습니다.</div>
+                ) : (
+                  <div className="movieCard ">
+                    {tv.map((data, index) => (
+                      <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ) : (
