@@ -21,59 +21,62 @@ function MovieInfo({
   logoImg,
   production_countries,
   first_air_date,
+  origin_country,
 }) {
   return (
-    <>
-      <div className="MovieInfo">
-        <div>
-          <Image
-            className="mainPoster"
-            src={poster_path ? `${IMG_URL}original${poster_path}` : null}
-          />
-          <div>{`❤ ${Math.round(popularity)}`}</div>
+    <div className="MovieInfo">
+      <div>
+        <Image
+          className="mainPoster"
+          src={poster_path ? `${IMG_URL}original${poster_path}` : null}
+        />
+        <div>{`❤ ${Math.round(popularity)}`}</div>
+      </div>
+
+      <div className="detailInfo ">
+        <Logo logoImg={logoImg} />
+        <div className={logoImg[0] === undefined ? "logoNot" : "logoHave"}>
+          {title} {name}
         </div>
 
-        <div className="detailInfo ">
-          <Logo logoImg={logoImg} />
-          <div className={logoImg[0] === undefined ? "logoNot" : "logoHave"}>
-            {title} {name}
+        {release_date === undefined ? (
+          <div className="dataAndTime">
+            {`${first_air_date.slice(
+              0,
+              4
+            )} / ${number_of_seasons}시즌  ${number_of_episodes}에피소드  ${
+              origin_country.length === 0 ? null : ` / ${origin_country[0]}`
+            }`}
           </div>
-
-          {release_date === undefined ? (
+        ) : (
+          <>
             <div className="dataAndTime">
-              {`${first_air_date.slice(
-                0,
-                4
-              )} / ${number_of_seasons}시즌  ${number_of_episodes}에피소드`}
-            </div>
-          ) : (
-            <>
-              <div className="dataAndTime">
-                <div>
-                  {release_date} / {runtime}분
-                  {production_countries[0] == undefined
+              <div>
+                {`${release_date} / ${runtime}분
+                ${
+                  production_countries.length === 0
                     ? null
-                    : ` / ${production_countries[0].iso_3166_1}`}
-                </div>
+                    : ` / ${production_countries[0].iso_3166_1}`
+                }`}
               </div>
-            </>
-          )}
+            </div>
+          </>
+        )}
 
-          <div className="averageScore">
-            <div>평점</div>
-            <MovieScore vote_average={vote_average} />
-          </div>
+        <div className="averageScore">
+          <div>평점</div>
+          <MovieScore vote_average={vote_average} />
+        </div>
 
-          <div className="detailGenres">
-            {genres.map((data) => (
-              <div className="genres" key={data.id}>
-                {data.name}
-              </div>
-            ))}
-          </div>
+        <div className="detailGenres">
+          {genres.map((data) => (
+            <div className="genres" key={data.id}>
+              {data.name}
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -50,8 +50,8 @@
 .genres {
   margin-right: 10px;
   border-radius: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   border: 2px solid white;
   background-color: rgba(31, 31, 31, 0.3);
 }

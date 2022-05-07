@@ -22,7 +22,6 @@
   opacity: 1;
   transition: all ease 0.5s;
   z-index: 99;
-  /* overflow: hidden; */
 }
 
 .item {
@@ -30,11 +29,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  background-color: rgba(31, 31, 31);
+  /* justify-content: center; */
+  background-color: rgba(31, 31, 31, 0.404);
+  border: 2px solid rgba(255, 0, 0, 0.459);
   width: 80%;
   height: 80%;
-  border-radius: 10px;
+  border-radius: 30px;
   padding-top: 20px;
 }
 
@@ -50,8 +50,10 @@
 .modalCloseBtn {
   background-color: transparent;
   border-radius: 30px;
-  border: none;
+  width: 30px;
+  height: 30px;
   margin-bottom: 20px;
+  border: none;
 }
 
 .modalCloseBtn:hover {
@@ -69,7 +71,6 @@
 
 @media (max-width: 800px) {
   .stillCutModal {
-    /* height: 60%; */
     width: 100%;
   }
 }
@@ -87,5 +88,5 @@
 .modalSectionBtn:hover {
   cursor: pointer;
   border-bottom: 2px solid red;
-  transition: all ease 1s;
+  transition: all ease 0.5s;
 }

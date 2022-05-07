@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import "./SearchBar.css";
 
 function SearchBar() {
@@ -10,12 +10,13 @@ function SearchBar() {
   const [movie, setMovie] = useState([]);
   const [tv, setTv] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [searchBarView, setSearchBarView] = useState([]);
+  const [url, setUrl] = useState(window.location.href);
 
   const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${value}`;
   const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${value}`;
   const getApi = async () => {
+    setLoading(true);
+
     const getSearchMovie = await (await fetch(MovieUrl)).json();
     const getSearchTv = await (await fetch(TvUrl)).json();
 
@@ -39,13 +40,21 @@ function SearchBar() {
       );
     });
 
-    setMovie(sortMovie);
-    setSearchBarView(sortMovie.slice(0, 5));
+    setTv(sortTv.slice(0, 5));
+    setMovie(sortMovie.slice(0, 5));
+
     setLoading(false);
   };
 
   useEffect(() => {
+    //현재 url이 변화하면 입력된 값을 초기화
+    setUrl(window.location.href);
+    setValue("");
+  }, [window.location.href]);
+
+  useEffect(() => {
     if (value.length > 0) {
+      //한글자 이상 입력시 api 요청
       getApi();
     }
     if (value.length === 0) {
@@ -65,17 +74,24 @@ function SearchBar() {
     }
   };
 
+  const test = (event) => {
+    setValue("");
+  };
+
   return (
     <form onSubmit={goResult}>
       <SearchOutlined />
       <input
-        value={value}
-        onChange={onChange}
+        className={[`searchInput ${value.length > 0 && "valueIn"}`].join(" ")}
         type="text"
         placeholder={`검색어 입력`}
+        value={value}
+        onChange={onChange}
         onSubmit={goResult}
-        className="searchInput"
-      ></input>
+      />
+      {value.length > 0 && (
+        <CloseCircleOutlined onClick={test} className="removeValue" />
+      )}
       {/* {movie.length === 0 ? <div>검색 결과가 없음</div> : null} */}
       {value.length > 0 ? (
         <>
@@ -83,7 +99,7 @@ function SearchBar() {
             <div className="search searchFail">결과가 없습니다.</div>
           ) : (
             <div className="search">
-              {searchBarView.map((data) => (
+              {movie.map((data) => (
                 <SearchBarResult
                   key={data.id}
                   {...data}

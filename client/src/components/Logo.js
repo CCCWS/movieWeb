@@ -5,6 +5,7 @@ import "./Logo.css";
 
 function Logo({ logoImg }) {
   const [logo, setLogo] = useState("");
+
   useEffect(() => {
     const fillterEn = logoImg
       .filter((data) => data.iso_639_1 === "en")
@@ -27,6 +28,7 @@ function Logo({ logoImg }) {
       }
     }
   }, [logoImg]);
+
   return (
     <>
       {logo &&
@@ -42,7 +44,7 @@ function Logo({ logoImg }) {
             <img
               className="logo"
               key={index}
-              src={`${IMG_URL}w300${data.file_path}`}
+              src={`${IMG_URL}w500${data.file_path}`}
             />
           </div>
         ))}

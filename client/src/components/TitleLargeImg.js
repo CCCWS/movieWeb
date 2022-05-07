@@ -34,6 +34,7 @@ function TitleLargeImg({
   };
 
   useEffect(() => {
+    //DetailPage에서 접속했다면 로고는 가져오지 않음
     if (DetailPage === undefined) {
       if (tv === true) {
         getTv();
@@ -74,6 +75,14 @@ function TitleLargeImg({
   const style = DetailPage === true ? styleDetail : styleMain;
   const where = DetailPage === true ? "fromDetail" : "fromMain";
 
+  const goDetail = () => {
+    if (tv === true) {
+      nav(`/Tvdetail/${id}`);
+    } else if (movie === true) {
+      nav(`/detail/${id}`);
+    }
+  };
+
   return (
     <div className={[`titleLargeImg`, where].join(" ")} style={style}>
       {DetailPage ? null : (
@@ -88,10 +97,7 @@ function TitleLargeImg({
               </div>
             )}
 
-            <button
-              className="goDetailBtn"
-              onClick={() => nav(`./detail/${id}`)}
-            >
+            <button className="goDetailBtn" onClick={goDetail}>
               <ExclamationCircleOutlined /> 상세 정보
             </button>
           </div>

@@ -6,12 +6,14 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const [mute, setMute] = useState(false);
   const filterMovieTrailer = movieTrailer
     .filter(
+      //다음 값이 포함된 인덱스만 필터
       (data) =>
         data.name.indexOf("예고") !== -1 || data.name.indexOf("티저") !== -1
     )
     .slice(0, 3);
 
   const movie = movieTrailer.length > 3 ? filterMovieTrailer : movieTrailer;
+  //트레일러의 갯수가 3개 미만이라면 필터를 사용하지 않음
 
   const open = (event) => {
     onMute();
@@ -43,7 +45,6 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
                 onPlay={playing}
                 muted={mute}
                 url={`https://www.youtube-nocookie.com/embed/${data.key}`}
-                allowFullScreen
               />
               <div onClick={open} className="trailerName">
                 {data.name}

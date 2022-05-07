@@ -1,5 +1,8 @@
 .stillCutBox {
   display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
   grid-template-columns: repeat(4, 25%);
   width: 100%;
 }
@@ -12,6 +15,7 @@
 
 .stillCutImg:hover {
   cursor: pointer;
+  transition: all ease 0.5s;
   filter: brightness(50%);
 }
 

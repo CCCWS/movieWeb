@@ -39,11 +39,11 @@ function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
             <Actor data={actor1} />
             {click ? <Actor data={actor2} /> : null}
           </div>
-          <div className="moreBtn">
-            {actor2.length > 0 ? (
+          {actor2.length > 0 ? (
+            <div className="moreBtn">
               <button onClick={onClick}> {click ? "닫기" : "더보기"}</button>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </>
       )}
     </>
@@ -51,6 +51,7 @@ function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
 }
 
 export default React.memo(ActorList);
+
 
 export const ActorOne = ({
   data,

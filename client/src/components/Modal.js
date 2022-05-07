@@ -16,17 +16,21 @@ function Modal({
   API_KEY,
   IMG_URL,
 }) {
+  const open = modalOpen ? "modal_open" : null;
+  const body = document.querySelector("body");
   const [actorDetail, setActorDetail] = useState();
   const [actorMovie, setActorMovie] = useState();
   const [actorTv, setActorTv] = useState();
   const [loading, setLoading] = useState(true);
   const [click, setClick] = useState(true);
-  const actor = `${API_URL}person/${actorId}?api_key=${API_KEY}`; //배우 상세정보
-  const movie = `${API_URL}person/${actorId}/movie_credits?api_key=${API_KEY}&language=ko`; //배우 출연작
-  const tv = `${API_URL}person/${actorId}/tv_credits?api_key=${API_KEY}&language=ko`; //배우 출연작
 
   const getApi = async () => {
+    const actor = `${API_URL}person/${actorId}?api_key=${API_KEY}`; //배우 상세정보
+    const movie = `${API_URL}person/${actorId}/movie_credits?api_key=${API_KEY}&language=ko`; //배우 출연작
+    const tv = `${API_URL}person/${actorId}/tv_credits?api_key=${API_KEY}&language=ko`; //배우 출연작
+
     setLoading(true);
+
     const getActor = await (await fetch(actor)).json();
     const getMovie = await (await fetch(movie)).json();
     const getTv = await (await fetch(tv)).json();
@@ -51,37 +55,38 @@ function Modal({
     setActorDetail(getActor);
     setActorMovie(sortMovie);
     setActorTv(sortTv);
+
     setLoading(false);
   };
 
-  const body = document.querySelector("body");
-
   useEffect(() => {
     if (modalOpen) {
-      // body.classList.toggle("not-scroll");
+      body.classList.toggle("not-scroll");
       getApi();
     } else {
-      // body.classList.remove("not-scroll");
+      body.classList.remove("not-scroll");
     }
+    return () => {
+      //뒤로가기 등으로 인하여 화면을 벗어나면 스크롤 활성화
+      return body.classList.remove("not-scroll");
+    };
   }, [modalOpen, setModalOpen]);
 
   const modalClose = (event) => {
     if (event.target.parentNode.className === "detailPage") {
       setModalOpen(false);
-      // body.classList.toggle("not-scroll");
+      body.classList.toggle("not-scroll");
     }
   };
 
   const modalCloseBtn = () => {
     setModalOpen(false);
-    // body.classList.toggle("not-scroll");
+    body.classList.toggle("not-scroll");
   };
 
   // window.onbeforeunload = function () {
   //   return body.classList.remove("not-scroll");
   // };
-
-  const open = modalOpen ? "modal_open" : null;
 
   const clickMovie = () => {
     setClick(true);

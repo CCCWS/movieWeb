@@ -18,13 +18,14 @@ function MovieCard({
 }) {
   const nav = useNavigate();
   const goDitail = () => {
+    //movie와 tv는 first_air_date의 유무로 판단
     if (first_air_date !== undefined) {
       nav(`/TvDetail/${id}`);
     } else {
       nav(`/detail/${id}`);
     }
     {
-      //modal창에서 페이지 이동시 modal창 닫기
+      //modal창이 켜져있다면 닫기
       onModal && setModalOpen(false);
     }
   };

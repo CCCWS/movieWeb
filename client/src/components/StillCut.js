@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { IMG_URL } from "../config";
 
 import "./StillCut.css";
@@ -16,6 +16,22 @@ function StillCut({ stillCut, setStillCutUrl, setStillCutModalOpen }) {
   const imgClick = (event) => {
     setStillCutUrl(event.target.title);
     setStillCutModalOpen(true);
+  };
+
+  const StillCutImg = ({ data, imgClick }) => {
+    return (
+      <>
+        {data.map((data, index) => (
+          <img
+            onClick={imgClick}
+            key={index}
+            title={data.file_path}
+            className="stillCutImg"
+            src={`${IMG_URL}w300${data.file_path}`}
+          />
+        ))}
+      </>
+    );
   };
 
   return (
@@ -42,19 +58,3 @@ function StillCut({ stillCut, setStillCutUrl, setStillCutModalOpen }) {
 }
 
 export default StillCut;
-
-const StillCutImg = ({ data, imgClick }) => {
-  return (
-    <>
-      {data.map((data, index) => (
-        <img
-          onClick={imgClick}
-          key={index}
-          title={data.file_path}
-          className="stillCutImg"
-          src={`${IMG_URL}w300${data.file_path}`}
-        />
-      ))}
-    </>
-  );
-};

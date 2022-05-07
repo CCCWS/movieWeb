@@ -26,7 +26,7 @@
 
 @media (max-width: 800px) {
   .fromDetail {
-    height: 500px;
+    height: 600px;
   }
 }
 
@@ -47,10 +47,9 @@
   cursor: pointer;
   width: 150px;
   background-color: rgb(31, 31, 31);
-  border: none;
   border-radius: 5px;
   font-size: 20px;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.521);
   margin-top: 20px;
 }
 
@@ -60,7 +59,7 @@
   background-color: rgb(71, 71, 71);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .fromMain {
     justify-content: center;
   }

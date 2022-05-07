@@ -9,7 +9,7 @@ function ImageCarousel({ movieData, tv, movie }) {
   return (
     <>
       <div>
-        <Carousel>
+        <Carousel autoplay>
           {movieData.map((data) => (
             <div className="mainImgCarousel" key={data.id}>
               <TitleLargeImg
