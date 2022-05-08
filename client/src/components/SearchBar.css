@@ -1,3 +1,7 @@
+.searchInputBox {
+  position: relative;
+}
+
 .searchInput {
   background-color: rgb(46, 46, 46);
   width: 30px;
@@ -13,8 +17,8 @@
 }
 .removeValue {
   position: absolute;
-  right: 70px;
-  top: 33px;
+  right: 5px;
+  top: 5px;
 }
 
 .searchInput:focus {

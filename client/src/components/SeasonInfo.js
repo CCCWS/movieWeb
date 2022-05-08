@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { InfoCircleOutlined } from "@ant-design/icons";
+
 import "./SeasonInfo.css";
 
 function SeasonInfo({ season, IMG_URL }) {
@@ -24,7 +26,11 @@ function SeasonInfo({ season, IMG_URL }) {
 
       <div className="seasonBox">
         <div className="seasonImg">
-          {season[selectValue].poster_path === null ? null : (
+          {season[selectValue].poster_path === null ? (
+            <div className="not-seasonImg">
+              <InfoCircleOutlined />
+            </div>
+          ) : (
             <img src={`${IMG_URL}w500${season[selectValue].poster_path}`} />
           )}
         </div>

@@ -80,18 +80,20 @@ function SearchBar() {
 
   return (
     <form onSubmit={goResult}>
-      <SearchOutlined />
-      <input
-        className={[`searchInput ${value.length > 0 && "valueIn"}`].join(" ")}
-        type="text"
-        placeholder={`검색어 입력`}
-        value={value}
-        onChange={onChange}
-        onSubmit={goResult}
-      />
-      {value.length > 0 && (
-        <CloseCircleOutlined onClick={test} className="removeValue" />
-      )}
+      <div className="searchInputBox">
+        <SearchOutlined />
+        <input
+          className={[`searchInput ${value.length > 0 && "valueIn"}`].join(" ")}
+          type="text"
+          placeholder={`검색어 입력`}
+          value={value}
+          onChange={onChange}
+          onSubmit={goResult}
+        />
+        {value.length > 0 && (
+          <CloseCircleOutlined onClick={test} className="removeValue" />
+        )}
+      </div>
       {/* {movie.length === 0 ? <div>검색 결과가 없음</div> : null} */}
       {value.length > 0 ? (
         <>
