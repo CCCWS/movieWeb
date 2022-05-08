@@ -35,7 +35,7 @@
 
 .seasonImg img {
   width: 200px;
-  /* height: 100%; */
+  height: 100%;
   border-radius: 5px;
 }
 
@@ -46,4 +46,12 @@
 .seasonDate {
   color: rgb(139, 139, 139);
   font-size: 16px;
+}
+
+.seasonOverview {
+  line-height: 30px;
+  height: 250px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  overflow: auto;
 }

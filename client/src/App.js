@@ -7,8 +7,6 @@ import Register from "./pages/Register";
 import Detail from "./pages/Detail";
 import TvDetail from "./pages/TvDetail";
 import Header from "./components/Header/Header";
-import PageTop from "./components/PageTop";
-import Test from "./pages/Test";
 import Modal from "./components/Modal";
 import SeachResult from "./pages/SeachResult";
 import TvMain from "./pages/TvMain";

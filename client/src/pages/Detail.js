@@ -71,13 +71,14 @@ function Detail() {
     AOS.init();
   }, []);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [TrailerModalOpen, setTrailerModalOpen] = useState(false);
-  const [stillCutModalOpen, setStillCutModalOpen] = useState(false);
-
   const [trailerUrl, setTrailerUrl] = useState();
+  const [TrailerModalOpen, setTrailerModalOpen] = useState(false);
+
   const [stillCutUrl, setStillCutUrl] = useState();
+  const [stillCutModalOpen, setStillCutModalOpen] = useState(false);
+  
   const [actorId, setActorId] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
 
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
   //detail에서 받은 props를 Madal에 넘겨줌

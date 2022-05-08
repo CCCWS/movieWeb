@@ -40,12 +40,12 @@ function SeasonInfo({ season, IMG_URL }) {
             } / ${season[selectValue].episode_count} 에피소드`}
           </div>
 
-          <div className="seasonOverview">
+          <div>
             {season[selectValue].overview == "" ? (
               <p className="notInfo"> 정보가 없습니다. </p>
             ) : (
               <>
-                <div className="overview">
+                <div className="seasonOverview">
                   {season[selectValue].overview}
                 </div>
               </>

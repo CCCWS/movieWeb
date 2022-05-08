@@ -49,7 +49,7 @@ function TvMain() {
       ) : (
         <div className="MainPage">
           <div>
-            <ImageCarousel movieData={movie.slice(0, 5)} tv={true}/>
+            <ImageCarousel movieData={movie.slice(0, 5)} tv={true} />
           </div>
 
           <div>
