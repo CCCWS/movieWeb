@@ -19,20 +19,23 @@
 .seasonBox {
   width: 100%;
   display: flex;
+  flex-direction: row;
   margin-bottom: 20px;
+  height: 300px;
 }
 .seasonInfo {
   width: 100%;
 }
 
 .seasonImg {
-  width: 300px;
-  margin-right: 10px;
-  background-color: black;
+  display: flex;
+  align-items: flex-start;
+  margin-right: 20px;
 }
 
 .seasonImg img {
-  width: 100%;
+  width: 200px;
+  /* height: 100%; */
   border-radius: 5px;
 }
 

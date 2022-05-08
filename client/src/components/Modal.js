@@ -133,7 +133,7 @@ function Modal({
               className="movieCard movieCardModal"
               data-aos="fade-up"
               data-aos-duration="1000"
-              data-aos-once="true"
+              data-aos-once="false"
             >
               {click ? (
                 <>

@@ -25,7 +25,7 @@ function SeasonInfo({ season, IMG_URL }) {
       <div className="seasonBox">
         <div className="seasonImg">
           {season[selectValue].poster_path === null ? null : (
-            <img src={`${IMG_URL}original${season[selectValue].poster_path}`} />
+            <img src={`${IMG_URL}w500${season[selectValue].poster_path}`} />
           )}
         </div>
 
@@ -45,7 +45,9 @@ function SeasonInfo({ season, IMG_URL }) {
               <p className="notInfo"> 정보가 없습니다. </p>
             ) : (
               <>
-                <p className="overview">{season[selectValue].overview}</p>
+                <div className="overview">
+                  {season[selectValue].overview}
+                </div>
               </>
             )}
           </div>
