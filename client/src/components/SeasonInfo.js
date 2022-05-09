@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import {
+  InfoCircleOutlined,
+  CaretDownFilled,
+  CaretUpFilled,
+} from "@ant-design/icons";
 
 import "./SeasonInfo.css";
 
@@ -9,6 +13,7 @@ function SeasonInfo({ season, IMG_URL }) {
 
   const select = (event) => {
     setSelectValue(event.target.value);
+    setClick(!click);
   };
 
   const test = () => {
@@ -17,19 +22,43 @@ function SeasonInfo({ season, IMG_URL }) {
 
   return (
     <>
-      <button onClick={test}>test</button>
-      <div className={[`test ${click ? "test2" : null}`]} onClick={test}></div>
-      <select className="selectSeason" onChange={select}>
-        {season.map((data, index) => (
-          <option
-            className="selectSeasonOp"
-            key={index}
-            value={season.indexOf(data)}
-          >
-            {data.name}
-          </option>
-        ))}
-      </select>
+      {/* <button onClick={test}>test</button>
+      <div className="test" onClick={test}>
+        <div>
+          {season.map((data, index) => (
+            <ul
+              key={index}
+              value={season.indexOf(data)}
+              className={click ? "abc" : "bca"}
+            >
+              <li className="testitem">{data.name}</li>
+            </ul>
+          ))}
+        </div>
+      </div> */}
+      <div style={{ position: "relative" }}>
+        <div className="seasonSelectBox" onClick={test}>
+          {season[selectValue].name}{" "}
+          {click ? <CaretUpFilled /> : <CaretDownFilled />}
+        </div>
+        <ul
+          className={[
+            `seasonSelect ${click ? "seasonSelectOpen" : "seasonSelectClose"}`,
+          ].join(" ")}
+          onChange={select}
+        >
+          {season.map((data, index) => (
+            <li
+              onClick={select}
+              key={index}
+              value={season.indexOf(data)}
+              className="seasonSelectValue"
+            >
+              {data.name}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="seasonBox">
         <div className="seasonImg">
