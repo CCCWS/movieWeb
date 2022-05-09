@@ -11,14 +11,21 @@
   transition: all ease 0.5s;
 }
 
+/* select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+} */
+
 .selectSeasonOp {
   background-color: rgb(31, 31, 31);
   transition: all ease 1s;
+  height: 3000px;
 }
 
 .seasonBox {
   width: 100%;
-  height: 300px;
+  height: 200px;
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -29,10 +36,11 @@
 }
 
 .seasonImg {
-  width: 300px;
+  width: 200px;
+  height: 250px;
   display: flex;
   align-items: flex-start;
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 .not-seasonImg {
@@ -40,14 +48,14 @@
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  width: 100%;
-  height: 100%;
+  width: 130px;
+  height: 200px;
   background-color: rgb(99, 99, 99);
   border-radius: 5px;
 }
 
 .seasonImg img {
-  height: 300px;
+  height: 200px;
   border-radius: 5px;
 }
 
@@ -62,8 +70,20 @@
 
 .seasonOverview {
   line-height: 30px;
-  height: 250px;
+  height: 150px;
   font-size: 16px;
   margin-bottom: 20px;
   overflow: auto;
+}
+
+.test {
+  width: 100px;
+  height: 0px;
+  background-color: red;
+  transition: all ease 1s;
+}
+
+.test2 {
+  height: 200px;
+  background-color: blue;
 }

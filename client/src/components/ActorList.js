@@ -52,7 +52,6 @@ function ActorList({ movieActor, IMG_URL, setModalOpen, setActorId }) {
 
 export default React.memo(ActorList);
 
-
 export const ActorOne = ({
   data,
   IMG_URL,

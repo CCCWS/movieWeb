@@ -5,13 +5,20 @@ import "./SeasonInfo.css";
 
 function SeasonInfo({ season, IMG_URL }) {
   const [selectValue, setSelectValue] = useState(0);
+  const [click, setClick] = useState(false);
 
   const select = (event) => {
     setSelectValue(event.target.value);
   };
 
+  const test = () => {
+    setClick(!click);
+  };
+
   return (
     <>
+      <button onClick={test}>test</button>
+      <div className={[`test ${click ? "test2" : null}`]} onClick={test}></div>
       <select className="selectSeason" onChange={select}>
         {season.map((data, index) => (
           <option

@@ -74,10 +74,10 @@ function SearchBar() {
     }
   };
 
-  const test = (event) => {
+  const test = () => {
     setValue("");
+    console.log(test);
   };
-
   return (
     <form onSubmit={goResult}>
       <div className="searchInputBox">
@@ -100,7 +100,7 @@ function SearchBar() {
           {movie.length < 1 ? (
             <div className="search searchFail">결과가 없습니다.</div>
           ) : (
-            <div className="search">
+            <div className="search" onMouseLeave={test}>
               {movie.map((data) => (
                 <SearchBarResult
                   key={data.id}

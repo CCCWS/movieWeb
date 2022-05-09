@@ -20,7 +20,7 @@
 
 .modal_open {
   opacity: 1;
-  transition: all ease 0.5s;
+  transition: all ease-in 0.5s;
   z-index: 99;
 }
 
