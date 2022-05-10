@@ -18,6 +18,7 @@ function SearchBar() {
   const [url, setUrl] = useState(window.location.href);
 
   const [localStorageItem, setLocalStorgeItem] = useState([]);
+  const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
 
   const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${value}`;
   const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${value}`;
@@ -78,12 +79,8 @@ function SearchBar() {
       event.preventDefault();
       nav(`/search/${value}`);
 
-      const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
-
       if (getLocalStorage === null) {
         setLocalStorgeItem([{ value, id: new Date().getTime() }]);
-        console.log(localStorageItem);
-
         localStorage.setItem(
           "SearchValue",
           JSON.stringify([{ value, id: new Date().getTime() }])
@@ -97,8 +94,6 @@ function SearchBar() {
           { value, id: new Date().getTime() },
           ...getLocalStorage,
         ]);
-        console.log(localStorageItem);
-
         localStorage.setItem(
           "SearchValue",
           JSON.stringify([
@@ -118,7 +113,6 @@ function SearchBar() {
   const localStorgeRemove = (event) => {
     const test = event.target.previousSibling.title;
 
-    const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
     const value = getLocalStorage.filter((data) => data.id !== parseInt(test));
     setLocalStorgeItem(value);
     localStorage.setItem("SearchValue", JSON.stringify(value));
@@ -126,8 +120,10 @@ function SearchBar() {
   };
 
   useEffect(() => {
-    setLocalStorgeItem(JSON.parse(localStorage.getItem("SearchValue")));
-  });
+    if (getLocalStorage !== null) {
+      setLocalStorgeItem(getLocalStorage);
+    }
+  }, []);
 
   return (
     <form onSubmit={goResult}>
@@ -168,7 +164,7 @@ function SearchBar() {
         </>
       ) : (
         <>
-          {click ? (
+          {click === true ? (
             <div className="search">
               {localStorageItem.map((data) => (
                 <div key={data.id} className="searchInfo searchHistory">
