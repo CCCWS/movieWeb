@@ -14,6 +14,7 @@
 .valueIn {
   width: 100px;
 }
+
 .removeValue {
   position: absolute;
   right: 5px;
@@ -31,6 +32,7 @@
   justify-content: center;
   text-align: center;
   width: 200px;
+  backdrop-filter: blur(50px);
 }
 
 .search {
@@ -55,6 +57,18 @@
   cursor: pointer;
   transition: all ease 0.5s;
   background-color: rgba(240, 248, 255, 0.212);
+}
+.searchHistory {
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.searchHistoryRight {
+  display: flex;
+}
+
+.searchHistoryRight div {
+  margin-right: 10px;
 }
 
 .searchTitle {

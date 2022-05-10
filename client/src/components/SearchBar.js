@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { SearchOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  CloseCircleOutlined,
+  ClockCircleOutlined,
+} from "@ant-design/icons";
 import "./SearchBar.css";
 
 function SearchBar() {
   const nav = useNavigate();
+  const [click, setClick] = useState(false);
   const [value, setValue] = useState("");
   const [movie, setMovie] = useState([]);
   const [tv, setTv] = useState([]);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(window.location.href);
+
+  const [localStorageItem, setLocalStorgeItem] = useState([]);
 
   const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${value}`;
   const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${value}`;
@@ -70,14 +77,58 @@ function SearchBar() {
     if (value.length > 0) {
       event.preventDefault();
       nav(`/search/${value}`);
+
+      const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
+
+      if (getLocalStorage === null) {
+        setLocalStorgeItem([{ value, id: new Date().getTime() }]);
+        console.log(localStorageItem);
+
+        localStorage.setItem(
+          "SearchValue",
+          JSON.stringify([{ value, id: new Date().getTime() }])
+        );
+      } else {
+        if (getLocalStorage.length === 5) {
+          getLocalStorage.pop();
+        }
+
+        setLocalStorgeItem([
+          { value, id: new Date().getTime() },
+          ...getLocalStorage,
+        ]);
+        console.log(localStorageItem);
+
+        localStorage.setItem(
+          "SearchValue",
+          JSON.stringify([
+            { value, id: new Date().getTime() },
+            ...getLocalStorage,
+          ])
+        );
+      }
       setValue("");
     }
   };
 
-  const test = () => {
+  const valueDelete = () => {
     setValue("");
-    console.log(test);
   };
+
+  const localStorgeRemove = (event) => {
+    const test = event.target.previousSibling.title;
+
+    const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
+    const value = getLocalStorage.filter((data) => data.id !== parseInt(test));
+    setLocalStorgeItem(value);
+    localStorage.setItem("SearchValue", JSON.stringify(value));
+    console.log(value);
+  };
+
+  useEffect(() => {
+    setLocalStorgeItem(JSON.parse(localStorage.getItem("SearchValue")));
+  });
+
   return (
     <form onSubmit={goResult}>
       <div className="searchInputBox">
@@ -89,9 +140,11 @@ function SearchBar() {
           value={value}
           onChange={onChange}
           onSubmit={goResult}
+          onFocus={() => setClick(true)}
+          onBlur={() => setClick(false)}
         />
         {value.length > 0 && (
-          <CloseCircleOutlined onClick={test} className="removeValue" />
+          <CloseCircleOutlined onClick={valueDelete} className="removeValue" />
         )}
       </div>
       {/* {movie.length === 0 ? <div>검색 결과가 없음</div> : null} */}
@@ -100,7 +153,8 @@ function SearchBar() {
           {movie.length < 1 ? (
             <div className="search searchFail">결과가 없습니다.</div>
           ) : (
-            <div className="search" onMouseLeave={test}>
+            <div className="search">
+              {/* onMouseLeave={valueDelete} */}
               {movie.map((data) => (
                 <SearchBarResult
                   key={data.id}
@@ -112,7 +166,26 @@ function SearchBar() {
             </div>
           )}
         </>
-      ) : null}
+      ) : (
+        <>
+          {click ? (
+            <div className="search">
+              {localStorageItem.map((data) => (
+                <div key={data.id} className="searchInfo searchHistory">
+                  <div className="searchHistoryRight" title={data.id}>
+                    <div>
+                      <ClockCircleOutlined />
+                    </div>
+                    <div>{data.value}</div>
+                  </div>
+
+                  <div onClick={localStorgeRemove}>✖</div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </>
+      )}
     </form>
   );
 }
