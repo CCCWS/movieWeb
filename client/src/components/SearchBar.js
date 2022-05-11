@@ -129,6 +129,7 @@ function SearchBar() {
     const value = getLocalStorage.filter((data) => data.id !== parseInt(item));
     setLocalStorgeItem(value);
     localStorage.setItem("SearchValue", JSON.stringify(value));
+    onFocus();
   };
 
   //localStorge에 값이 있을때만 true
@@ -152,9 +153,9 @@ function SearchBar() {
   // };
 
   //최근 검색어 창이 열려있을때 값을 모두 지우면 실시간으로 창이 사라짐
-  // useEffect(() => {
-  //   console.log("test");
-  // }, [localStorageItem]);
+  useEffect(() => {
+    setLocalStorgeItem(getLocalStorage);
+  }, [localStorageItem]);
 
   const handleClickOutside = ({ target }) => {
     console.log(recentSearch);
