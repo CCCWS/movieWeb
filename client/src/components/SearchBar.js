@@ -158,7 +158,6 @@ function SearchBar() {
   }, [localStorageItem]);
 
   const handleClickOutside = ({ target }) => {
-    console.log(recentSearch);
     if (
       recentSearch &&
       !searchRef.current.contains(target) &&
