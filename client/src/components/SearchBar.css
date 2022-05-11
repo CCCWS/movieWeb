@@ -37,7 +37,7 @@
 
 .search {
   position: absolute;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   backdrop-filter: blur(50px);
   padding: 10px;

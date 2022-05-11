@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import {
@@ -125,19 +125,24 @@ function SearchBar() {
     }
   }, []);
 
+  const inputRef = React.useRef(null);
+
   return (
-    <form onSubmit={goResult}>
+    <form
+      onSubmit={goResult}
+      onFocus={() => setClick(true)}
+      onBlur={() => setClick(false)}
+    >
       <div className="searchInputBox">
         <SearchOutlined />
         <input
           className={[`searchInput ${value.length > 0 && "valueIn"}`].join(" ")}
-          type="text"
+          type="search"
           placeholder={`검색어 입력`}
           value={value}
           onChange={onChange}
           onSubmit={goResult}
-          onFocus={() => setClick(true)}
-          onBlur={() => setClick(false)}
+          ref={inputRef}
         />
         {value.length > 0 && (
           <CloseCircleOutlined onClick={valueDelete} className="removeValue" />
@@ -164,22 +169,24 @@ function SearchBar() {
         </>
       ) : (
         <>
-          {click === true ? (
-            <div className="search">
-              {localStorageItem.map((data) => (
-                <div key={data.id} className="searchInfo searchHistory">
-                  <div className="searchHistoryRight" title={data.id}>
-                    <div>
-                      <ClockCircleOutlined />
-                    </div>
-                    <div>{data.value}</div>
+          <div
+            className="search"
+            onClick={() => inputRef.current.focus()}
+            style={{ display: click === true ? "flex" : "none" }}
+          >
+            {localStorageItem.map((data) => (
+              <div key={data.id} className="searchInfo searchHistory">
+                <div className="searchHistoryRight" title={data.id}>
+                  <div>
+                    <ClockCircleOutlined />
                   </div>
-
-                  <div onClick={localStorgeRemove}>✖</div>
+                  <div>{data.value}</div>
                 </div>
-              ))}
-            </div>
-          ) : null}
+
+                <div onClick={localStorgeRemove}>✖</div>
+              </div>
+            ))}
+          </div>
         </>
       )}
     </form>
