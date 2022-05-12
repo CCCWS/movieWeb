@@ -9,8 +9,6 @@ import {
 import "./SearchBar.css";
 
 function SearchBar() {
-  const inputRef = useRef();
-  const searchRef = useRef();
   const nav = useNavigate();
   const [recentSearch, setRecentSearch] = useState(false); //최근 검색어 표시 여부
   const [value, setValue] = useState(""); //입력된 검색어
@@ -157,7 +155,10 @@ function SearchBar() {
     setLocalStorgeItem(getLocalStorage);
   }, [localStorageItem]);
 
-  const handleClickOutside = ({ target }) => {
+  const inputRef = useRef();
+  const searchRef = useRef();
+
+  const clickOutside = ({ target }) => {
     if (
       recentSearch &&
       !searchRef.current.contains(target) &&
@@ -167,13 +168,12 @@ function SearchBar() {
   };
 
   useEffect(() => {
-    window.addEventListener("click", handleClickOutside);
+    window.addEventListener("click", clickOutside);
     return () => {
-      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("click", clickOutside);
     };
   }, [recentSearch]);
 
-  // console.log(getLocalStorage);
   return (
     <form onSubmit={goResult}>
       {/* <button onClick={() => console.log(recentSearch)}>test</button> */}

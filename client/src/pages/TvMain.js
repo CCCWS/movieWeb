@@ -59,9 +59,9 @@ function TvMain() {
 
           <div
             className="movieCard"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-once="true"
+            // data-aos="fade-up"
+            // data-aos-duration="1000"
+            // data-aos-once="true"
           >
             {movie.map((data, index) => (
               <MovieCard key={index} {...data} IMG_URL={IMG_URL} />

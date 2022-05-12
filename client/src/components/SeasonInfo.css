@@ -69,7 +69,7 @@
 .seasonSelectBox:hover {
   cursor: pointer;
   border: 2px solid rgba(255, 0, 0, 0.507);
-  transition: all ease 0.5s;
+  transition: all ease 0.3s;
 }
 
 .seasonSelect {
@@ -85,7 +85,7 @@
   z-index: 1000;
   backdrop-filter: blur(20px);
   overflow: auto;
-  transition: all ease 0.5s;
+  transition: all ease 0.3s;
   overflow-y: scroll;
 }
 

@@ -123,8 +123,8 @@ function TvDetail() {
           <div
             id="2"
             className="movieDetail"
-            data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos="fade-right"
+            data-aos-duration="500"
             data-aos-once="true"
           >
             <MovieInfo
@@ -138,9 +138,9 @@ function TvDetail() {
             <div
               id="3"
               className="movieStory"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-once="true"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="true"
             >
               <div className="section">줄거리</div>
               {movieInfo.overview == "" ? (
@@ -156,9 +156,9 @@ function TvDetail() {
             <div
               id="4"
               className="trailer"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-once="true"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="true"
             >
               <TrailerAndStillCut
                 movieTrailer={movieTrailer}
@@ -176,9 +176,9 @@ function TvDetail() {
             <div
               id="5"
               className="actorBox"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-once="true"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="true"
             >
               <div className="section">출연</div>
               <ActorList
@@ -193,9 +193,9 @@ function TvDetail() {
             <div
               id="6"
               className="reviwe"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-once="true"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="true"
             >
               <div className="section">리뷰</div>
               <Review review={review} />

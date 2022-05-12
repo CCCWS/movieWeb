@@ -44,7 +44,7 @@ function TitleLargeImg({
     }
   }, []);
 
-  const checkNull = backdrop_path ? `${IMG_URL}original${backdrop_path}` : null;
+  const checkNull = backdrop_path ? `${IMG_URL}w1280${backdrop_path}` : null;
   const styleDetail = {
     //detail에서 호출했을 경우
     backgroundImage: `linear-gradient(to bottom,

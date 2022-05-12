@@ -131,9 +131,9 @@ function Modal({
             </div>
             <div
               className="movieCard movieCardModal"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-once="false"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="false"
             >
               {click ? (
                 <>

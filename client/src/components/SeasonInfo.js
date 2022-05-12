@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   InfoCircleOutlined,
   CaretDownFilled,
@@ -16,28 +16,33 @@ function SeasonInfo({ season, IMG_URL }) {
     setClick(!click);
   };
 
-  const test = () => {
+  const open = () => {
     setClick(!click);
   };
 
+  const selectRef1 = useRef();
+  const selectRef2 = useRef();
+
+  const clickOutside = ({ target }) => {
+    if (
+      click &&
+      !selectRef1.current.contains(target) &&
+      !selectRef2.current.contains(target)
+    )
+      setClick(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", clickOutside);
+    return () => {
+      window.removeEventListener("click", clickOutside);
+    };
+  }, [click]);
+
   return (
     <>
-      {/* <button onClick={test}>test</button>
-      <div className="test" onClick={test}>
-        <div>
-          {season.map((data, index) => (
-            <ul
-              key={index}
-              value={season.indexOf(data)}
-              className={click ? "abc" : "bca"}
-            >
-              <li className="testitem">{data.name}</li>
-            </ul>
-          ))}
-        </div>
-      </div> */}
       <div style={{ position: "relative" }}>
-        <div className="seasonSelectBox" onClick={test}>
+        <div className="seasonSelectBox" onClick={open} ref={selectRef1}>
           {season[selectValue].name}{" "}
           {click ? <CaretUpFilled /> : <CaretDownFilled />}
         </div>
@@ -46,6 +51,7 @@ function SeasonInfo({ season, IMG_URL }) {
             `seasonSelect ${click ? "seasonSelectOpen" : "seasonSelectClose"}`,
           ].join(" ")}
           onChange={select}
+          ref={selectRef2}
         >
           {season.map((data, index) => (
             <li

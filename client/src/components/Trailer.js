@@ -28,6 +28,7 @@ function Trailer({ movieTrailer, setTrailerModalOpen, setTrailerUrl }) {
   const playing = () => {
     setMute(false); //다시 영상을 재생하면 음소거 해제
   };
+  console.log(movieTrailer);
   return (
     <>
       <div className="trailerBox">
