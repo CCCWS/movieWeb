@@ -6,7 +6,7 @@
   padding-left: 10px;
   padding-right: 10px;
   color: white;
-  position: fixed;
+  position: relative;
   /* background: linear-gradient(
     to top,
     rgba(31, 31, 31, 0) 0%,
