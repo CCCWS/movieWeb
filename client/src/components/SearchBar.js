@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import {
@@ -94,7 +94,7 @@ function SearchBar() {
         //localStorage에 값이 있는 경우, undifined, 길이0 포함
       } else {
         //쵀대 길이가 5라면 마지막 요소 제거, 최대 5개까지 보여주기 위함
-        if (getLocalStorage.length === 5) {
+        if (getLocalStorage.length === 500) {
           getLocalStorage.pop();
         }
 
@@ -120,10 +120,17 @@ function SearchBar() {
     setRecentSearch(false);
   };
 
+  // 최근 검색어 창이 열려있을때 값을 모두 지우면 실시간으로 창이 사라짐
+  useEffect(() => {
+    if (recentSearch === true) {
+      setLocalStorgeItem(getLocalStorage);
+    }
+  }, [getLocalStorage]);
+
   //클릭한 검색어를 localStorge에서 제거후 다시 setItem
   //getItem > filter > setState > setItem
   const localStorgeRemove = (event) => {
-    const item = event.target.previousSibling.title;
+    const item = event.target.id;
     const value = getLocalStorage.filter((data) => data.id !== parseInt(item));
     setLocalStorgeItem(value);
     localStorage.setItem("SearchValue", JSON.stringify(value));
@@ -149,11 +156,6 @@ function SearchBar() {
   //     // setRecentSearch(false);
   //   }
   // };
-
-  //최근 검색어 창이 열려있을때 값을 모두 지우면 실시간으로 창이 사라짐
-  useEffect(() => {
-    setLocalStorgeItem(getLocalStorage);
-  }, [localStorageItem]);
 
   const inputRef = useRef();
   const searchRef = useRef();
@@ -226,14 +228,16 @@ function SearchBar() {
             >
               {localStorageItem.map((data) => (
                 <div key={data.id} className="searchInfo searchHistory">
-                  <div className="searchHistoryRight" title={data.id}>
+                  <div className="searchHistoryRight" title={data.value}>
                     <div>
                       <ClockCircleOutlined />
                     </div>
                     <div onClick={goResult}>{data.value}</div>
                   </div>
 
-                  <div onClick={localStorgeRemove}>✖</div>
+                  <div onClick={localStorgeRemove} id={data.id}>
+                    ✖
+                  </div>
                 </div>
               ))}
             </div>

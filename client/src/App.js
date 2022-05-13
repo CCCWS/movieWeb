@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
+import MovieMain from "./pages/MovieMain";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Detail from "./pages/Detail";
@@ -19,7 +20,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path={`/`} element={Auth(Main, null)} />
+        <Route path={`/test`} element={Auth(Main, null)} />
+        <Route path={`/`} element={Auth(MovieMain, null)} />
         <Route path={`/tv`} element={Auth(TvMain, null)} />
         <Route path={`/login`} element={Auth(Login, false)} />
         <Route path={`/Register`} element={Auth(Register, false)} />

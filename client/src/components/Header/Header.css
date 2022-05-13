@@ -6,13 +6,15 @@
   padding-left: 10px;
   padding-right: 10px;
   color: white;
-  position: relative;
+  position: fixed;
   /* background: linear-gradient(
     to top,
     rgba(31, 31, 31, 0) 0%,
     rgba(31, 31, 31, 0.8) 70%,
     rgba(31, 31, 31, 1) 100%
   ); */
+  /* backdrop-filter: blur(20px); */
+  background-color: red;
   width: 100%;
   z-index: 2;
 }

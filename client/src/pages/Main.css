@@ -1,0 +1,28 @@
+.outer {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.outer::-webkit-scrollbar {
+  display: none;
+}
+
+.inner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.bg-yellow {
+  background-color: #f7f6cf;
+}
+
+.bg-blue {
+  background-color: #b6d8f2;
+}
+
+.bg-pink {
+  background-color: #f4cfdf;
+}

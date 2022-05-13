@@ -113,3 +113,14 @@
     grid-template-columns: repeat(2, 50%);
   }
 }
+
+.not-posterImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(99, 99, 99);
+  border-radius: 5px;
+}

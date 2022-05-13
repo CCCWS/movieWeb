@@ -1,82 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-
-import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
-
-import { API_URL, API_KEY, IMG_URL } from "../config";
-import MovieCard from "../components/MovieCard";
-import ImageCarousel from "../components/ImageCarousel";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect, useRef } from "react";
+import "./Main.css";
 
 function Main() {
-  const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
-
-  const [movie, setMovie] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [pageCount, setPageCount] = useState(1);
-
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
-  // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
-
-  const getMovie = async () => {
-    const res = await (await fetch(url)).json();
-    setMovie([...movie, ...res.results]); //페이지 카운터가 증가했을때 기존 데이터에 추가 데이터를 합침
-    setLoading(false);
-  };
+  const outerDivRef = useRef();
 
   useEffect(() => {
-    getMovie();
-  }, [pageCount]);
+    const wheelEvent = (event) => {
+      event.preventDefault();
+      const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
+      const pageHeight = window.innerHeight; // 화면 세로길이, 100vh와 같습니다.
 
-  useEffect(() => {
-    if (setReadMore === true) {
-      setPageCount((prev) => prev + 1);
-    }
-  }, [setReadMore]);
+      // 스크롤 내릴 때
+      if (event.deltaY > 0) {
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          outerDivRef.current.scrollTo({
+            top: pageHeight,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else {
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+        }
 
-  useEffect(() => {
-    AOS.init();
+        // 스크롤 올릴 때
+      } else {
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else {
+          outerDivRef.current.scrollTo({
+            top: pageHeight,
+            left: 0,
+            behavior: "smooth",
+          });
+        }
+      }
+    };
+    const outerDivRefCurrent = outerDivRef.current;
+    outerDivRefCurrent.addEventListener("wheel", wheelEvent);
+    return () => {
+      outerDivRefCurrent.removeEventListener("wheel", wheelEvent);
+    };
   }, []);
-
   return (
-    <>
-      {loading ? (
-        <div className="loading">
-          <LoadingOutlined />
-        </div>
-      ) : (
-        <div className="MainPage">
-          <div>
-            <ImageCarousel movieData={movie.slice(0, 5)} movie={true} />
-          </div>
-
-          <div>
-            <div>TOP RATED</div>
-            <hr />
-          </div>
-
-          <div
-            className="movieCard"
-            // data-aos="fade-up"
-            // data-aos-duration="1000"
-            // data-aos-once="true"
-          >
-            {movie.map((data, index) => (
-              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-            ))}
-          </div>
-
-          <div className="showScroll">
-            <div>스크롤해서 더보기</div>
-            <DoubleRightOutlined rotate={90} />
-          </div>
-
-          <div ref={readMore}>.</div>
-        </div>
-      )}
-    </>
+    <div ref={outerDivRef} className="outer">
+      <div className="inner bg-yellow">1</div>
+      <div className="inner bg-blue">2</div>
+      <div className="inner bg-pink">3</div>
+    </div>
   );
 }
 

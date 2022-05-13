@@ -22,6 +22,8 @@
 body {
   background-color: rgb(31, 31, 31);
   overflow: overlay;
+
+  margin: 0px;
 }
 
 /*메인*/

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import MovieScore from "./MovieScore";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, InfoCircleOutlined } from "@ant-design/icons";
 
 import "./MovieCard.css";
 
@@ -47,7 +47,13 @@ function MovieCard({
           </div>
 
           <div className="movieCardImg">
-            <img src={poster_path ? `${IMG_URL}w300${poster_path}` : null} />
+            {poster_path === null ? (
+              <div className="not-posterImg">
+                <InfoCircleOutlined />
+              </div>
+            ) : (
+              <img src={`${IMG_URL}w300${poster_path}`} />
+            )}
           </div>
         </div>
       </div>

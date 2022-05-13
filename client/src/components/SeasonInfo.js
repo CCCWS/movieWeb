@@ -69,7 +69,7 @@ function SeasonInfo({ season, IMG_URL }) {
       <div className="seasonBox">
         <div className="seasonImg">
           {season[selectValue].poster_path === null ? (
-            <div className="not-seasonImg">
+            <div className="not-posterImg">
               <InfoCircleOutlined />
             </div>
           ) : (
