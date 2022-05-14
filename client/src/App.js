@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import Modal from "./components/Modal";
 import SeachResult from "./pages/SeachResult";
 import TvMain from "./pages/TvMain";
+import PageTop from "./components/PageTop";
 
 import "./App.css";
 import Auth from "../src/hoc/auth";
@@ -19,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <PageTop />
       <Routes>
         <Route path={`/test`} element={Auth(Main, null)} />
         <Route path={`/`} element={Auth(MovieMain, null)} />
