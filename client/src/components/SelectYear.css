@@ -1,0 +1,126 @@
+.popular-main {
+  display: flex;
+  flex-direction: row;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.popular-year {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* backdrop-filter: blur(20px); */
+  background-color: rgba(117, 117, 117, 0.438);
+  width: 200px;
+  height: 600px;
+  border-radius: 5px;
+  margin-top: 20px;
+  overflow: auto;
+  border: 2px solid rgba(255, 0, 0, 0.377);
+}
+
+.popular-year div {
+  padding: 10px 40px 10px 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  transition: all ease 0.5s;
+}
+
+.popular-year div:hover {
+  cursor: pointer;
+  background-color: rgb(99, 99, 99);
+  transition: all ease 0.5s;
+}
+
+.click-year {
+  background-color: rgb(99, 99, 99);
+}
+
+.popular-year-width800 {
+  position: relative;
+  display: none;
+}
+
+.year-select-box {
+  font-size: 16px;
+  width: 300px;
+  height: 35px;
+  position: relative;
+  backdrop-filter: blur(20px);
+  /* background-color: rgba(0, 0, 0, 0.315); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.year-select-box:hover {
+  cursor: pointer;
+  border: 2px solid rgba(255, 0, 0, 0.507);
+  transition: all ease 0.3s;
+}
+
+.year-select {
+  top: 40px;
+  width: 300px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  overflow: auto;
+  transition: all ease 0.3s;
+  overflow-y: scroll;
+}
+
+.year-select-close {
+  max-height: 0px;
+}
+
+.year-select-open {
+  max-height: 500px;
+  border-radius: 5px;
+}
+
+.year-select-value {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  width: 90%;
+  height: 40px;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.year-select-value:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: rgba(240, 248, 255, 0.212);
+}
+
+@media (max-width: 800px) {
+  .popular-main {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  .popular-year {
+    display: none;
+  }
+
+  .popular-year-width800 {
+    display: block;
+  }
+}

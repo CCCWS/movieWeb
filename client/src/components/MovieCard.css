@@ -4,8 +4,8 @@
   grid-template-columns: repeat(5, 20%);
   justify-content: center;
   justify-items: center;
-  padding-left: 10%;
-  padding-right: 10%;
+  /* padding-left: 10%;
+  padding-right: 10%; */
   width: 100%;
   margin-bottom: 20px;
   /* overflow-y: scroll; */
@@ -100,11 +100,6 @@
 @media (max-width: 860px) {
   .movieCard {
     grid-template-columns: repeat(3, 33%);
-  }
-
-  .movieCard {
-    padding-left: 5%;
-    padding-right: 5%;
   }
 }
 

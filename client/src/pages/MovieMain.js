@@ -6,6 +6,7 @@ import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { API_URL, API_KEY, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
+import SelectYear from "../components/SelectYear";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -16,8 +17,9 @@ function MovieMain() {
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
+  const [year, setYear] = useState(2022);
 
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&primary_release_year=${year}`;
   // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
 
   const getMovie = async () => {
@@ -28,7 +30,7 @@ function MovieMain() {
 
   useEffect(() => {
     getMovie();
-  }, [pageCount]);
+  }, [pageCount, year]);
 
   useEffect(() => {
     if (setReadMore === true) {
@@ -53,19 +55,28 @@ function MovieMain() {
           </div>
 
           <div>
-            <div>TOP RATED</div>
+            <div>{year} Popular</div>
             <hr />
           </div>
 
-          <div
-            className="movieCard"
-            // data-aos="fade-up"
-            // data-aos-duration="1000"
-            // data-aos-once="true"
-          >
-            {movie.map((data, index) => (
-              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-            ))}
+          <div className="popular-main">
+            <SelectYear
+              year={year}
+              setYear={setYear}
+              setMovie={setMovie}
+              setPageCount={setPageCount}
+              setLoading={setLoading}
+            />
+            <div
+              className="movieCard"
+              // data-aos="fade-up"
+              // data-aos-duration="1000"
+              // data-aos-once="true"
+            >
+              {movie.map((data, index) => (
+                <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+              ))}
+            </div>
           </div>
 
           <div className="showScroll">

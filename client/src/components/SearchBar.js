@@ -79,8 +79,8 @@ function SearchBar() {
   const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
 
   const goResult = (event) => {
+    event.preventDefault();
     if (value.length > 0) {
-      event.preventDefault();
       nav(`/search/${value}`);
 
       //localStorage가 비어있을 경우
@@ -94,7 +94,7 @@ function SearchBar() {
         //localStorage에 값이 있는 경우, undifined, 길이0 포함
       } else {
         //쵀대 길이가 5라면 마지막 요소 제거, 최대 5개까지 보여주기 위함
-        if (getLocalStorage.length === 500) {
+        if (getLocalStorage.length === 5) {
           getLocalStorage.pop();
         }
 
