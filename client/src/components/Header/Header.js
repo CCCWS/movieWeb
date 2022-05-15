@@ -1,13 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import SearchBar from "../SearchBar";
+import SideMenu from "./SideMenu";
 
 import "./Header.css";
-
-import { MenuOutlined } from "@ant-design/icons";
 
 function Header() {
   const nav = useNavigate();
@@ -58,42 +57,6 @@ function Header() {
     nav("/tv");
   };
 
-  const openMenu = () => {
-    setMenuClick(true);
-  };
-
-  const selectRef1 = useRef();
-  const selectRef2 = useRef();
-
-  const clickOutside = ({ target }) => {
-    if (
-      menuClick &&
-      !selectRef1.current.contains(target) &&
-      !selectRef2.current.contains(target)
-    )
-      setMenuClick(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", clickOutside);
-    return () => {
-      window.removeEventListener("click", clickOutside);
-    };
-  }, [menuClick]);
-
-  useEffect(() => {
-    const body = document.querySelector("body");
-    if (menuClick) {
-      body.classList.toggle("not-scroll");
-    } else {
-      body.classList.remove("not-scroll");
-    }
-    return () => {
-      //뒤로가기 등으로 인하여 화면을 벗어나면 스크롤 활성화
-      return body.classList.remove("not-scroll");
-    };
-  }, [menuClick]);
-
   return (
     <div className="header" id="1">
       <div className="header-left">
@@ -127,40 +90,15 @@ function Header() {
               </button> */}
           </>
         )}
-        <div ref={selectRef1} onClick={openMenu} className="open-side-btn">
-          <MenuOutlined />
-        </div>
-
-        <div className={menuClick ? "side-menu-open" : "side-menu-close"}>
-          <div
-            ref={selectRef2}
-            className={menuClick ? "side-menu-open2" : "side-menu-close2"}
-          >
-            {menuClick ? (
-              <div className="side-menu-item">
-                <div className="side-menu-btn" onClick={mainPage}>
-                  영화
-                </div>
-                <div className="side-menu-btn" onClick={TvMainPage}>
-                  TV
-                </div>
-                {userAuth ? (
-                  <>
-                    <div className="side-menu-btn" onClick={logOut}>
-                      로그아웃
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="side-menu-btn" onClick={logInPage}>
-                      로그인
-                    </div>
-                  </>
-                )}
-              </div>
-            ) : null}
-          </div>
-        </div>
+        <SideMenu
+          logInPage={logInPage}
+          logOut={logOut}
+          mainPage={mainPage}
+          TvMainPage={TvMainPage}
+          menuClick={menuClick}
+          setMenuClick={setMenuClick}
+          userAuth={userAuth}
+        />
       </div>
     </div>
   );
