@@ -57,6 +57,10 @@ function Header() {
     nav("/tv");
   };
 
+  const categoryPage = () => {
+    setMenuClick(false);
+    nav("/category");
+  };
   return (
     <div className="header" id="1">
       <div className="header-left">
@@ -67,7 +71,7 @@ function Header() {
         <button className="headerBtn" onClick={TvMainPage}>
           TV
         </button>
-        <button className="headerBtn" onClick={TvMainPage}>
+        <button className="headerBtn" onClick={categoryPage}>
           찾기
         </button>
       </div>

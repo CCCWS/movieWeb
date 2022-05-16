@@ -116,7 +116,7 @@ function SearchBar() {
     } else if (recentSearch === true) {
       nav(`/search/${event.target.innerText}`);
     }
-    setValue("");
+    // setValue("");
     setRecentSearch(false);
   };
 
@@ -203,11 +203,11 @@ function SearchBar() {
       {/* {movie.length === 0 ? <div>검색 결과가 없음</div> : null} */}
       {value.length > 0 ? (
         <>
-          {tv.length < 1 ? (
+          {movie.length < 1 ? (
             <div className="search searchFail">결과가 없습니다.</div>
           ) : (
             <div className="search">
-              {tv.map((data) => (
+              {movie.map((data) => (
                 <SearchBarResult
                   key={data.id}
                   {...data}

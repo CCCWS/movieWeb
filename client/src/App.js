@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import Modal from "./components/Modal";
 import SeachResult from "./pages/SeachResult";
 import TvMain from "./pages/TvMain";
+import Category from "./pages/Category";
 import PageTop from "./components/PageTop";
 
 import "./App.css";
@@ -30,6 +31,7 @@ function App() {
         <Route path={`/Detail/:id`} element={Auth(Detail, null)} />
         <Route path={`/TvDetail/:id`} element={Auth(TvDetail, null)} />
         <Route path={`/modal`} element={Auth(Modal, null)} />
+        <Route path={`/category`} element={Auth(Category, null)} />
         <Route path={`/search/:id`} element={Auth(SeachResult, null)} />
       </Routes>
     </BrowserRouter>

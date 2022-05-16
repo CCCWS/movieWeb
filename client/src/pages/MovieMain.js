@@ -21,9 +21,13 @@ function MovieMain() {
 
   const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&primary_release_year=${year}`;
   // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
+  const test = `${API_URL}genre/tv/list?api_key=${API_KEY}&language=ko`;
 
   const getMovie = async () => {
     const res = await (await fetch(url)).json();
+    const genre = await (await fetch(test)).json();
+
+    console.log(genre);
     setMovie([...movie, ...res.results]); //페이지 카운터가 증가했을때 기존 데이터에 추가 데이터를 합침
     setLoading(false);
   };
