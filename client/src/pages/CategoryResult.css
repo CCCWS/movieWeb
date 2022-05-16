@@ -1,0 +1,12 @@
+.goBack {
+  font-size: 20px;
+  margin-left: 5%;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.category-result {
+  padding-left: 5%;
+  padding-right: 5%;
+}

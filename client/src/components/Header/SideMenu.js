@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 
 import "./SideMenu.css";
+import { FiMonitor, FiSearch } from "react-icons/fi";
+import { MdLocalMovies } from "react-icons/md";
 
 function SideMenu({
   menuClick,
@@ -11,6 +13,7 @@ function SideMenu({
   mainPage,
   TvMainPage,
   userAuth,
+  categoryPage,
 }) {
   const selectRef1 = useRef();
   const selectRef2 = useRef();
@@ -62,10 +65,15 @@ function SideMenu({
           {menuClick ? (
             <div className="side-menu-item">
               <div className="side-menu-btn" onClick={mainPage}>
-                영화
+                <MdLocalMovies /> 영화
               </div>
               <div className="side-menu-btn" onClick={TvMainPage}>
-                TV
+                <FiMonitor /> TV
+              </div>
+
+              <div className="side-menu-btn" onClick={categoryPage}>
+                <FiSearch />
+                찾기
               </div>
               {userAuth ? (
                 <>

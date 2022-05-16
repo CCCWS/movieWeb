@@ -1,0 +1,43 @@
+.categort-select-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.genre-box {
+  padding-left: 5%;
+  padding-right: 5%;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+}
+
+.genre-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 1000;
+  width: 95%;
+  height: 100px;
+  margin-bottom: 5%;
+  border-radius: 5px;
+}
+
+.genre-select:hover {
+  cursor: pointer;
+  filter: brightness(50%);
+}
+
+@media (max-width: 1000px) {
+  .genre-box {
+    grid-template-columns: repeat(4, 25%);
+  }
+}
+
+@media (max-width: 800px) {
+  .genre-box {
+    grid-template-columns: repeat(3, 33%);
+  }
+}

@@ -12,6 +12,8 @@ import Modal from "./components/Modal";
 import SeachResult from "./pages/SeachResult";
 import TvMain from "./pages/TvMain";
 import Category from "./pages/Category";
+import CategoryResultMovie from "./pages/CategoryResultMovie";
+import CategoryResultTv from "./pages/CategoryResultTv";
 import PageTop from "./components/PageTop";
 
 import "./App.css";
@@ -32,6 +34,14 @@ function App() {
         <Route path={`/TvDetail/:id`} element={Auth(TvDetail, null)} />
         <Route path={`/modal`} element={Auth(Modal, null)} />
         <Route path={`/category`} element={Auth(Category, null)} />
+        <Route
+          path={`/category/movie/:value/:id`}
+          element={Auth(CategoryResultMovie, null)}
+        />
+        <Route
+          path={`/category/tv/:value/:id`}
+          element={Auth(CategoryResultTv, null)}
+        />
         <Route path={`/search/:id`} element={Auth(SeachResult, null)} />
       </Routes>
     </BrowserRouter>

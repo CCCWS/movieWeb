@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { FiMonitor, FiSearch } from "react-icons/fi";
+import { MdLocalMovies } from "react-icons/md";
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
 
@@ -66,12 +68,14 @@ function Header() {
       <div className="header-left">
         <span className="logoImg">로고</span>
         <button className="headerBtn" onClick={mainPage}>
+          <MdLocalMovies />
           영화
         </button>
         <button className="headerBtn" onClick={TvMainPage}>
-          TV
+          <FiMonitor /> TV
         </button>
         <button className="headerBtn" onClick={categoryPage}>
+          <FiSearch />
           찾기
         </button>
       </div>
@@ -102,6 +106,7 @@ function Header() {
           menuClick={menuClick}
           setMenuClick={setMenuClick}
           userAuth={userAuth}
+          categoryPage={categoryPage}
         />
       </div>
     </div>
