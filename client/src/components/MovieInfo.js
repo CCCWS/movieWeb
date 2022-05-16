@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import MovieScore from "./MovieScore";
 
@@ -22,7 +22,17 @@ function MovieInfo({
   production_countries,
   first_air_date,
   origin_country,
+  movie,
 }) {
+  const nav = useNavigate();
+
+  const goCategort = (event) => {
+    if (movie === true) {
+      nav(`/category/movie/${event.target.textContent}/${event.target.title}`);
+    } else {
+      nav(`/category/tv/${event.target.textContent}/${event.target.title}`);
+    }
+  };
   return (
     <div className="MovieInfo">
       <div>
@@ -70,7 +80,12 @@ function MovieInfo({
 
         <div className="detailGenres">
           {genres.map((data) => (
-            <div className="genres" key={data.id}>
+            <div
+              className="genres"
+              key={data.id}
+              title={data.id}
+              onClick={goCategort}
+            >
               {data.name}
             </div>
           ))}

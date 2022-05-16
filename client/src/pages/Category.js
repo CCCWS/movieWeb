@@ -33,12 +33,12 @@ function Category() {
     setClick(false);
   };
 
-  const goMovie = (evnet) => {
-    nav(`/category/movie/${evnet.target.textContent}/${evnet.target.title}`);
+  const goMovie = (event) => {
+    nav(`/category/movie/${event.target.textContent}/${event.target.title}`);
   };
 
-  const goTv = (evnet) => {
-    nav(`/category/tv/${evnet.target.textContent}/${evnet.target.title}`);
+  const goTv = (event) => {
+    nav(`/category/tv/${event.target.textContent}/${event.target.title}`);
   };
   return (
     <>

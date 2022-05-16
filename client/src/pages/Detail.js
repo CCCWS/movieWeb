@@ -132,6 +132,7 @@ function Detail() {
               IMG_URL={IMG_URL}
               genres={genres}
               logoImg={logoImg}
+              movie={true}
             />
             <hr />
             <div
