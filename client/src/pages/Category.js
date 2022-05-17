@@ -75,6 +75,10 @@ function Category() {
                   }}
                 >
                   {data.name}
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
               ))}
             </>
@@ -94,6 +98,10 @@ function Category() {
                   }}
                 >
                   {data.name}
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
               ))}
             </>

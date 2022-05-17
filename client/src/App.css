@@ -47,6 +47,10 @@ body {
   margin-bottom: 50px;
 }
 
+.showScroll span {
+  position: absolute;
+}
+
 /* 로그인 */
 .loginPage {
   display: flex;

@@ -14,6 +14,7 @@
 }
 
 .genre-select {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +29,7 @@
 
 .genre-select:hover {
   cursor: pointer;
-  filter: brightness(50%);
+  filter: brightness(90%);
 }
 
 @media (max-width: 1000px) {
@@ -41,4 +42,55 @@
   .genre-box {
     grid-template-columns: repeat(3, 33%);
   }
+}
+
+.genre-select span {
+  position: absolute;
+  border-radius: 10px;
+  width: 5px;
+  height: 5px;
+  opacity: 0;
+  background-color: rgb(255, 35, 35);
+}
+
+.genre-select span:nth-child(1) {
+  left: 0;
+  bottom: 0;
+}
+
+.genre-select span:nth-child(2) {
+  top: 0;
+  left: 0;
+}
+
+.genre-select span:nth-child(3) {
+  top: 0;
+  right: 0;
+}
+
+.genre-select span:nth-child(4) {
+  bottom: 0;
+  right: 0;
+}
+
+.genre-select:hover span {
+  transition: all ease 0.5s;
+  opacity: 1;
+}
+
+.genre-select:hover span:nth-child(1) {
+  width: 5px;
+  height: 100%;
+}
+.genre-select:hover span:nth-child(2) {
+  width: 100%;
+  height: 5px;
+}
+.genre-select:hover span:nth-child(3) {
+  width: 5px;
+  height: 100%;
+}
+.genre-select:hover span:nth-child(4) {
+  width: 100%;
+  height: 5px;
 }

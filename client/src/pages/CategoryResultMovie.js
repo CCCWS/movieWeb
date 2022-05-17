@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
+import { Link } from "react-scroll";
 
+import Pagination from "../components/Pagination";
 import MovieCard from "../components/MovieCard";
 
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Pagination } from "antd";
 import "./CategoryResult.css";
 
 function CategoryResultMovie() {
@@ -33,7 +34,7 @@ function CategoryResultMovie() {
   const goBack = () => {
     nav(-1);
   };
-  console.log(value);
+
   return (
     <>
       <div className="goBack" onClick={goBack}>
@@ -55,15 +56,12 @@ function CategoryResultMovie() {
               <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
             ))}
           </div>
-          {page === 1 ? null : (
-            <button onClick={() => setPage(page - 1)}>뒤</button>
-          )}
-          <button onClick={() => setPage(page + 1)}>앞</button>
-          <Pagination defaultCurrent={10} total={500} />;
         </>
       )}
+
+      <Pagination setPage={setPage} page={page} setLoading={setLoading} />
     </>
   );
 }
 
-export default CategoryResultMovie;
+export default React.memo(CategoryResultMovie);

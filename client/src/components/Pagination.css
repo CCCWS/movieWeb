@@ -1,0 +1,12 @@
+.pagination-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination-box div {
+  margin-right: 10px;
+}
+
+.curr-page {
+  background-color: red;
+}

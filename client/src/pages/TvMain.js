@@ -80,11 +80,9 @@ function TvMain() {
           </div>
 
           <div className="showScroll">
-            <div>스크롤해서 더보기</div>
             <DoubleRightOutlined rotate={90} />
+            <div ref={readMore}></div>
           </div>
-
-          <div ref={readMore}>.</div>
         </div>
       )}
     </>

@@ -80,11 +80,9 @@ function MovieMain() {
           </div>
 
           <div className="showScroll">
-            <div>스크롤해서 더보기</div>
             <DoubleRightOutlined rotate={90} />
+            <span ref={readMore}></span>
           </div>
-
-          <div ref={readMore}>.</div>
         </div>
       )}
     </>

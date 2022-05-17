@@ -7,7 +7,7 @@
   width: 35px;
   border: none;
   margin-left: 5px;
-  transition: all 0.1s;
+  transition: all 0.5s;
 }
 
 .valueIn {
@@ -20,26 +20,11 @@
   top: 5px;
 }
 
-.outline {
-  position: absolute;
-  left: 16px;
-  bottom: 0;
-  width: 1px;
-  height: 1px;
-  background-color: red;
-  z-index: 10;
-}
-
 .searchInput:focus {
-  outline: none;
   width: 100px;
   transition: all ease 0.5s;
-  /* background-color: rgb(61, 61, 61); */
-}
-
-.searchInput:focus .outline {
-  transition: all ease 3s;
-  width: 1000px;
+  border-bottom: 1px solid red;
+  outline: none;
 }
 
 .searchFail {
