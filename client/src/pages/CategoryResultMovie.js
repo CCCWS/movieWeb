@@ -15,9 +15,11 @@ function CategoryResultMovie() {
   const { value } = useParams();
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   const getApi = async () => {
-    const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=1&with_genres=${id}`;
+    setLoading(true);
+    const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=1&with_genres=${id}&page=${page}`;
     const res = await (await fetch(url)).json();
     setMovie(res.results);
     setLoading(false);
@@ -25,7 +27,7 @@ function CategoryResultMovie() {
 
   useEffect(() => {
     getApi();
-  }, []);
+  }, [page]);
 
   const goBack = () => {
     nav(-1);
@@ -41,16 +43,23 @@ function CategoryResultMovie() {
           <LoadingOutlined />
         </div>
       ) : (
-        <div
-          className="movieCard category-result"
-          // data-aos="fade-up"
-          // data-aos-duration="1000"
-          // data-aos-once="true"
-        >
-          {movie.map((data, index) => (
-            <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-          ))}
-        </div>
+        <>
+          <div
+            className="movieCard category-result"
+            // data-aos="fade-up"
+            // data-aos-duration="1000"
+            // data-aos-once="true"
+          >
+            {movie.map((data, index) => (
+              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+            ))}
+          </div>
+          {page === 1 ? null : (
+            <button onClick={() => setPage(page - 1)}>뒤</button>
+          )}
+
+          <button onClick={() => setPage(page + 1)}>앞</button>
+        </>
       )}
     </>
   );
