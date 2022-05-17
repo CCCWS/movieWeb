@@ -4,8 +4,8 @@
   grid-template-columns: repeat(6, 16.6%);
   justify-content: center;
   justify-items: center;
-  /* padding-left: 10%;
-  padding-right: 10%; */
+  padding-left: 10px;
+  padding-right: 10px;
   width: 100%;
   height: 100%;
   margin-bottom: 20px;
@@ -17,12 +17,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-radius: 5px;
   border: none;
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
 }
 
 .movieCarePoster {
@@ -57,7 +57,7 @@
 .movieCardItem:hover {
   cursor: pointer;
   transition: all 0.5s ease;
-  transform: scale(1.1);
+  transform: scale(1);
 }
 
 .movieCardItem:hover .hoverPoster {

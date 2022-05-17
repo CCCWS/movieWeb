@@ -4,6 +4,7 @@ import Logo from "./Logo";
 import MovieScore from "./MovieScore";
 
 import { Image } from "antd";
+import img from "../img/poster_none.PNG";
 import "./MovieInfo.css";
 
 function MovieInfo({
@@ -38,7 +39,7 @@ function MovieInfo({
       <div>
         <Image
           className="mainPoster"
-          src={poster_path ? `${IMG_URL}original${poster_path}` : null}
+          src={poster_path ? `${IMG_URL}original${poster_path}` : `${img}`}
         />
         <div>{`❤ ${Math.round(popularity)}`}</div>
       </div>

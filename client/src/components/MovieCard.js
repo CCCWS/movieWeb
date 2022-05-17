@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieScore from "./MovieScore";
-import { SearchOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import img from "../img/poster_none.PNG";
 import "./MovieCard.css";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function MovieCard({
   id,
@@ -15,6 +18,7 @@ function MovieCard({
   onModal,
   vote_average,
   first_air_date,
+  category,
 }) {
   const nav = useNavigate();
   const goDitail = () => {
@@ -30,9 +34,18 @@ function MovieCard({
     }
   };
 
+  // useEffect(() => {
+  //   AOS.init();
+  // }, []);
+
   return (
     <>
-      <div className="movieCardItem" onClick={goDitail}>
+      <div
+        className="movieCardItem"
+        onClick={goDitail}
+        // data-aos="null"
+        // data-aos-anchor-placement="null"
+      >
         <div className="movieCarePoster">
           <div className="hoverPoster">
             <SearchOutlined />

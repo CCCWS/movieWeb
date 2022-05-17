@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Link } from "react-scroll";
 
 import Pagination from "../components/Pagination";
 import MovieCard from "../components/MovieCard";
@@ -45,21 +44,23 @@ function CategoryResultMovie() {
           <LoadingOutlined />
         </div>
       ) : (
-        <>
-          <div
-            className="movieCard category-result"
-            // data-aos="fade-up"
-            // data-aos-duration="1000"
-            // data-aos-once="true"
-          >
-            {movie.map((data, index) => (
-              <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-            ))}
-          </div>
-        </>
+        <div
+          className="movieCard category-result"
+          // data-aos="fade-up"
+          // data-aos-duration="1000"
+          // data-aos-once="true"
+        >
+          {movie.map((data, index) => (
+            <MovieCard
+              key={index}
+              {...data}
+              IMG_URL={IMG_URL}
+              category={true}
+            />
+          ))}
+        </div>
       )}
-
-      <Pagination setPage={setPage} page={page} setLoading={setLoading} />
+      <Pagination setPage={setPage} page={page} />
     </>
   );
 }
