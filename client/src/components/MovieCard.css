@@ -7,6 +7,7 @@
   /* padding-left: 10%;
   padding-right: 10%; */
   width: 100%;
+  height: 100%;
   margin-bottom: 20px;
   /* overflow-y: scroll; */
 }
@@ -30,16 +31,6 @@
   position: relative;
 }
 
-.movieCardImg {
-  height: 100%;
-}
-
-.movieCardImg img {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-
 /* 포스터 호버시 나타남 */
 .hoverPoster {
   display: flex;
@@ -54,14 +45,19 @@
   padding: 10px;
 }
 
+.posterImg {
+  background-position: center;
+  border-radius: 5px;
+  background-color: rgb(99, 99, 99);
+  background-size: cover;
+  width: 100%;
+  padding-top: 150%;
+}
+
 .movieCardItem:hover {
   cursor: pointer;
   transition: all 0.5s ease;
   transform: scale(1.1);
-}
-
-.movieCardItem:hover img {
-  filter: brightness(50%);
 }
 
 .movieCardItem:hover .hoverPoster {
@@ -70,15 +66,14 @@
   opacity: 1;
 }
 
-/* .movieCardTitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: black;
-  height: 10%;
-  width: 100%;
-} */
+.movieCardItem:hover .movieCardScore {
+  filter: brightness(50%);
+}
+
+.movieCardItem:hover .posterImg {
+  transition: all ease 0.5s;
+  filter: brightness(50%);
+}
 
 .movieCardScore {
   position: absolute;
@@ -87,35 +82,20 @@
   left: -5px;
 }
 
-.movieCardItem:hover .movieCardScore {
-  filter: brightness(50%);
-}
-
-@media (max-width: 1045px) {
+@media (max-width: 1300px) {
   .movieCard {
     grid-template-columns: repeat(4, 25%);
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 800px) {
   .movieCard {
     grid-template-columns: repeat(3, 33%);
   }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 450px) {
   .movieCard {
     grid-template-columns: repeat(2, 50%);
   }
-}
-
-.not-posterImg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(99, 99, 99);
-  border-radius: 5px;
 }

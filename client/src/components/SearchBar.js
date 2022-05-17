@@ -198,6 +198,7 @@ function SearchBar() {
         {value.length > 0 && (
           <CloseCircleOutlined onClick={valueDelete} className="removeValue" />
         )}
+        <span className="outline"></span>
       </div>
 
       {/* {movie.length === 0 ? <div>검색 결과가 없음</div> : null} */}

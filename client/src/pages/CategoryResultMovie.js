@@ -7,6 +7,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import MovieCard from "../components/MovieCard";
 
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { Pagination } from "antd";
 import "./CategoryResult.css";
 
 function CategoryResultMovie() {
@@ -57,8 +58,8 @@ function CategoryResultMovie() {
           {page === 1 ? null : (
             <button onClick={() => setPage(page - 1)}>뒤</button>
           )}
-
           <button onClick={() => setPage(page + 1)}>앞</button>
+          <Pagination defaultCurrent={10} total={500} />;
         </>
       )}
     </>
