@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL, API_KEY } from "../config";
-
+import SearchBarResult from "../components/SearchBarResult";
 import "./Category.css";
 
 function Category() {
@@ -9,6 +9,7 @@ function Category() {
   const [movieGenre, setMovieGenre] = useState([]);
   const [tvGenre, setTvGenre] = useState([]);
   const [click, setClick] = useState(true);
+  const [localData, setLocalData] = useState();
 
   const getApi = async () => {
     const movieGenreUrl = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=ko`;
@@ -23,6 +24,7 @@ function Category() {
 
   useEffect(() => {
     getApi();
+    setLocalData(JSON.parse(localStorage.getItem("recentView")));
   }, []);
 
   const clickMovie = () => {
@@ -40,9 +42,21 @@ function Category() {
   const goTv = (event) => {
     nav(`/category/tv/${event.target.textContent}/${event.target.title}`);
   };
+
+  console.log(localData);
+
   return (
     <>
       <div>
+        {localData === undefined || localData === null ? null : (
+          <div>
+            <div>최근 검색한 컨텐츠</div>
+            {localData.map((data) => (
+              <SearchBarResult key={data.id} {...data} Category={true} />
+            ))}
+          </div>
+        )}
+
         <div className="categort-select-btn">
           <button
             className={[`modalSectionBtn ${click ? null : "close"}`].join()}

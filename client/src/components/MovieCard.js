@@ -18,8 +18,20 @@ function MovieCard({
   onModal,
   vote_average,
   first_air_date,
-  category,
+  release_date,
 }) {
+  const localData = {
+    id: id,
+    title: title,
+    name: name,
+    poster_path: poster_path,
+    IMG_URL: IMG_URL,
+    vote_average: vote_average,
+    first_air_date: first_air_date,
+    release_date: release_date,
+  };
+  const get = JSON.parse(localStorage.getItem("recentView"));
+
   const nav = useNavigate();
   const goDitail = () => {
     //movie와 tv는 first_air_date의 유무로 판단
@@ -31,6 +43,16 @@ function MovieCard({
     {
       //modal창이 켜져있다면 닫기
       onModal && setModalOpen(false);
+    }
+    if (get === null) {
+      localStorage.setItem("recentView", JSON.stringify([{ ...localData }]));
+    } else {
+      //이미 목록에 있는 컨텐츠라면 제거후 최상단으로 갱신됨
+      const filterGet = get.filter((data) => data.id !== localData.id);
+      localStorage.setItem(
+        "recentView",
+        JSON.stringify([{ ...localData }, ...filterGet])
+      );
     }
   };
 

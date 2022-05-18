@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+
+import SearchBarResult from "./SearchBarResult";
 import {
   SearchOutlined,
   CloseCircleOutlined,
@@ -250,33 +252,36 @@ function SearchBar() {
 
 export default React.memo(SearchBar);
 
-const SearchBarResult = ({
-  id,
-  poster_path,
-  IMG_URL,
-  title,
-  name,
-  release_date,
-  setValue,
-}) => {
-  const nav = useNavigate();
-  const goDetail = () => {
-    nav(`/detail/${id}`);
-    setValue("");
-  };
+// export const SearchBarResult = ({
+//   id,
+//   poster_path,
+//   IMG_URL,
+//   title,
+//   name,
+//   first_air_date,
+//   release_date,
+//   setValue,
+// }) => {
+//   const nav = useNavigate();
+//   const goDetail = () => {
+//     nav(`/detail/${id}`);
+//     setValue("");
+//   };
 
-  return (
-    <div className="searchInfo" onClick={goDetail}>
-      <img
-        className="searchImg"
-        src={poster_path ? `${IMG_URL}w200${poster_path}` : null}
-      />
-      <div className="searchTitle">
-        <div>
-          {title} {name}
-        </div>
-        <div>{release_date}</div>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="searchInfo" onClick={goDetail}>
+//       <img
+//         className="searchImg"
+//         src={poster_path ? `${IMG_URL}w200${poster_path}` : null}
+//       />
+//       <div className="searchTitle">
+//         <div>
+//           {title} {name}
+//         </div>
+//         <div>
+//           {release_date} {first_air_date}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
