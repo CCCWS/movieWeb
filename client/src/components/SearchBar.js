@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
@@ -80,6 +80,64 @@ function SearchBar() {
 
   const getLocalStorage = JSON.parse(localStorage.getItem("SearchValue"));
 
+  //localStorge에 값이 있을때만 true
+  const onFocus = () => {
+    if (getLocalStorage.length > 0) {
+      // console.log(getLocalStorage.length !== 0);
+      setLocalStorgeItem(getLocalStorage);
+      setRecentSearch(true);
+    }
+  };
+
+  //클릭한 검색어를 localStorge에서 제거후 다시 setItem
+  //getItem > filter > setState > setItem
+  const localStorgeRemove = (event) => {
+    // const item = event.target.previousSibling.id;
+    const item = event.target.id;
+    const value = getLocalStorage.filter((data) => data.id !== parseInt(item));
+    localStorage.setItem("SearchValue", JSON.stringify(value));
+    // setLocalStorgeItem(value);
+    // setRecentSearch(true);
+    // onFocus();
+    // console.log(value);
+  };
+
+  // 최근 검색어 창이 열려있을때 값을 모두 지우면 실시간으로 창이 사라짐
+  useEffect(() => {
+    if (recentSearch === true) {
+      setLocalStorgeItem(getLocalStorage);
+    }
+  }, [getLocalStorage]);
+
+  useEffect(() => {
+    if (localStorageItem.length === 0) {
+      setRecentSearch(false);
+    }
+  }, [localStorageItem]);
+
+  const inputRef = useRef();
+  const searchRef = useRef();
+  const removeRef = useRef();
+
+  const clickOutside = ({ target }) => {
+    if (
+      searchRef.current.contains(target) === false &&
+      inputRef.current.contains(target) === false
+    ) {
+      setRecentSearch(false);
+    }
+  };
+
+  useEffect(() => {
+    if (recentSearch === true) {
+      window.addEventListener("click", clickOutside);
+      return () => {
+        window.removeEventListener("click", clickOutside);
+      };
+    }
+  }, [recentSearch]);
+
+  //////////////////////////////////////////////
   const goResult = (event) => {
     event.preventDefault();
     if (value.length > 0) {
@@ -113,70 +171,13 @@ function SearchBar() {
           ])
         );
       }
-
       //최근 검색어 창이 열려있는 경우 == 최근 검색어를 클릭했을 경우
     } else if (recentSearch === true) {
       nav(`/search/${event.target.innerText}`);
-    }
-    // setValue("");
-    setRecentSearch(false);
-  };
-
-  // 최근 검색어 창이 열려있을때 값을 모두 지우면 실시간으로 창이 사라짐
-  useEffect(() => {
-    if (recentSearch === true) {
-      setLocalStorgeItem(getLocalStorage);
-    }
-  }, [getLocalStorage]);
-
-  //클릭한 검색어를 localStorge에서 제거후 다시 setItem
-  //getItem > filter > setState > setItem
-  const localStorgeRemove = (event) => {
-    const item = event.target.id;
-    const value = getLocalStorage.filter((data) => data.id !== parseInt(item));
-    setLocalStorgeItem(value);
-    localStorage.setItem("SearchValue", JSON.stringify(value));
-    onFocus();
-  };
-
-  //localStorge에 값이 있을때만 true
-  const onFocus = () => {
-    if (getLocalStorage && getLocalStorage.length > 0) {
-      // console.log(getLocalStorage.length !== 0);
-      setLocalStorgeItem(getLocalStorage);
-      setRecentSearch(true);
-    }
-  };
-
-  //localStorge에 값이 없을때만 false
-  // const onBlur = () => {
-  //   if (
-  //     getLocalStorage === null ||
-  //     getLocalStorage === undefined ||
-  //     getLocalStorage.length === 0
-  //   ) {
-  //     // setRecentSearch(false);
-  //   }
-  // };
-
-  const inputRef = useRef();
-  const searchRef = useRef();
-
-  const clickOutside = ({ target }) => {
-    if (
-      recentSearch &&
-      !searchRef.current.contains(target) &&
-      !inputRef.current.contains(target)
-    )
       setRecentSearch(false);
+    }
+    setValue("");
   };
-
-  useEffect(() => {
-    window.addEventListener("click", clickOutside);
-    return () => {
-      window.removeEventListener("click", clickOutside);
-    };
-  }, [recentSearch]);
 
   return (
     <form onSubmit={goResult}>
@@ -223,26 +224,35 @@ function SearchBar() {
       ) : (
         <>
           {recentSearch && (
-            <div
-              ref={searchRef}
-              className="search"
-              style={{ display: recentSearch === true ? "flex" : "none" }}
-            >
-              {localStorageItem.map((data) => (
-                <div key={data.id} className="searchInfo searchHistory">
-                  <div className="searchHistoryRight" title={data.value}>
-                    <div>
-                      <ClockCircleOutlined />
+            <>
+              <div
+                ref={searchRef}
+                className="search"
+                style={{ display: recentSearch === true ? "flex" : "none" }}
+              >
+                {localStorageItem.map((data) => (
+                  <div key={data.id} className="searchInfo searchHistory">
+                    <div
+                      className="searchHistoryRight"
+                      id={data.id}
+                      title={data.value}
+                    >
+                      <div>
+                        <ClockCircleOutlined />
+                      </div>
+                      <div onClick={goResult}>{data.value}</div>
                     </div>
-                    <div onClick={goResult}>{data.value}</div>
+                    <div
+                      id={data.id}
+                      onClick={localStorgeRemove}
+                      ref={removeRef}
+                    >
+                      ✖
+                    </div>
                   </div>
-
-                  <div onClick={localStorgeRemove} id={data.id}>
-                    ✖
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </>
           )}
         </>
       )}
@@ -251,37 +261,3 @@ function SearchBar() {
 }
 
 export default React.memo(SearchBar);
-
-// export const SearchBarResult = ({
-//   id,
-//   poster_path,
-//   IMG_URL,
-//   title,
-//   name,
-//   first_air_date,
-//   release_date,
-//   setValue,
-// }) => {
-//   const nav = useNavigate();
-//   const goDetail = () => {
-//     nav(`/detail/${id}`);
-//     setValue("");
-//   };
-
-//   return (
-//     <div className="searchInfo" onClick={goDetail}>
-//       <img
-//         className="searchImg"
-//         src={poster_path ? `${IMG_URL}w200${poster_path}` : null}
-//       />
-//       <div className="searchTitle">
-//         <div>
-//           {title} {name}
-//         </div>
-//         <div>
-//           {release_date} {first_air_date}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };

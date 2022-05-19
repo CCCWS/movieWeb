@@ -43,8 +43,6 @@ function Category() {
     nav(`/category/tv/${event.target.textContent}/${event.target.title}`);
   };
 
-  console.log(localData);
-
   return (
     <>
       <div>

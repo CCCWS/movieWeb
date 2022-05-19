@@ -64,6 +64,7 @@
 
 .searchHistoryRight {
   display: flex;
+  width: 100%;
 }
 
 .searchHistoryRight div {
