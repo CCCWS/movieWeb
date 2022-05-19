@@ -1,10 +1,11 @@
 .recent-view-box {
-  background-color: red;
   margin-bottom: 20px;
   margin-top: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-.recent-view-box:first-child {
+.recent-view-title {
   font-size: 20px;
 }
 
@@ -13,6 +14,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .genre-box {

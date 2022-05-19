@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IMG_URL } from "../config";
 
 function SearchBarResult({
   id,
   poster_path,
-  IMG_URL,
   title,
   name,
   first_air_date,
@@ -24,7 +24,7 @@ function SearchBarResult({
       setValue("");
     }
   };
-
+  console.log(IMG_URL);
   return (
     <div className="searchInfo" onClick={goDetail}>
       <img

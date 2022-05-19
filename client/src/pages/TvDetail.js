@@ -83,6 +83,41 @@ function TvDetail() {
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
   //detail에서 받은 props를 Madal에 넘겨줌
 
+
+  const get = JSON.parse(localStorage.getItem("recentView"));
+
+  const setLocalData = () => {
+    const filterGet = get.filter((data) => data.id !== movieInfo.id);
+    localStorage.setItem(
+      "recentView",
+      JSON.stringify([{ ...movieInfo }, ...filterGet])
+    );
+  };
+
+  useEffect(() => {
+    if (loading === false) {
+      if (get === null) {
+        localStorage.setItem("recentView", JSON.stringify([{ ...movieInfo }]));
+      } else {
+        //localStorge의 데이터가 6개가 있을 경우
+        if (get.length === 6) {
+          //이미 항목에 있는 데이터라면 지우고 다시 추가해서 최상단으로 갱신
+          if (get.filter((data) => data.id === movieInfo.id).length === 1) {
+            setLocalData();
+
+            //항목에 있는 데이터가 아니면 맨 뒤의 데이터를 지우고 새로운 데이터 추가
+          } else {
+            get.pop();
+            setLocalData();
+          }
+        } else {
+          //6개가 아닐경우 데이터만 추가
+          setLocalData();
+        }
+      }
+    }
+  }, [loading]);
+
   return (
     <div className="detailPage">
       <MovieHeader />
