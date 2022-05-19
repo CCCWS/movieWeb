@@ -47,7 +47,7 @@ function Category() {
     <>
       <div>
         {localData === undefined || localData === null ? null : (
-          <div>
+          <div className="recent-view-box">
             <div>최근 검색한 컨텐츠</div>
             {localData.map((data) => (
               <SearchBarResult key={data.id} {...data} Category={true} />

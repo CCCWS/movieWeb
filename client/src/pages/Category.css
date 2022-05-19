@@ -1,3 +1,13 @@
+.recent-view-box {
+  background-color: red;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.recent-view-box:first-child {
+  font-size: 20px;
+}
+
 .categort-select-btn {
   width: 100%;
   display: flex;
