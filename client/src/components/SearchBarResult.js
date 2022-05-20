@@ -24,7 +24,6 @@ function SearchBarResult({
       setValue("");
     }
   };
-  console.log(IMG_URL);
   return (
     <div className="searchInfo" onClick={goDetail}>
       <img

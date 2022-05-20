@@ -140,7 +140,7 @@ function SearchBar() {
   //////////////////////////////////////////////
   const goResult = (event) => {
     event.preventDefault();
-    if (value.length > 0) {
+    if (value.length > 1) {
       nav(`/search/${value}`);
 
       //localStorage가 비어있을 경우
@@ -172,13 +172,20 @@ function SearchBar() {
         );
       }
       //최근 검색어 창이 열려있는 경우 == 최근 검색어를 클릭했을 경우
-    } else if (recentSearch === true) {
-      nav(`/search/${event.target.innerText}`);
-      setRecentSearch(false);
+      // } else if (recentSearch === true) {
+      //   nav(`/search/${event.target.innerText}`);
+      //   setRecentSearch(false);
+    } else {
+      alert("2글자 이상 입력");
     }
     setValue("");
+    setMovie([]);
   };
 
+  const goRecentSearch = (event) => {
+    nav(`/search/${event.target.innerText}`);
+    setRecentSearch(false);
+  };
   return (
     <form onSubmit={goResult}>
       {/* <button onClick={() => console.log(recentSearch)}>test</button> */}
@@ -232,15 +239,11 @@ function SearchBar() {
               >
                 {localStorageItem.map((data) => (
                   <div key={data.id} className="searchInfo searchHistory">
-                    <div
-                      className="searchHistoryRight"
-                      id={data.id}
-                      title={data.value}
-                    >
+                    <div className="searchHistoryRight">
                       <div>
                         <ClockCircleOutlined />
                       </div>
-                      <div onClick={goResult}>{data.value}</div>
+                      <div onClick={goRecentSearch}> {data.value}</div>
                     </div>
                     <div
                       id={data.id}
