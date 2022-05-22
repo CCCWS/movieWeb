@@ -20,27 +20,6 @@ function MovieCard({
   first_air_date,
   release_date,
 }) {
-  const localData = {
-    id: id,
-    title: title,
-    name: name,
-    poster_path: poster_path,
-    IMG_URL: IMG_URL,
-    vote_average: vote_average,
-    first_air_date: first_air_date,
-    release_date: release_date,
-  };
-
-  const get = JSON.parse(localStorage.getItem("recentView"));
-
-  const setLocalData = () => {
-    const filterGet = get.filter((data) => data.id !== localData.id);
-    localStorage.setItem(
-      "recentView",
-      JSON.stringify([{ ...localData }, ...filterGet])
-    );
-  };
-
   const nav = useNavigate();
   const goDitail = () => {
     //movie와 tv는 first_air_date의 유무로 판단
@@ -53,27 +32,6 @@ function MovieCard({
       //modal창이 켜져있다면 닫기
       onModal && setModalOpen(false);
     }
-
-    //localStorge에 데이터가 없을 경우
-    // if (get === null) {
-    //   localStorage.setItem("recentView", JSON.stringify([{ ...localData }]));
-    // } else {
-    //   //localStorge의 데이터가 6개가 있을 경우
-    //   if (get.length === 6) {
-    //     //이미 항목에 있는 데이터라면 지우고 다시 추가해서 최상단으로 갱신
-    //     if (get.filter((data) => data.id === localData.id).length === 1) {
-    //       setLocalData();
-
-    //       //항목에 있는 데이터가 아니면 맨 뒤의 데이터를 지우고 새로운 데이터 추가
-    //     } else {
-    //       get.pop();
-    //       setLocalData();
-    //     }
-    //   } else {
-    //     //6개가 아닐경우 데이터만 추가
-    //     setLocalData();
-    //   }
-    // }
   };
 
   // useEffect(() => {

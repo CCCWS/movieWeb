@@ -43,8 +43,27 @@ function Category() {
     nav(`/category/tv/${event.target.textContent}/${event.target.title}`);
   };
 
+  const clearRecent = () => {
+    setLocalData([]);
+    localStorage.removeItem("recentView");
+  };
   return (
     <>
+      {localData === undefined || localData === null ? null : (
+        <>
+          {localData.length === 0 ? null : (
+            <div className="recent-view-box">
+              <div className="recent-view-title">
+                <div>최근 검색한 컨텐츠</div>
+                <button onClick={clearRecent}>전체 삭제</button>
+              </div>
+              {localData.map((data) => (
+                <SearchBarResult key={data.id} {...data} Category={true} />
+              ))}
+            </div>
+          )}
+        </>
+      )}
       <div className="categort-select-btn">
         <button
           className={[`modalSectionBtn ${click ? null : "close"}`].join()}
@@ -109,15 +128,6 @@ function Category() {
           </>
         )}
       </div>
-
-      {localData === undefined || localData === null ? null : (
-        <div className="recent-view-box">
-          <div className="recent-view-title">최근 검색한 컨텐츠</div>
-          {localData.map((data) => (
-            <SearchBarResult key={data.id} {...data} Category={true} />
-          ))}
-        </div>
-      )}
     </>
   );
 }

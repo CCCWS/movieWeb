@@ -180,12 +180,14 @@ function SearchBar() {
     }
     setValue("");
     setMovie([]);
+    setTv([]);
   };
 
   const goRecentSearch = (event) => {
     nav(`/search/${event.target.innerText}`);
     setRecentSearch(false);
   };
+
   return (
     <form onSubmit={goResult}>
       {/* <button onClick={() => console.log(recentSearch)}>test</button> */}

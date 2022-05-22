@@ -43,10 +43,6 @@ function Detail() {
   const trailer = `${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
   const logo = `${API_URL}movie/${id}/images?api_key=${API_KEY}`;
 
-  useEffect(() => {
-    getApi();
-  }, [id]);
-
   const getApi = async () => {
     setLoading(true);
     const getInfo = await (await fetch(info)).json();
@@ -66,6 +62,10 @@ function Detail() {
 
     setLoading(false);
   };
+
+  useEffect(() => {
+    getApi();
+  }, [id]);
 
   useEffect(() => {
     AOS.init();
