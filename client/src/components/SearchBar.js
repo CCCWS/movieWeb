@@ -21,8 +21,8 @@ function SearchBar() {
   const [localStorageItem, setLocalStorgeItem] = useState([]); //LocalStorge에 최근 검색어 관리
 
   const getApi = async () => {
-    const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${value}`;
-    const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${value}`;
+    const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${value}&region=KR`;
+    const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${value}&region=KR`;
     setLoading(true);
 
     const getSearchMovie = await (await fetch(MovieUrl)).json();

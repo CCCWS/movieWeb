@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
-import { LoadingOutlined } from "@ant-design/icons";
-import Pagination from "../components/Pagination";
+import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
+
 import "./SeachResult.css";
 
 function SeachResult() {
+  const [readMore, setReadMore] = useInView();
   const { id } = useParams();
+
   const [movie, setMovie] = useState([]);
   const [movieTotal, setMovieTotal] = useState();
   const [moviePage, setMoviePage] = useState(1);
@@ -20,12 +23,10 @@ function SeachResult() {
   const [page, setPage] = useState(1);
   const [click, setClick] = useState(true);
 
-  const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&primary_release_year=`;
-  const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}&page=${page}`;
+  const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
+  const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
 
   const getApi = async () => {
-    setLoading(true);
-
     const getSearchMovie = await (await fetch(MovieUrl)).json();
     const getSearchTv = await (await fetch(TvUrl)).json();
 
@@ -50,31 +51,48 @@ function SeachResult() {
       );
     });
 
-    setMovie(sortMovie);
+    if (click === true) {
+      if (setReadMore === true) {
+        setMovie([...movie, ...sortMovie]);
+      } else {
+        setMovie(sortMovie);
+      }
+    }
+
+    if (click === false) {
+      if (setReadMore === true) {
+        setTv([...tv, ...sortTv]);
+      } else {
+        setTv(sortTv);
+      }
+    }
+
     setMovieTotal(getSearchMovie.total_results);
     setMoviePage(getSearchMovie.total_pages);
 
-    setTv(sortTv);
     setTvTotal(getSearchTv.total_results);
     setTvPage(getSearchTv.total_pages);
-
     setLoading(false);
   };
 
-  useEffect(() => {
-    setPage(1);
-    setClick(true);
-  }, [id]);
+  // useEffect(() => {
+  //   setPage(1);
+  //   setClick(true);
+  // }, [id]);
 
   useEffect(() => {
     getApi();
-  }, [id, page]);
+  }, []);
 
   useEffect(() => {
     setPage(1);
-  }, [click]);
+  }, [click, id]);
 
-  console.log(movie, page);
+  useEffect(() => {
+    if (setReadMore === true) {
+      setPage((prev) => prev + 1);
+    }
+  }, [setReadMore]);
 
   const clickMovie = () => {
     setClick(true);
@@ -119,11 +137,22 @@ function SeachResult() {
               {movieTotal === 0 ? (
                 <div style={notFound}>검색 결과가 없습니다.</div>
               ) : (
-                <div className="movieCard ">
+                <div className="movieCard movieCardSearch">
                   {movie.map((data, index) => (
                     <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
                   ))}
                 </div>
+              )}
+
+              {parseInt(moviePage) === 1 ? null : (
+                <>
+                  {parseInt(page) === parseInt(moviePage) ? null : (
+                    <div className="showScroll">
+                      <DoubleRightOutlined rotate={90} />
+                      <div ref={readMore}></div>
+                    </div>
+                  )}
+                </>
               )}
             </>
           ) : (
@@ -131,11 +160,22 @@ function SeachResult() {
               {tv.length === 0 ? (
                 <div style={notFound}>검색 결과가 없습니다.</div>
               ) : (
-                <div className="movieCard ">
+                <div className="movieCard movieCardSearch">
                   {tv.map((data, index) => (
                     <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
                   ))}
                 </div>
+              )}
+
+              {parseInt(tvPage) === 1 ? null : (
+                <>
+                  {parseInt(page) === parseInt(tvPage) ? null : (
+                    <div className="showScroll">
+                      <DoubleRightOutlined rotate={90} />
+                      <div ref={readMore}></div>
+                    </div>
+                  )}
+                </>
               )}
             </>
           )}
@@ -172,16 +212,10 @@ function SeachResult() {
           ) : (
             <div style={notFound}>검색 결과가 없습니다.</div>
           )} */}
-          <Pagination
-            setPage={setPage}
-            page={page}
-            totalPage={click ? moviePage : tvPage}
-            search={true}
-          />
         </>
       )}
     </div>
   );
 }
 
-export default React.memo(SeachResult);
+export default SeachResult;

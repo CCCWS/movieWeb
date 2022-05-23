@@ -17,18 +17,37 @@ function CategoryResultMovie() {
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [today, setToday] = useState();
+
+  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&primary_release_date.lte=${today}&language=ko&with_genres=${id}&page=${page}&region=KR`;
+  const test = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=primary_release_date.desc&primary_release_date.lte=2022-05-30&language=ko&with_genres=${id}&page=${page}&region=KR`;
 
   const getApi = async () => {
+    if (today === undefined) {
+      getToday();
+    }
     setLoading(true);
-    const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=1&with_genres=${id}&page=${page}`;
     const res = await (await fetch(url)).json();
     setMovie(res.results);
     setLoading(false);
   };
 
+  const getToday = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    if (month < 10) {
+      setToday(`${year}-0${date.getMonth() + 1}-${day}`);
+    } else {
+      setToday(`${year}-${date.getMonth() + 1}-${day}`);
+    }
+  };
+
   useEffect(() => {
     getApi();
-  }, [page]);
+  }, [page, today]);
 
   const goBack = () => {
     nav(-1);
@@ -51,12 +70,7 @@ function CategoryResultMovie() {
           // data-aos-once="true"
         >
           {movie.map((data, index) => (
-            <MovieCard
-              key={index}
-              {...data}
-              IMG_URL={IMG_URL}
-              category={true}
-            />
+            <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
           ))}
         </div>
       )}

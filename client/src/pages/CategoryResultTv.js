@@ -17,18 +17,37 @@ function CategoryResultTv() {
   const [tv, setTv] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [today, setToday] = useState();
+
+  const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&first_air_date.lte=${today}&language=ko&page=${page}&with_genres=${id}&region=KR`;
 
   const getApi = async () => {
+    if (today === undefined) {
+      getToday();
+      console.log(url);
+    }
     setLoading(true);
-    const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${page}&with_genres=${id}`;
     const res = await (await fetch(url)).json();
     setTv(res.results);
     setLoading(false);
   };
 
+  const getToday = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    if (month < 10) {
+      setToday(`${year}-0${date.getMonth() + 1}-${day}`);
+    } else {
+      setToday(`${year}-${date.getMonth() + 1}-${day}`);
+    }
+  };
+
   useEffect(() => {
     getApi();
-  }, [page]);
+  }, [page, today]);
 
   const goBack = () => {
     nav(-1);

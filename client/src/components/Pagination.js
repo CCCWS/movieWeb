@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   LeftOutlined,
   DoubleLeftOutlined,
@@ -8,31 +8,35 @@ import {
 
 import "./Pagination.css";
 
-function Pagination({ setPage, totalPage, page, search, id }) {
-  const test = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function Pagination({ setPage, page }) {
   const [number, setNumber] = useState([]);
-
-  const numberArrM = [1, 2, 3, 4, 5];
-  const [numberM, setNumberM] = useState(numberArrM);
+  const [numberM, setNumberM] = useState([]);
 
   const [currPage, setCurrPage] = useState(page);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
     setPage(currPage);
-    if (search === true) {
-      setNumber(number.filter((data) => totalPage >= data));
-    }
   }, [currPage]);
 
   useEffect(() => {
-    setNumber(test);
+    pushArr();
   }, []);
 
-  // useEffect(() => {
-  //   setCurrPage(1);
-  // }, [id]);
+  const pushArr = () => {
+    const arrP = [];
+    const arrM = [];
+    for (let i = 1; i <= 10; i++) {
+      arrP.push(i);
+    }
+
+    for (let i = 1; i <= 5; i++) {
+      arrM.push(i);
+    }
+
+    setNumber(arrP);
+    setNumberM(arrM);
+  };
 
   const changePage = (event) => {
     setCurrPage(event.target.innerText);
@@ -178,4 +182,4 @@ function Pagination({ setPage, totalPage, page, search, id }) {
   );
 }
 
-export default React.memo(Pagination);
+export default Pagination;
