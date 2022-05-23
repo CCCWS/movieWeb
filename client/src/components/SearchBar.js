@@ -141,7 +141,7 @@ function SearchBar() {
   const goResult = (event) => {
     event.preventDefault();
     if (value.length > 1) {
-      nav(`/search/${value}`);
+      nav(`/searchMovie/${value}`);
 
       //localStorage가 비어있을 경우
       if (getLocalStorage === null) {
@@ -184,8 +184,9 @@ function SearchBar() {
   };
 
   const goRecentSearch = (event) => {
-    nav(`/search/${event.target.innerText}`);
+    nav(`/searchMovie/${event.target.innerText}`);
     setRecentSearch(false);
+
   };
 
   return (
