@@ -40,11 +40,12 @@ function Pagination({ setPage, page }) {
 
   const changePage = (event) => {
     setCurrPage(event.target.innerText);
+    console.log(currPage);
   };
 
   /////////////////////pc//////////////////////////
   const nextNum = () => {
-    if (currPage !== 500) {
+    if (parseInt(currPage) !== 500) {
       if (currPage % 10 === 0) {
         const arr = number.map((data) => parseInt(data) + 10);
         setNumber(arr);
@@ -56,7 +57,7 @@ function Pagination({ setPage, page }) {
   };
 
   const prevNum = () => {
-    if (currPage !== 1) {
+    if (parseInt(currPage) !== 1) {
       if (currPage % 10 === 1) {
         const arr = number.map((data) => parseInt(data) - 10);
         setNumber(arr);

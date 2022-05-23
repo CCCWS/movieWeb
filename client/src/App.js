@@ -16,6 +16,7 @@ import Category from "./pages/Category";
 import CategoryResultMovie from "./pages/CategoryResultMovie";
 import CategoryResultTv from "./pages/CategoryResultTv";
 import PageTop from "./components/PageTop";
+import SeasonDetailInfo from "./pages/SeasonDetailInfo";
 
 import "./App.css";
 import Auth from "../src/hoc/auth";
@@ -48,6 +49,11 @@ function App() {
           element={Auth(SeachResultMovie, null)}
         />
         <Route path={`/searchTv/:id`} element={Auth(SeachResultTv, null)} />
+
+        <Route
+          path={`/Tvdetail/:value/:id`}
+          element={Auth(SeasonDetailInfo, null)}
+        />
       </Routes>
     </BrowserRouter>
   );

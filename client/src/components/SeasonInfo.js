@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  InfoCircleOutlined,
-  CaretDownFilled,
-  CaretUpFilled,
-} from "@ant-design/icons";
+import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import img from "../img/poster_none.PNG";
 import "./SeasonInfo.css";
+import { useNavigate } from "react-router-dom";
 
-function SeasonInfo({ season, IMG_URL }) {
+function SeasonInfo({ season, IMG_URL, id }) {
+  const nav = useNavigate();
   const [selectValue, setSelectValue] = useState(0);
   const [click, setClick] = useState(false);
 
@@ -39,11 +37,16 @@ function SeasonInfo({ season, IMG_URL }) {
     };
   }, [click]);
 
+  const goDetail = (event) => {
+    console.log(event.target.id);
+    nav(`/Tvdetail/${id}/${event.target.id}`);
+  };
+
   return (
     <>
       <div style={{ position: "relative" }}>
         <div className="seasonSelectBox" onClick={open} ref={selectRef1}>
-          {season[selectValue].name}{" "}
+          {season[selectValue].name}
           {click ? <CaretUpFilled /> : <CaretDownFilled />}
         </div>
         <ul
@@ -79,7 +82,9 @@ function SeasonInfo({ season, IMG_URL }) {
         </div>
 
         <div className="seasonInfo">
-          <div className="seasonName">{season[selectValue].name}</div>
+          <div className="seasonName" onClick={goDetail} id={selectValue}>
+            {season[selectValue].name}
+          </div>
 
           <div className="seasonDate">
             {`${

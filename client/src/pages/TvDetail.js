@@ -43,6 +43,7 @@ function TvDetail() {
   const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
   const trailer = `${API_URL}tv/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
   const logo = `${API_URL}tv/${id}/images?api_key=${API_KEY}`;
+  const test = `${API_URL}tv/${id}/season/${""}?api_key=${API_KEY}&language=ko`;
 
   useEffect(() => {
     getApi();
@@ -55,6 +56,9 @@ function TvDetail() {
     const getTrailer = await (await fetch(trailer)).json();
     const getLogo = await (await fetch(logo)).json();
     const getreview = await (await fetch(reviews)).json();
+
+    const testt = await (await fetch(test)).json();
+    console.log(testt);
 
     setReview(getreview.results);
     setStillCut(getLogo.backdrops);
@@ -82,7 +86,6 @@ function TvDetail() {
 
   //ActorList에서 이미지 클릭시 id와 true를 props로 전달
   //detail에서 받은 props를 Madal에 넘겨줌
-
 
   const get = JSON.parse(localStorage.getItem("recentView"));
 
@@ -168,7 +171,7 @@ function TvDetail() {
               genres={genres}
               logoImg={logoImg}
             />
-            <SeasonInfo season={movieInfo.seasons} IMG_URL={IMG_URL} />
+            <SeasonInfo season={movieInfo.seasons} IMG_URL={IMG_URL} id={id} />
             <hr />
             <div
               id="3"

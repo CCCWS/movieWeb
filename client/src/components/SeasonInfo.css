@@ -11,11 +11,11 @@
 }
 
 .seasonImg {
-  width: 200px;
-  height: 250px;
+  width: 140px;
+  height: 200px;
   display: flex;
   align-items: flex-start;
-  margin-right: 0px;
+  margin-right: 10px;
 }
 
 .not-seasonImg {
