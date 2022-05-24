@@ -43,7 +43,6 @@ function TvDetail() {
   const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
   const trailer = `${API_URL}tv/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
   const logo = `${API_URL}tv/${id}/images?api_key=${API_KEY}`;
-  const test = `${API_URL}tv/${id}/season/${""}?api_key=${API_KEY}&language=ko`;
 
   useEffect(() => {
     getApi();
@@ -56,9 +55,6 @@ function TvDetail() {
     const getTrailer = await (await fetch(trailer)).json();
     const getLogo = await (await fetch(logo)).json();
     const getreview = await (await fetch(reviews)).json();
-
-    const testt = await (await fetch(test)).json();
-    console.log(testt);
 
     setReview(getreview.results);
     setStillCut(getLogo.backdrops);
@@ -171,7 +167,11 @@ function TvDetail() {
               genres={genres}
               logoImg={logoImg}
             />
-            <SeasonInfo season={movieInfo.seasons} IMG_URL={IMG_URL} id={id} />
+            <SeasonInfo
+              season={movieInfo.seasons}
+              IMG_URL={IMG_URL}
+              name={movieInfo.name}
+            />
             <hr />
             <div
               id="3"

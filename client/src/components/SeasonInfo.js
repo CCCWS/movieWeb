@@ -4,7 +4,7 @@ import img from "../img/poster_none.PNG";
 import "./SeasonInfo.css";
 import { useNavigate } from "react-router-dom";
 
-function SeasonInfo({ season, IMG_URL, id }) {
+function SeasonInfo({ season, IMG_URL, name }) {
   const nav = useNavigate();
   const [selectValue, setSelectValue] = useState(0);
   const [click, setClick] = useState(false);
@@ -38,8 +38,7 @@ function SeasonInfo({ season, IMG_URL, id }) {
   }, [click]);
 
   const goDetail = (event) => {
-    console.log(event.target.id);
-    nav(`/Tvdetail/${id}/${event.target.id}`);
+    nav(`${event.target.id}`, { state: name });
   };
 
   return (
@@ -82,7 +81,11 @@ function SeasonInfo({ season, IMG_URL, id }) {
         </div>
 
         <div className="seasonInfo">
-          <div className="seasonName" onClick={goDetail} id={selectValue}>
+          <div
+            className="seasonName"
+            onClick={goDetail}
+            id={season[selectValue].season_number}
+          >
             {season[selectValue].name}
           </div>
 

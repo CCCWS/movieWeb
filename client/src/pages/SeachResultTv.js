@@ -77,7 +77,7 @@ function SeachResultTv() {
   const goTop = () => {
     window.scrollTo(0, 0);
   };
-  
+
   const notFound = {
     minWidth: "100%",
     minHeight: "100%",

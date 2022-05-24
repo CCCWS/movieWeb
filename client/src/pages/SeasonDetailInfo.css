@@ -1,0 +1,48 @@
+.SeasonDetailInfo {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.season-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.SeasonDetailInfo-info {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.SeasonDetailInfo-img {
+  width: 400px;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.SeasonDetailInfo-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.SeasonDetailInfo-content {
+  font-size: 16px;
+  width: 100%;
+}
+
+.SeasonDetailInfo-content-date {
+  color: rgb(139, 139, 139);
+}
+
+@media (max-width: 800px) {
+  .SeasonDetailInfo-info {
+    flex-direction: column;
+  }
+  .SeasonDetailInfo-img {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+}
