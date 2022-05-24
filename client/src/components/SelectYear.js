@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  InfoCircleOutlined,
-  CaretDownFilled,
-  CaretUpFilled,
-} from "@ant-design/icons";
+import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import "./SelectYear.css";
 
 function SelectYear({ year, setYear, setMovie, setPageCount, setLoading }) {

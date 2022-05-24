@@ -14,7 +14,6 @@ function SeachResultMovie() {
   const [readMore, setReadMore] = useInView();
 
   const { id } = useParams();
-  const [urlId, setUrlId] = useState();
 
   const [movie, setMovie] = useState([]);
   const [movieTotal, setMovieTotal] = useState();
@@ -25,14 +24,11 @@ function SeachResultMovie() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
+  const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
+  const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
+
   const getApi = async () => {
-    if (id !== urlId) {
-      setUrlId(id);
-      setPage(1);
-      setLoading(true);
-    }
-    const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
-    const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
+    setLoading(true);
 
     const getSearchMovie = await (await fetch(MovieUrl)).json();
     const getSearchTv = await (await fetch(TvUrl)).json();
@@ -47,12 +43,7 @@ function SeachResultMovie() {
       );
     });
 
-    if (setReadMore === true) {
-      setMovie([...movie, ...sortMovie]);
-    } else {
-      setMovie(sortMovie);
-    }
-
+    setMovie(sortMovie);
     setMovieTotal(getSearchMovie.total_results);
     setMoviePage(getSearchMovie.total_pages);
 
@@ -61,19 +52,34 @@ function SeachResultMovie() {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setPage(1);
-  // }, []);
+  const getRedaMoreApi = async () => {
+    const getSearchMovie = await (await fetch(MovieUrl)).json();
+    const filterMovie = getSearchMovie.results.filter(
+      (data) => data.release_date !== ""
+    );
+    const sortMovie = filterMovie.sort(function (a, b) {
+      return (
+        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+      );
+    });
+
+    setMovie([...movie, ...sortMovie]);
+  };
 
   useEffect(() => {
-    console.log(movie);
-    getApi();
+    if (page === 1) {
+      getApi();
+    }
   }, [id, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [id]);
 
   useEffect(() => {
     if (setReadMore === true) {
       setPage((prev) => prev + 1);
+      getRedaMoreApi();
     }
   }, [setReadMore]);
 
