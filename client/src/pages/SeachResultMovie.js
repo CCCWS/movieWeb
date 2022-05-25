@@ -10,36 +10,45 @@ import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import "./SeachResult.css";
 
 function SeachResultMovie() {
-  const nav = useNavigate();
   const [readMore, setReadMore] = useInView();
-
   const { id } = useParams();
 
   const [movie, setMovie] = useState([]);
   const [movieTotal, setMovieTotal] = useState();
   const [moviePage, setMoviePage] = useState(1);
 
+  const [tv, setTv] = useState([]);
   const [tvTotal, setTvTotal] = useState();
+  const [tvPage, setTvPage] = useState(1);
 
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+
+  const [click, setClick] = useState(true);
 
   const MovieUrl = `${API_URL}search/movie?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
   const TvUrl = `${API_URL}search/tv?api_key=${API_KEY}&language=ko&query=${id}&page=${page}&region=KR`;
 
   const getApi = async () => {
-    setLoading(true);
-
     const getSearchMovie = await (await fetch(MovieUrl)).json();
     const getSearchTv = await (await fetch(TvUrl)).json();
 
     const filterMovie = getSearchMovie.results.filter(
       (data) => data.release_date !== ""
     );
-
     const sortMovie = filterMovie.sort(function (a, b) {
       return (
         new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+      );
+    });
+
+    const filterTv = getSearchTv.results.filter(
+      (data) => data.first_air_date !== ""
+    );
+    const sortTv = filterTv.sort(function (a, b) {
+      return (
+        new Date(b.first_air_date).getTime() -
+        new Date(a.first_air_date).getTime()
       );
     });
 
@@ -47,45 +56,77 @@ function SeachResultMovie() {
     setMovieTotal(getSearchMovie.total_results);
     setMoviePage(getSearchMovie.total_pages);
 
+    setTv(sortTv);
     setTvTotal(getSearchTv.total_results);
+    setTvPage(getSearchTv.total_pages);
 
     setLoading(false);
   };
 
   const getRedaMoreApi = async () => {
-    const getSearchMovie = await (await fetch(MovieUrl)).json();
-    const filterMovie = getSearchMovie.results.filter(
-      (data) => data.release_date !== ""
-    );
-    const sortMovie = filterMovie.sort(function (a, b) {
-      return (
-        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
-      );
-    });
+    if (click === true) {
+      const getSearchMovie = await (await fetch(MovieUrl)).json();
 
-    setMovie([...movie, ...sortMovie]);
+      const filterMovie = getSearchMovie.results.filter(
+        (data) => data.release_date !== ""
+      );
+      const sortMovie = filterMovie.sort(function (a, b) {
+        return (
+          new Date(b.release_date).getTime() -
+          new Date(a.release_date).getTime()
+        );
+      });
+      setMovie([...movie, ...sortMovie]);
+    } else if (click === false) {
+      const getSearchTv = await (await fetch(TvUrl)).json();
+
+      const filterTv = getSearchTv.results.filter(
+        (data) => data.first_air_date !== ""
+      );
+      const sortTv = filterTv.sort(function (a, b) {
+        return (
+          new Date(b.first_air_date).getTime() -
+          new Date(a.first_air_date).getTime()
+        );
+      });
+      setTv([...tv, ...sortTv]);
+    }
   };
+
+  const init = () => {
+    setMovie([]);
+    setTv([]);
+    setLoading(true);
+    setClick(true);
+    setPage(1);
+  };
+
+  useEffect(() => {
+    init();
+  }, [id]);
 
   useEffect(() => {
     if (page === 1) {
       getApi();
+    } else if (setReadMore === true) {
+      getRedaMoreApi();
     }
-  }, [id, page]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [id]);
+  }, [page, id]);
 
   useEffect(() => {
     if (setReadMore === true) {
       setPage((prev) => prev + 1);
-      getRedaMoreApi();
     }
   }, [setReadMore]);
 
-  const clickTv = (event) => {
-    event.preventDefault();
-    nav(`/searchTv/${id}`);
+  const clickTv = () => {
+    setPage(1);
+    setClick(false);
+  };
+
+  const clickMovie = () => {
+    setPage(1);
+    setClick(true);
   };
 
   const goTop = () => {
@@ -93,9 +134,7 @@ function SeachResultMovie() {
   };
 
   const notFound = {
-    minWidth: "100%",
-    minHeight: "100%",
-    display: "flex",
+    marginLeft: "5%",
   };
 
   return (
@@ -108,29 +147,58 @@ function SeachResultMovie() {
       ) : (
         <>
           <div className="categort-select-btn">
-            <button className="modalSectionBtn">영화 {movieTotal}</button>
+            <button className="modalSectionBtn" onClick={clickMovie}>
+              영화 {movieTotal}
+            </button>
             <button className="modalSectionBtn close" onClick={clickTv}>
               TV {tvTotal}
             </button>
           </div>
 
-          {movieTotal === 0 ? (
-            <div style={notFound}>검색 결과가 없습니다.</div>
-          ) : (
-            <div className="movieCard movieCardSearch">
-              {movie.map((data, index) => (
-                <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-              ))}
-            </div>
-          )}
-
-          {parseInt(moviePage) <= 1 ? null : (
+          {click ? (
             <>
-              {parseInt(page) === parseInt(moviePage) ? null : (
-                <div className="showScroll">
-                  <DoubleRightOutlined rotate={90} />
-                  <div ref={readMore}></div>
+              {movieTotal === 0 ? (
+                <div style={notFound}>검색 결과가 없습니다.</div>
+              ) : (
+                <div className="movieCard movieCardSearch">
+                  {movie.map((data, index) => (
+                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                  ))}
                 </div>
+              )}
+
+              {parseInt(moviePage) <= 1 ? null : (
+                <>
+                  {parseInt(page) === parseInt(moviePage) ? null : (
+                    <div className="showScroll">
+                      <DoubleRightOutlined rotate={90} />
+                      <div ref={readMore}></div>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              {tv.length === 0 ? (
+                <div style={notFound}>검색 결과가 없습니다.</div>
+              ) : (
+                <div className="movieCard movieCardSearch">
+                  {tv.map((data, index) => (
+                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
+                  ))}
+                </div>
+              )}
+
+              {parseInt(tvPage) <= 1 ? null : (
+                <>
+                  {parseInt(page) === parseInt(tvPage) ? null : (
+                    <div className="showScroll">
+                      <DoubleRightOutlined rotate={90} />
+                      <div ref={readMore}></div>
+                    </div>
+                  )}
+                </>
               )}
             </>
           )}
