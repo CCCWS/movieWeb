@@ -38,6 +38,10 @@ function TvMain() {
     }
   }, [setReadMore]);
 
+  const goTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -83,6 +87,12 @@ function TvMain() {
             <DoubleRightOutlined rotate={90} />
             <div ref={readMore}></div>
           </div>
+
+          {parseInt(pageCount) >= 2 ? (
+            <div className="goTop" onClick={goTop}>
+              <DoubleRightOutlined rotate={-90} />
+            </div>
+          ) : null}
         </div>
       )}
     </>

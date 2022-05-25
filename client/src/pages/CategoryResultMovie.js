@@ -19,7 +19,7 @@ function CategoryResultMovie() {
   const [page, setPage] = useState(1);
   const [today, setToday] = useState();
 
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&primary_release_date.lte=${today}&language=ko&with_genres=${id}&page=${page}&region=KR`;
+  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&primary_release_date.lte=${today}&language=ko&with_genres=${id}&page=${page}`;
   const test = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=primary_release_date.desc&primary_release_date.lte=2022-05-30&language=ko&with_genres=${id}&page=${page}&region=KR`;
 
   const getApi = async () => {

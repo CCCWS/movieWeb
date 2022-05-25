@@ -9,7 +9,7 @@ import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 import "./SeachResult.css";
 
-function SeachResultMovie() {
+function SeachResult() {
   const [readMore, setReadMore] = useInView();
   const { id } = useParams();
 
@@ -147,10 +147,20 @@ function SeachResultMovie() {
       ) : (
         <>
           <div className="categort-select-btn">
-            <button className="modalSectionBtn" onClick={clickMovie}>
+            <button
+              className={[`modalSectionBtn ${click ? null : "close"}`].join(
+                " "
+              )}
+              onClick={clickMovie}
+            >
               영화 {movieTotal}
             </button>
-            <button className="modalSectionBtn close" onClick={clickTv}>
+            <button
+              className={[`modalSectionBtn ${click ? "close" : null}`].join(
+                " "
+              )}
+              onClick={clickTv}
+            >
               TV {tvTotal}
             </button>
           </div>
@@ -214,4 +224,4 @@ function SeachResultMovie() {
   );
 }
 
-export default SeachResultMovie;
+export default SeachResult;

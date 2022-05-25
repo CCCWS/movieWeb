@@ -9,8 +9,8 @@ import Detail from "./pages/Detail";
 import TvDetail from "./pages/TvDetail";
 import Header from "./components/Header/Header";
 import Modal from "./components/Modal";
-import SeachResultMovie from "./pages/SeachResultMovie";
-import SeachResultTv from "./pages/SeachResultTv";
+import SeachResult from "./pages/SeachResult";
+
 import TvMain from "./pages/TvMain";
 import Category from "./pages/Category";
 import CategoryResultMovie from "./pages/CategoryResultMovie";
@@ -44,11 +44,7 @@ function App() {
           path={`/category/tv/:value/:id`}
           element={Auth(CategoryResultTv, null)}
         />
-        <Route
-          path={`/searchMovie/:id`}
-          element={Auth(SeachResultMovie, null)}
-        />
-        <Route path={`/searchTv/:id`} element={Auth(SeachResultTv, null)} />
+        <Route path={`/search/:id`} element={Auth(SeachResult, null)} />
 
         <Route
           path={`/Tvdetail/:value/:id`}
