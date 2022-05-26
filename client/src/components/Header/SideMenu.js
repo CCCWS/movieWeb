@@ -4,6 +4,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import "./SideMenu.css";
 import { FiMonitor, FiSearch } from "react-icons/fi";
 import { MdLocalMovies } from "react-icons/md";
+import { AiOutlineStar } from "react-icons/ai";
 
 function SideMenu({
   menuClick,
@@ -64,6 +65,20 @@ function SideMenu({
         >
           {menuClick ? (
             <div className="side-menu-item">
+              {userAuth ? (
+                <>
+                  <div className="side-menu-btn" onClick={logOut}>
+                    로그아웃
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="side-menu-btn" onClick={logInPage}>
+                    로그인·가입
+                  </div>
+                </>
+              )}
+
               <div className="side-menu-btn" onClick={mainPage}>
                 <MdLocalMovies /> 영화
               </div>
@@ -75,19 +90,10 @@ function SideMenu({
                 <FiSearch />
                 찾기
               </div>
-              {userAuth ? (
-                <>
-                  <div className="side-menu-btn" onClick={logOut}>
-                    로그아웃
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="side-menu-btn" onClick={logInPage}>
-                    로그인
-                  </div>
-                </>
-              )}
+              <div className="side-menu-btn" onClick={categoryPage}>
+                <AiOutlineStar />
+                찜목록
+              </div>
             </div>
           ) : null}
         </div>
