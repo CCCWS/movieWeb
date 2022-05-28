@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import { FiMonitor, FiSearch } from "react-icons/fi";
 import { MdLocalMovies } from "react-icons/md";
+import { AiOutlineStar } from "react-icons/ai";
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
 
@@ -63,6 +64,11 @@ function Header() {
     setMenuClick(false);
     nav("/category");
   };
+
+  const favoritePage = () => {
+    setMenuClick(false);
+    nav("/favorite");
+  };
   return (
     <div className="header" id="1">
       <div className="header-left">
@@ -77,6 +83,10 @@ function Header() {
         <button className="headerBtn" onClick={categoryPage}>
           <FiSearch />
           찾기
+        </button>
+        <button className="headerBtn" onClick={favoritePage}>
+          <AiOutlineStar />
+          즐겨찾기
         </button>
       </div>
 
@@ -107,6 +117,7 @@ function Header() {
           setMenuClick={setMenuClick}
           userAuth={userAuth}
           categoryPage={categoryPage}
+          favoritePage={favoritePage}
         />
       </div>
     </div>

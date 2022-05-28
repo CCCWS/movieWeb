@@ -15,6 +15,7 @@ function SideMenu({
   TvMainPage,
   userAuth,
   categoryPage,
+  favoritePage,
 }) {
   const selectRef1 = useRef();
   const selectRef2 = useRef();
@@ -67,33 +68,33 @@ function SideMenu({
             <div className="side-menu-item">
               {userAuth ? (
                 <>
-                  <div className="side-menu-btn" onClick={logOut}>
+                  <button className="side-menu-btn" onClick={logOut}>
                     로그아웃
-                  </div>
+                  </button>
                 </>
               ) : (
                 <>
-                  <div className="side-menu-btn" onClick={logInPage}>
+                  <button className="side-menu-btn" onClick={logInPage}>
                     로그인·가입
-                  </div>
+                  </button>
                 </>
               )}
 
-              <div className="side-menu-btn" onClick={mainPage}>
+              <button className="side-menu-btn" onClick={mainPage}>
                 <MdLocalMovies /> 영화
-              </div>
-              <div className="side-menu-btn" onClick={TvMainPage}>
+              </button>
+              <button className="side-menu-btn" onClick={TvMainPage}>
                 <FiMonitor /> TV
-              </div>
+              </button>
 
-              <div className="side-menu-btn" onClick={categoryPage}>
+              <button className="side-menu-btn" onClick={categoryPage}>
                 <FiSearch />
                 찾기
-              </div>
-              <div className="side-menu-btn" onClick={categoryPage}>
+              </button>
+              <button className="side-menu-btn" onClick={favoritePage}>
                 <AiOutlineStar />
-                찜목록
-              </div>
+                즐겨찾기
+              </button>
             </div>
           ) : null}
         </div>

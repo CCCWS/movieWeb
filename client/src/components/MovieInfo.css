@@ -63,3 +63,17 @@
   transition: all ease 0.5s;
 }
 
+.favorite-btn {
+  font-size: 16px;
+  background-color: rgba(255, 0, 0, 0.322);
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid transparent;
+  transition: all ease 0.5s;
+}
+
+.favorite-btn:hover {
+  cursor: pointer;
+  border: 2px solid red;
+  transition: all ease 0.5s;
+}

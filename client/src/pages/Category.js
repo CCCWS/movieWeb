@@ -61,7 +61,6 @@ function Category() {
         </div>
       ) : (
         <>
-          {" "}
           {localData === undefined || localData === null ? null : (
             <>
               {localData.length === 0 ? null : (

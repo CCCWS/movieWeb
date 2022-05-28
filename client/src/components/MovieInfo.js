@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import MovieScore from "./MovieScore";
+import FavoriteBtn from "./FavoriteBtn";
 
 import { Image } from "antd";
 import img from "../img/poster_none.PNG";
@@ -24,6 +25,7 @@ function MovieInfo({
   first_air_date,
   origin_country,
   movie,
+  id,
 }) {
   const nav = useNavigate();
 
@@ -91,6 +93,16 @@ function MovieInfo({
             </div>
           ))}
         </div>
+
+        <FavoriteBtn
+          title={title}
+          name={name}
+          vote_average={vote_average}
+          poster_path={poster_path}
+          IMG_URL={IMG_URL}
+          id={id}
+          first_air_date={first_air_date}
+        />
       </div>
     </div>
   );

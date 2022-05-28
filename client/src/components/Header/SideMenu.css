@@ -26,8 +26,10 @@
 
   top: 50%;
   transform: translate(0%, -50%);
-  transition: all ease 0.3s;
-  background-color: rgb(0, 0, 0);
+  transition: all ease 0.4s;
+  background-color: rgba(0, 0, 0, 0.801);
+
+  border-radius: 30px 0px 0px 30px;
 }
 
 .side-menu-open {
@@ -48,10 +50,10 @@
   height: 100vh;
 
   width: 250px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.801);
 
-  transition: all ease 0.3s;
-  /* border-radius: 30px 0px 0px 30px; */
+  transition: all ease 0.4s;
+  border-radius: 30px 0px 0px 30px;
 
   overflow: hidden;
 }
@@ -70,16 +72,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 200px;
   height: 50px;
   border-radius: 5px;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.322);
   margin-bottom: 20px;
   font-size: 16px;
+  border: 2px solid transparent;
 }
 
 .side-menu-btn:hover {
   cursor: pointer;
   transition: all ease 0.5s;
-  filter: brightness(60%);
+
+  border: 2px solid red;
 }

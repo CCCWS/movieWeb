@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
@@ -10,6 +10,7 @@ import TvDetail from "./pages/TvDetail";
 import Header from "./components/Header/Header";
 import Modal from "./components/Modal";
 import SeachResult from "./pages/SeachResult";
+import Favorite from "./pages/Favorite";
 
 import TvMain from "./pages/TvMain";
 import Category from "./pages/Category";
@@ -36,6 +37,7 @@ function App() {
         <Route path={`/TvDetail/:id`} element={Auth(TvDetail, null)} />
         <Route path={`/modal`} element={Auth(Modal, null)} />
         <Route path={`/category`} element={Auth(Category, null)} />
+        <Route path={`/Favorite`} element={Auth(Favorite, null)} />
         <Route
           path={`/category/movie/:value/:id`}
           element={Auth(CategoryResultMovie, null)}

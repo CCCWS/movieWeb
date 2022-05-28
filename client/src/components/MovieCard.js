@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieScore from "./MovieScore";
 import { SearchOutlined } from "@ant-design/icons";
+
 import img from "../img/poster_none.PNG";
 import "./MovieCard.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { StarOutlined, StarFilled } from "@ant-design/icons";
 
 function MovieCard({
   id,
@@ -21,6 +23,7 @@ function MovieCard({
   release_date,
 }) {
   const nav = useNavigate();
+  const [click, setClick] = useState(false);
   const goDitail = () => {
     //movie와 tv는 first_air_date의 유무로 판단
     if (first_air_date !== undefined) {
@@ -38,21 +41,38 @@ function MovieCard({
   //   AOS.init();
   // }, []);
 
+  useEffect(() => {
+    const get = JSON.parse(localStorage.getItem("favorite"));
+    if (get !== null && get.length >= 1) {
+      const filter =
+        title === undefined
+          ? get.filter((data) => data.name === name)
+          : get.filter((data) => data.title === title);
+      if (filter.length === 1) {
+        setClick(true);
+      }
+    }
+  }, []);
+
   return (
     <>
       <div
         className="movieCardItem"
-        onClick={goDitail}
         // data-aos="null"
         // data-aos-anchor-placement="null"
       >
-        <div className="movieCarePoster">
+        <div className="movieCarePoster" onClick={goDitail}>
           <div className="hoverPoster">
             <SearchOutlined />
             <div>
               {title}
               {name}
             </div>
+            {click && (
+              <div>
+                <StarFilled />
+              </div>
+            )}
           </div>
 
           <div className="movieCardScore">
