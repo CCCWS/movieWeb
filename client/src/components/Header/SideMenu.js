@@ -5,6 +5,7 @@ import "./SideMenu.css";
 import { FiMonitor, FiSearch } from "react-icons/fi";
 import { MdLocalMovies } from "react-icons/md";
 import { AiOutlineStar } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
 
 function SideMenu({
   menuClick,
@@ -16,6 +17,7 @@ function SideMenu({
   userAuth,
   categoryPage,
   favoritePage,
+  advancedSearchPage,
 }) {
   const selectRef1 = useRef();
   const selectRef2 = useRef();
@@ -83,14 +85,21 @@ function SideMenu({
               <button className="side-menu-btn" onClick={mainPage}>
                 <MdLocalMovies /> 영화
               </button>
+
               <button className="side-menu-btn" onClick={TvMainPage}>
                 <FiMonitor /> TV
               </button>
 
               <button className="side-menu-btn" onClick={categoryPage}>
-                <FiSearch />
-                찾기
+                <BiCategory />
+                카테고리
               </button>
+
+              <button className="side-menu-btn" onClick={advancedSearchPage}>
+                <FiSearch />
+                상세검색
+              </button>
+
               <button className="side-menu-btn" onClick={favoritePage}>
                 <AiOutlineStar />
                 즐겨찾기

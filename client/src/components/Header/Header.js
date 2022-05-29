@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { FiMonitor, FiSearch } from "react-icons/fi";
 import { MdLocalMovies } from "react-icons/md";
 import { AiOutlineStar } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
+
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
 
@@ -69,21 +71,36 @@ function Header() {
     setMenuClick(false);
     nav("/favorite");
   };
+
+  const advancedSearchPage = () => {
+    setMenuClick(false);
+    nav("/advancedSearch");
+  };
+
   return (
     <div className="header" id="1">
       <div className="header-left">
         <span className="logoImg">로고</span>
+
         <button className="headerBtn" onClick={mainPage}>
           <MdLocalMovies />
           영화
         </button>
+
         <button className="headerBtn" onClick={TvMainPage}>
           <FiMonitor /> TV
         </button>
+
         <button className="headerBtn" onClick={categoryPage}>
-          <FiSearch />
-          찾기
+          <BiCategory />
+          카테고리
         </button>
+
+        <button className="headerBtn" onClick={advancedSearchPage}>
+          <FiSearch />
+          상세검색
+        </button>
+
         <button className="headerBtn" onClick={favoritePage}>
           <AiOutlineStar />
           즐겨찾기
@@ -118,6 +135,7 @@ function Header() {
           userAuth={userAuth}
           categoryPage={categoryPage}
           favoritePage={favoritePage}
+          advancedSearchPage={advancedSearchPage}
         />
       </div>
     </div>

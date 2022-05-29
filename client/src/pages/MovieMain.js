@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
-
 import { API_URL, API_KEY, IMG_URL } from "../config";
+
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
 import SelectYear from "../components/SelectYear";
@@ -67,7 +67,7 @@ function MovieMain() {
             <SelectYear
               year={year}
               setYear={setYear}
-              setMovie={setMovie}
+              setData={setMovie}
               setPageCount={setPageCount}
               setLoading={setLoading}
             />

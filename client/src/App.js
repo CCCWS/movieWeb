@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
+
+import Header from "./components/Header/Header";
+
 import MovieMain from "./pages/MovieMain";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import TvMain from "./pages/TvMain";
+
 import Detail from "./pages/Detail";
 import TvDetail from "./pages/TvDetail";
-import Header from "./components/Header/Header";
-import Modal from "./components/Modal";
+import SeasonDetailInfo from "./pages/SeasonDetailInfo";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 import SeachResult from "./pages/SeachResult";
 import Favorite from "./pages/Favorite";
 
-import TvMain from "./pages/TvMain";
 import Category from "./pages/Category";
 import CategoryResultMovie from "./pages/CategoryResultMovie";
 import CategoryResultTv from "./pages/CategoryResultTv";
+
+import AdvancedSearch from "./pages/AdvancedSearch";
+
 import PageTop from "./components/PageTop";
-import SeasonDetailInfo from "./pages/SeasonDetailInfo";
 
 import "./App.css";
 import Auth from "../src/hoc/auth";
@@ -35,7 +42,6 @@ function App() {
         <Route path={`/Register`} element={Auth(Register, false)} />
         <Route path={`/Detail/:id`} element={Auth(Detail, null)} />
         <Route path={`/TvDetail/:id`} element={Auth(TvDetail, null)} />
-        <Route path={`/modal`} element={Auth(Modal, null)} />
         <Route path={`/category`} element={Auth(Category, null)} />
         <Route path={`/Favorite`} element={Auth(Favorite, null)} />
         <Route
@@ -52,6 +58,8 @@ function App() {
           path={`/Tvdetail/:value/:id`}
           element={Auth(SeasonDetailInfo, null)}
         />
+
+        <Route path={`/advancedSearch`} element={Auth(AdvancedSearch, null)} />
       </Routes>
     </BrowserRouter>
   );

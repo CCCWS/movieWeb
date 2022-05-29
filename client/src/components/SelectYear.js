@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import "./SelectYear.css";
 
-function SelectYear({ year, setYear, setMovie, setPageCount, setLoading }) {
+function SelectYear({ year, setYear, setData, setPageCount, setLoading }) {
   const [click, setClick] = useState(false);
 
   const yearList = [];
@@ -11,7 +11,7 @@ function SelectYear({ year, setYear, setMovie, setPageCount, setLoading }) {
   const selectYear = (event) => {
     if (year !== event.target.innerText) {
       setYear(event.target.innerText);
-      setMovie([]);
+      setData([]);
       setPageCount(1);
       setLoading(true);
       setClick(false);
