@@ -54,7 +54,7 @@ function CategoryResultTv() {
   };
 
   return (
-    <>
+    <div className="category-result">
       <div className="goBack" onClick={goBack}>
         <IoMdArrowRoundBack /> {value}
       </div>
@@ -63,19 +63,12 @@ function CategoryResultTv() {
           <LoadingOutlined />
         </div>
       ) : (
-        <div
-          className="movieCard category-result"
-          // data-aos="fade-up"
-          // data-aos-duration="1000"
-          // data-aos-once="true"
-        >
-          {tv.map((data, index) => (
-            <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-          ))}
-        </div>
+        <>
+          <MovieCard data={tv} />
+        </>
       )}
       <Pagination setPage={setPage} page={page} />
-    </>
+    </div>
   );
 }
 

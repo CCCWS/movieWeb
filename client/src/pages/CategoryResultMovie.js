@@ -54,28 +54,22 @@ function CategoryResultMovie() {
   };
 
   return (
-    <>
+    <div className="category-result">
       <div className="goBack" onClick={goBack}>
         <IoMdArrowRoundBack /> {value}
       </div>
+
       {loading ? (
         <div className="loading">
           <LoadingOutlined />
         </div>
       ) : (
-        <div
-          className="movieCard category-result"
-          // data-aos="fade-up"
-          // data-aos-duration="1000"
-          // data-aos-once="true"
-        >
-          {movie.map((data, index) => (
-            <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-          ))}
-        </div>
+        <>
+          <MovieCard data={movie} />
+        </>
       )}
       <Pagination setPage={setPage} page={page} />
-    </>
+    </div>
   );
 }
 

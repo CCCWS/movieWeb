@@ -7,7 +7,7 @@
   width: 35px;
   border: none;
   margin-left: 5px;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .valueIn {
@@ -22,7 +22,7 @@
 
 .searchInput:focus {
   width: 100px;
-  transition: all ease 0.5s;
+  transition: all ease 0.3s;
   border-bottom: 1px solid red;
   outline: none;
 }
@@ -32,13 +32,12 @@
   justify-content: center;
   text-align: center;
   width: 200px;
-  backdrop-filter: blur(50px);
 }
 
 .search {
   position: absolute;
   flex-direction: column;
-  backdrop-filter: blur(50px);
+  background-color: rgb(63, 63, 63);
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;

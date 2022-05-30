@@ -129,38 +129,24 @@ function Modal({
                 TV {actorTv.length}
               </button>
             </div>
-            <div
-              className="movieCard movieCardModal"
-              // data-aos="fade-up"
-              // data-aos-duration="1000"
-              // data-aos-once="false"
-            >
-              {click ? (
-                <>
-                  {actorMovie.map((data, index) => (
-                    <MovieCard
-                      key={index}
-                      {...data}
-                      IMG_URL={IMG_URL}
-                      onModal={true}
-                      setModalOpen={setModalOpen}
-                    />
-                  ))}
-                </>
-              ) : (
-                <>
-                  {actorTv.map((data, index) => (
-                    <MovieCard
-                      key={index}
-                      {...data}
-                      IMG_URL={IMG_URL}
-                      onModal={true}
-                      setModalOpen={setModalOpen}
-                    />
-                  ))}
-                </>
-              )}
-            </div>
+
+            {click ? (
+              <>
+                <MovieCard
+                  data={actorMovie}
+                  onModal={true}
+                  setModalOpen={setModalOpen}
+                />
+              </>
+            ) : (
+              <>
+                <MovieCard
+                  data={actorTv}
+                  onModal={true}
+                  setModalOpen={setModalOpen}
+                />
+              </>
+            )}
           </>
         )}
       </div>

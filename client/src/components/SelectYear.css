@@ -1,8 +1,7 @@
 .popular-main {
   display: flex;
   flex-direction: row;
-  padding-left: 5%;
-  padding-right: 5%;
+  justify-content: center;
 }
 
 .popular-year {
@@ -17,6 +16,7 @@
   height: 600px;
   border-radius: 5px;
   margin-top: 20px;
+  margin-left: 5%;
   overflow: auto;
 }
 
@@ -112,8 +112,6 @@
   .popular-main {
     flex-direction: column;
     align-items: center;
-    padding-left: 0%;
-    padding-right: 0%;
   }
   .popular-year {
     display: none;

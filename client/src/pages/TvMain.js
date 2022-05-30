@@ -71,16 +71,8 @@ function TvMain() {
               setPageCount={setPageCount}
               setLoading={setLoading}
             />
-            <div
-              className="movieCard"
-              // data-aos="fade-up"
-              // data-aos-duration="1000"
-              // data-aos-once="true"
-            >
-              {tv.map((data, index) => (
-                <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-              ))}
-            </div>
+
+            <MovieCard data={tv}  />
           </div>
 
           <div className="showScroll">

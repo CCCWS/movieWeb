@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   background-color: transparent;
   padding-left: 10px;
   padding-right: 10px;
@@ -22,7 +22,7 @@
 
 .logoImg {
   padding-right: 10px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .headerBtn {

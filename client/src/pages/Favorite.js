@@ -8,16 +8,19 @@ function Favorite() {
     setLocalData(JSON.parse(localStorage.getItem("favorite")));
   }, []);
 
+  const style = {
+    display: "flex",
+    justifyContent: "center",
+  };
+
   return (
-    <>
+    <div style={style}>
       {localData && (
-        <div className="movieCard">
-          {localData.map((data, index) => (
-            <MovieCard key={index} {...data} />
-          ))}
-        </div>
+        <>
+          <MovieCard data={localData} />
+        </>
       )}
-    </>
+    </div>
   );
 }
 
