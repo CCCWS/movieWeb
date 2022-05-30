@@ -3,15 +3,13 @@ import "./MovieHeader.css";
 import { Link } from "react-scroll";
 
 function MovieHeader() {
-  const test = () => {
+  const top = () => {
     window.scrollTo(0, 0);
   };
 
   return (
     <div className="movieHeader">
-      <Link to="1" spy={true} smooth={true}>
-        <button>맨위로</button>
-      </Link>
+      <button onClick={top}>맨위로</button>
 
       <Link to="2" spy={true} smooth={true}>
         <button>정보</button>
