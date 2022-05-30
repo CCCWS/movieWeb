@@ -1,7 +1,7 @@
 /*movieCard*/
 .movieCard {
   display: grid;
-  grid-template-columns: repeat(6, 16.6%);
+  grid-template-columns: repeat(5, 20%);
   justify-content: center;
   justify-items: center;
   padding-left: 10px;
@@ -87,19 +87,13 @@
 
 @media (max-width: 1300px) {
   .movieCard {
-    grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(4, 25%);
   }
 }
 
 @media (max-width: 800px) {
   .movieCard {
-    grid-template-columns: repeat(4, 25%);
-  }
-}
-
-@media (max-width: 500px) {
-  .movieCard {
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(3, 30%);
   }
 }
 

@@ -1,3 +1,23 @@
+.AdvancedSearch {
+  display: flex;
+  flex-direction: row;
+}
+.AdvancedSearch-option {
+  position: fixed;
+  width: 30%;
+  background-color: wheat;
+}
+
+.AdvancedSearch-result {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(255, 255, 255);
+  width: 70%;
+  height: 90vh;
+  overflow: scroll;
+}
+
 .year-click {
   background-color: red;
 }
