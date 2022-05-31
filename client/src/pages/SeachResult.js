@@ -170,11 +170,9 @@ function SeachResult() {
               {movieTotal === 0 ? (
                 <div style={notFound}>검색 결과가 없습니다.</div>
               ) : (
-                <div className="movieCard movieCardSearch">
-                  {movie.map((data, index) => (
-                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-                  ))}
-                </div>
+                <>
+                  <MovieCard data={movie} />
+                </>
               )}
 
               {parseInt(moviePage) <= 1 ? null : (
@@ -193,11 +191,9 @@ function SeachResult() {
               {tv.length === 0 ? (
                 <div style={notFound}>검색 결과가 없습니다.</div>
               ) : (
-                <div className="movieCard movieCardSearch">
-                  {tv.map((data, index) => (
-                    <MovieCard key={index} {...data} IMG_URL={IMG_URL} />
-                  ))}
-                </div>
+                <>
+                  <MovieCard data={tv} />
+                </>
               )}
 
               {parseInt(tvPage) <= 1 ? null : (

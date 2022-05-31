@@ -13,7 +13,7 @@ function AdvancedSearch() {
 
   const [genres, setGenres] = useState();
   const [year, setYear] = useState();
-  const [type, setType] = useState();
+  const [type, setType] = useState("movie");
   const [release, setRelease] = useState();
 
   const getApi = async () => {
@@ -24,7 +24,6 @@ function AdvancedSearch() {
         : `first_air_date_year=${year}&first_air_date.${release}=${today}`;
 
     const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=${page}`;
-    console.log(url);
     const test = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&region=KR&sort_by=popularity.desc&primary_release_date.lte=2021-05-30`;
     const res = await (await fetch(url)).json();
     setApiData(res.results);
@@ -32,20 +31,21 @@ function AdvancedSearch() {
   };
 
   useEffect(() => {
+    getApi();
     getToday();
   }, []);
 
   const getToday = () => {
     const date = new Date();
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = `${
+      date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    }`;
+    const day = `${
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getMonth()
+    }`;
 
-    if (month < 10) {
-      setToday(`${year}-0${date.getMonth() + 1}-${day}`);
-    } else {
-      setToday(`${year}-${date.getMonth() + 1}-${day}`);
-    }
+    setToday(`${year}-${month}-${day}`);
   };
 
   const onType = (event) => {
@@ -161,7 +161,9 @@ function AdvancedSearch() {
       </div>
 
       {loading ? (
-        <div className="movieCard">test</div>
+        <div className="loading">
+          <LoadingOutlined />
+        </div>
       ) : (
         <>
           <MovieCard data={apiData} AdvancedSearch={true} />

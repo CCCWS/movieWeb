@@ -1,17 +1,21 @@
 .AdvancedSearch {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   width: 100%;
 }
 
 .AdvancedSearch-left {
-  padding: 10px;
-  display: flex;
-  justify-content: flex-start;
   width: 300px;
+  margin-right: 20px;
+}
+
+.AdvancedSearch-option {
+  position: fixed;
+  padding: 15px;
+  width: 250px;
+  left: 1%;
+  background-color: wheat;
   overflow: auto;
-  background-color: rgba(192, 192, 192, 0.459);
 }
 
 .AdvancedSearch-section {
@@ -20,15 +24,6 @@
 
 .year-click {
   background-color: rgb(0, 0, 0);
-}
-
-.AdvancedSearch-movieCard {
-  height: 91vh;
-  overflow: auto;
-}
-
-.AdvancedSearch-option {
-  width: 250px;
 }
 
 .AdvancedSearch-option:hover::-webkit-scrollbar {
@@ -42,6 +37,7 @@
 @media (max-width: 800px) {
   .AdvancedSearch {
     flex-direction: column;
+    align-items: center;
   }
   .AdvancedSearch-movieCard {
     height: 100%;

@@ -35,14 +35,14 @@ function CategoryResultTv() {
   const getToday = () => {
     const date = new Date();
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = `${
+      date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    }`;
+    const day = `${
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getMonth()
+    }`;
 
-    if (month < 10) {
-      setToday(`${year}-0${date.getMonth() + 1}-${day}`);
-    } else {
-      setToday(`${year}-${date.getMonth() + 1}-${day}`);
-    }
+    setToday(`${year}-${month}-${day}`);
   };
 
   useEffect(() => {
