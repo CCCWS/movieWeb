@@ -4,10 +4,9 @@
   grid-template-columns: repeat(5, 20%);
   justify-content: center;
   justify-items: center;
-  width: 90%;
+  width: 95%;
   /* height: 100%; */
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 /* 포스터랑 제목 묶음 */

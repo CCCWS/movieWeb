@@ -5,17 +5,18 @@
 }
 
 .AdvancedSearch-left {
-  width: 300px;
-  margin-right: 20px;
+  width: 400px;
 }
 
 .AdvancedSearch-option {
   position: fixed;
   padding: 15px;
   width: 250px;
+  height: 90vh;
   left: 1%;
-  background-color: wheat;
-  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.322);
+  overflow: overlay;
+  border-radius: 5px;
 }
 
 .AdvancedSearch-section {
@@ -46,4 +47,9 @@
   .AdvancedSearch-left {
     display: none;
   }
+}
+
+.test {
+  width: 100%;
+  height: 100%;
 }

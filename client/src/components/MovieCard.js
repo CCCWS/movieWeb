@@ -10,7 +10,11 @@ import "./MovieCard.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { StarOutlined, StarFilled } from "@ant-design/icons";
+import {
+  StarOutlined,
+  StarFilled,
+  DoubleRightOutlined,
+} from "@ant-design/icons";
 
 function MovieCard({
   data,
@@ -60,50 +64,52 @@ function MovieCard({
   }, []);
 
   return (
-    <div className={[`movieCard ${onModal && "movieCardModal"} `].join(" ")}>
-      {data.map((data, index) => (
-        <div className="movieCardItem" key={index} id={data.first_air_date}>
-          <div className="movieCarePoster">
-            <div
-              className="hoverPoster"
-              onClick={goDitail}
-              // id={data.first_air_date}
-            >
-              <div id={data.first_air_date} accessKey={data.id}>
-                {data.title}
-                {data.name}
-              </div>
+    <>
+      <div className={[`movieCard ${onModal && "movieCardModal"} `].join(" ")}>
+        {data.map((data, index) => (
+          <div className="movieCardItem" key={index} id={data.first_air_date}>
+            <div className="movieCarePoster">
+              <div
+                className="hoverPoster"
+                onClick={goDitail}
+                // id={data.first_air_date}
+              >
+                <div id={data.first_air_date} accessKey={data.id}>
+                  {data.title}
+                  {data.name}
+                </div>
 
-              {/* {click && (
+                {/* {click && (
                 <div>
                   <StarFilled />
                 </div>
               )} */}
-            </div>
+              </div>
 
-            <div className="movieCardScore">
-              <MovieScore vote_average={data.vote_average} MovieCard={true} />
-            </div>
+              <div className="movieCardScore">
+                <MovieScore vote_average={data.vote_average} MovieCard={true} />
+              </div>
 
-            {data.poster_path === null ? (
-              <div
-                className="posterImg posterImg-not"
-                style={{
-                  backgroundImage: `url(${img})`,
-                }}
-              ></div>
-            ) : (
-              <div
-                className="posterImg"
-                style={{
-                  backgroundImage: `url('${IMG_URL}w300${data.poster_path}')`,
-                }}
-              />
-            )}
+              {data.poster_path === null ? (
+                <div
+                  className="posterImg posterImg-not"
+                  style={{
+                    backgroundImage: `url(${img})`,
+                  }}
+                ></div>
+              ) : (
+                <div
+                  className="posterImg"
+                  style={{
+                    backgroundImage: `url('${IMG_URL}w300${data.poster_path}')`,
+                  }}
+                />
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
