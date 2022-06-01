@@ -5,11 +5,12 @@
 }
 
 .popular-year {
+  position: sticky;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
+  top: 47px;
   /* backdrop-filter: blur(20px); */
   background-color: rgba(117, 117, 117, 0.438);
   width: 200px;

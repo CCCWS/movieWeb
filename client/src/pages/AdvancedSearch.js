@@ -11,6 +11,7 @@ function AdvancedSearch() {
   const [loading, setLoading] = useState(true);
   const [apiData, setApiData] = useState([]);
   const [today, setToday] = useState();
+  const [totalRearch, setTotalRearch] = useState();
 
   const [page, setPage] = useState(1);
 
@@ -32,6 +33,7 @@ function AdvancedSearch() {
   const getApi = async () => {
     setLoading(true);
     const res = await (await fetch(url)).json();
+    setTotalRearch(res.total_results);
     setApiData(res.results);
     setLoading(false);
   };
@@ -76,7 +78,7 @@ function AdvancedSearch() {
   };
 
   const onYear = (event) => {
-    if (event.target.innerText === year) {
+    if (event.target.innerText === year || event.target.innerText === "ALL") {
       setYear(undefined);
     } else {
       setYear(event.target.innerText);
@@ -94,8 +96,8 @@ function AdvancedSearch() {
   };
 
   return (
-    <div className="AdvancedSearch">
-      <div className="AdvancedSearch-left">
+    <>
+      <div className="AdvancedSearch">
         <div className="AdvancedSearch-option">
           <section className="AdvancedSearch-section">
             <h3>분류</h3>
@@ -142,6 +144,14 @@ function AdvancedSearch() {
           <section className="AdvancedSearch-section">
             <h3>연도</h3>
             <hr />
+
+            <div
+              onClick={onYear}
+              className={year === undefined ? "year-click" : null}
+            >
+              ALL
+            </div>
+
             {yearList.map((data, index) => (
               <div
                 key={index}
@@ -157,22 +167,23 @@ function AdvancedSearch() {
 
           <button onClick={search}>찾기</button>
         </div>
+
+        {loading ? (
+          <div className="loading-search">
+            <LoadingOutlined />
+          </div>
+        ) : (
+          <MovieCard data={apiData} AdvancedSearch={true} />
+        )}
       </div>
 
-      {loading ? (
-        <div className="loading">
-          <LoadingOutlined />
-        </div>
-      ) : (
-        <div className="test">
-          <MovieCard data={apiData} AdvancedSearch={true} />
-          <div className="showScroll">
-            <DoubleRightOutlined rotate={90} />
-            <div ref={readMore}></div>
-          </div>
+      {loading ? null : (
+        <div className="showScroll">
+          <DoubleRightOutlined rotate={90} />
+          <div ref={readMore}></div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

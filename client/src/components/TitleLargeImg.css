@@ -20,15 +20,18 @@
 
 /* detail 페이지 설정 */
 .fromDetail {
-  position: absolute;
+  position: fixed;
   height: 100%;
+  top: 0;
+  z-index: -100;
+  filter: brightness(30%);
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .fromDetail {
     height: 600px;
   }
-}
+} */
 
 /* main 페이지 설정 */
 .fromMain {

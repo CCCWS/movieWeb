@@ -1,25 +1,25 @@
 /*movieCard*/
 .movieCard {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(5, 20%);
   justify-content: center;
   justify-items: center;
-  width: 95%;
+  width: 90%;
   /* height: 100%; */
-  margin: 20px;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 900px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* 포스터랑 제목 묶음 */
 .movieCardItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  border: none;
-  width: 95%;
-  height: 95%;
-  margin-bottom: 5%;
-  position: relative;
+  width: 30%;
+  margin: 5px;
 }
 
 .movieCarePoster {
@@ -38,6 +38,7 @@
 }
 
 .hoverPoster div {
+  padding: 10px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -84,12 +85,19 @@
   left: -5px;
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 900px) {
   .movieCard {
-    grid-template-columns: repeat(6, 16%);
+    width: 100%;
   }
 }
 
+@media (min-width: 800px) {
+  .movieCardItem {
+    width: 20%;
+  }
+}
+
+/*
 @media (max-width: 1000px) {
   .movieCard {
     grid-template-columns: repeat(4, 25%);
@@ -106,4 +114,4 @@
   .movieCard {
     grid-template-columns: repeat(2, 25%);
   }
-}
+} */

@@ -72,7 +72,7 @@ function TvMain() {
               setLoading={setLoading}
             />
 
-            <MovieCard data={tv}  />
+            <MovieCard data={tv} />
           </div>
 
           <div className="showScroll">

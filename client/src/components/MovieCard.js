@@ -65,7 +65,11 @@ function MovieCard({
 
   return (
     <>
-      <div className={[`movieCard ${onModal && "movieCardModal"} `].join(" ")}>
+      <div
+        className={[`movieCard ${onModal ? "movieCardModal" : null} `].join(
+          " "
+        )}
+      >
         {data.map((data, index) => (
           <div className="movieCardItem" key={index} id={data.first_air_date}>
             <div className="movieCarePoster">
