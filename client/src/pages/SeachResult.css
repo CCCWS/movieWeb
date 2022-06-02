@@ -1,9 +1,15 @@
+.SeachResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .searchValue {
   width: 100%;
   margin-top: 20px;
   font-size: 30px;
   word-wrap: break-word;
-  padding-left: 5%;
+  padding-left: 10%;
 }
 
 .searchMovie {

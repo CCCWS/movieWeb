@@ -138,7 +138,7 @@ function SeachResult() {
   };
 
   return (
-    <div>
+    <div className="SeachResult">
       <div className="searchValue">{`"${id}" 검색 결과`}</div>
       {loading ? (
         <div className="loading">

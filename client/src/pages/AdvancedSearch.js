@@ -27,11 +27,11 @@ function AdvancedSearch() {
       ? `primary_release_year=${year}&primary_release_date.${release}=${today}`
       : `first_air_date_year=${year}&first_air_date.${release}=${today}`;
 
-  const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=${page}`;
   const test = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&region=KR&sort_by=popularity.desc&primary_release_date.lte=2021-05-30`;
 
   const getApi = async () => {
     setLoading(true);
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=1`;
     const res = await (await fetch(url)).json();
     setTotalRearch(res.total_results);
     setApiData(res.results);
@@ -39,6 +39,7 @@ function AdvancedSearch() {
   };
 
   const readMoreGetApi = async () => {
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=${page}`;
     const res = await (await fetch(url)).json();
     setApiData([...apiData, ...res.results]);
     setLoading(false);
@@ -50,15 +51,15 @@ function AdvancedSearch() {
 
   useEffect(() => {
     if (setReadMore === true) {
-      readMoreGetApi();
-    }
-  }, [page]);
-
-  useEffect(() => {
-    if (setReadMore === true) {
       setPage(page + 1);
     }
   }, [setReadMore]);
+
+  useEffect(() => {
+    if (setReadMore === true) {
+      readMoreGetApi();
+    }
+  }, [page]);
 
   const getToday = () => {
     const date = new Date();
@@ -91,6 +92,7 @@ function AdvancedSearch() {
 
   const search = () => {
     if (type !== undefined) {
+      console.log(page);
       getApi();
     }
   };
@@ -173,7 +175,10 @@ function AdvancedSearch() {
             <LoadingOutlined />
           </div>
         ) : (
-          <MovieCard data={apiData} AdvancedSearch={true} />
+          <div className="AdvancedSearch-movicCard">
+            <div>총 {totalRearch}개 검색</div>
+            <MovieCard data={apiData} AdvancedSearch={true} />
+          </div>
         )}
       </div>
 
