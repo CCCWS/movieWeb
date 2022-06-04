@@ -60,86 +60,92 @@ function Category() {
           <LoadingOutlined />
         </div>
       ) : (
-        <>
-          {localData === undefined || localData === null ? null : (
-            <>
-              {localData.length === 0 ? null : (
-                <div className="recent-view-box">
-                  <div className="recent-view-title">
-                    <div>최근 검색한 컨텐츠</div>
-                    <button onClick={clearRecent}>전체 삭제</button>
-                  </div>
-                  {localData.map((data) => (
-                    <SearchBarResult key={data.id} {...data} Category={true} />
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-          <div className="categort-select-btn">
-            <button
-              className={[`modalSectionBtn ${click ? null : "close"}`].join()}
-              onClick={clickMovie}
-            >
-              영화
-            </button>
-            <button
-              className={[`modalSectionBtn ${click ? "close" : null}`].join()}
-              onClick={clickTv}
-            >
-              TV
-            </button>
-          </div>
-          <div className="genre-box">
-            {click ? (
+        <div className="Category-page">
+          <div className="Category-box">
+            {localData === undefined || localData === null ? null : (
               <>
-                {movieGenre.map((data) => (
-                  <div
-                    onClick={goMovie}
-                    title={data.id}
-                    className="genre-select"
-                    key={data.id}
-                    style={{
-                      backgroundColor: `rgba(
-                ${Math.ceil(Math.random() * 230)},
-                ${Math.ceil(Math.random() * 230)},
-                ${Math.ceil(Math.random() * 230)})`,
-                    }}
-                  >
-                    {data.name}
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                {localData.length === 0 ? null : (
+                  <div className="recent-view-box">
+                    <div className="recent-view-title">
+                      <div>최근 검색한 컨텐츠</div>
+                      <button onClick={clearRecent}>전체 삭제</button>
+                    </div>
+                    {localData.map((data) => (
+                      <SearchBarResult
+                        key={data.id}
+                        {...data}
+                        Category={true}
+                      />
+                    ))}
                   </div>
-                ))}
-              </>
-            ) : (
-              <>
-                {tvGenre.map((data) => (
-                  <div
-                    onClick={goTv}
-                    title={data.id}
-                    className="genre-select"
-                    key={data.id}
-                    style={{
-                      backgroundColor: `rgba( 
-                ${Math.ceil(Math.random() * 230)},
-                ${Math.ceil(Math.random() * 230)},
-                ${Math.ceil(Math.random() * 230)})`,
-                    }}
-                  >
-                    {data.name}
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                ))}
+                )}
               </>
             )}
+            <div className="categort-select-btn">
+              <button
+                className={[`modalSectionBtn ${click ? null : "close"}`].join()}
+                onClick={clickMovie}
+              >
+                영화
+              </button>
+              <button
+                className={[`modalSectionBtn ${click ? "close" : null}`].join()}
+                onClick={clickTv}
+              >
+                TV
+              </button>
+            </div>
+            <div className="genre-box">
+              {click ? (
+                <>
+                  {movieGenre.map((data) => (
+                    <div
+                      onClick={goMovie}
+                      title={data.id}
+                      className="genre-select"
+                      key={data.id}
+                      style={{
+                        backgroundColor: `rgba(
+                ${Math.ceil(Math.random() * 230)},
+                ${Math.ceil(Math.random() * 230)},
+                ${Math.ceil(Math.random() * 230)})`,
+                      }}
+                    >
+                      {data.name}
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {tvGenre.map((data) => (
+                    <div
+                      onClick={goTv}
+                      title={data.id}
+                      className="genre-select"
+                      key={data.id}
+                      style={{
+                        backgroundColor: `rgba( 
+                ${Math.ceil(Math.random() * 230)},
+                ${Math.ceil(Math.random() * 230)},
+                ${Math.ceil(Math.random() * 230)})`,
+                      }}
+                    >
+                      {data.name}
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

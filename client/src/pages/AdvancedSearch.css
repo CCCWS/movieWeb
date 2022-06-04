@@ -18,10 +18,34 @@
   background-color: rgba(117, 117, 117, 0.438);
   top: 47px;
   width: 200px;
-  height: 500px;
+  height: 700px;
   border-radius: 5px;
   padding: 10px;
   overflow: overlay;
+}
+
+.AdvancedSearch-option h3 {
+  color: white;
+}
+
+.AdvancedSearch-option button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: rgb(247, 247, 247);
+  margin: 3px;
+  color: black;
+}
+
+.AdvancedSearch-option button:hover {
+  cursor: pointer;
+  border: 2px solid red;
+}
+
+.AdvancedSearch-click {
+  background-color: rgb(255, 102, 102) !important;
 }
 
 .AdvancedSearch-section {
@@ -29,8 +53,9 @@
   margin-bottom: 10px;
 }
 
-.year-click {
-  background-color: rgb(0, 0, 0);
+.AdvancedSearch-year {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
 }
 
 .AdvancedSearch-option:hover::-webkit-scrollbar {
@@ -52,6 +77,16 @@
 .loading-search svg {
   width: 50px;
   height: 50px;
+}
+
+.AdvancedSearch-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  align-items: center;
 }
 
 .AdvancedSearch-movicCard {

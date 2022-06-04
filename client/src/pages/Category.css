@@ -1,3 +1,13 @@
+.Category-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Category-box {
+  width: 900px;
+}
+
 .recent-view-box {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -48,8 +58,6 @@
   height: 100px;
   margin-bottom: 5%;
   border-radius: 5px;
-
-  
 }
 
 .genre-select:hover {

@@ -19,7 +19,7 @@ function TvMain() {
   const [pageCount, setPageCount] = useState(1);
   const [year, setYear] = useState(2022);
 
-  const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&first_air_date_year=${year}&region=KR`;
+  const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&region=KR`;
   // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
 
   const getApi = async () => {
@@ -64,13 +64,13 @@ function TvMain() {
           </div>
 
           <div className="popular-main">
-            <SelectYear
+            {/* <SelectYear
               year={year}
               setYear={setYear}
               setData={setTv}
               setPageCount={setPageCount}
               setLoading={setLoading}
-            />
+            /> */}
 
             <MovieCard data={tv} />
           </div>

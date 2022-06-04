@@ -1,72 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
+import React, { useState } from "react";
 import img from "../img/poster_none.PNG";
 import "./SeasonInfo.css";
 import { useNavigate } from "react-router-dom";
+import SelectBox from "./SelectBox";
 
-function SeasonInfo({ season, IMG_URL, name }) {
+function SeasonInfo({ season, IMG_URL, name, setSortBy }) {
   const nav = useNavigate();
   const [selectValue, setSelectValue] = useState(0);
-  const [click, setClick] = useState(false);
-
-  const select = (event) => {
-    setSelectValue(event.target.value);
-    setClick(!click);
-  };
-
-  const open = () => {
-    setClick(!click);
-  };
-
-  const selectRef1 = useRef();
-  const selectRef2 = useRef();
-
-  const clickOutside = ({ target }) => {
-    if (
-      click &&
-      !selectRef1.current.contains(target) &&
-      !selectRef2.current.contains(target)
-    )
-      setClick(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", clickOutside);
-    return () => {
-      window.removeEventListener("click", clickOutside);
-    };
-  }, [click]);
-
+  console.log(season);
   const goDetail = (event) => {
     nav(`${event.target.id}`, { state: name });
   };
 
   return (
     <>
-      <div style={{ position: "relative" }}>
-        <div className="seasonSelectBox" onClick={open} ref={selectRef1}>
-          {season[selectValue].name}
-          {click ? <CaretUpFilled /> : <CaretDownFilled />}
-        </div>
-        <ul
-          className={[
-            `seasonSelect ${click ? "seasonSelectOpen" : "seasonSelectClose"}`,
-          ].join(" ")}
-          onChange={select}
-          ref={selectRef2}
-        >
-          {season.map((data, index) => (
-            <li
-              onClick={select}
-              key={index}
-              value={season.indexOf(data)}
-              className="seasonSelectValue"
-            >
-              {data.name}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <SelectBox
+        data={season}
+        setSelectValue={setSelectValue}
+        selectValue={selectValue}
+      />
 
       <div className="seasonBox">
         <div className="seasonImg">

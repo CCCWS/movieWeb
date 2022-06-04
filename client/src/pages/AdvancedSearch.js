@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { API_URL, API_KEY, IMG_URL } from "../config";
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
+import SelectBox from "../components/SelectBox";
 import MovieCard from "../components/MovieCard";
 import "./AdvancedSearch.css";
 
@@ -16,30 +17,53 @@ function AdvancedSearch() {
   const [page, setPage] = useState(1);
 
   const [genres, setGenres] = useState();
-  const [year, setYear] = useState();
+  const [sortBy, setSortBy] = useState("popularity.desc");
+  const [year, setYear] = useState([]);
   const [type, setType] = useState("movie");
   const [release, setRelease] = useState("lte");
-  const yearList = [];
-  for (let i = 2022; i >= 1990; i--) yearList.push(i);
+  const [yearList, setYearList] = useState([]);
+
+  const [selectValue, setSelectValue] = useState(0);
+  const sortName = [
+    {
+      name: "인기순",
+      sort: "popularity.desc",
+    },
+    {
+      name: "최신순",
+      sort:
+        type === "movie" ? "primary_release_date.desc" : "first_air_date.desc",
+    },
+    {
+      name: "점수순",
+      sort: "vote_average.desc",
+    },
+  ];
 
   const typeYear =
     type === "movie"
-      ? `primary_release_year=${year}&primary_release_date.${release}=${today}`
-      : `first_air_date_year=${year}&first_air_date.${release}=${today}`;
+      ? `primary_release_year=${year.join(
+          ", "
+        )}&primary_release_date.${release}=${today}`
+      : `first_air_date_year=${year.join(
+          ", "
+        )}&first_air_date.${release}=${today}`;
 
   const test = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&region=KR&sort_by=popularity.desc&primary_release_date.lte=2021-05-30`;
 
   const getApi = async () => {
     setLoading(true);
-    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=1`;
+    console.log(year);
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}&${typeYear}&page=1`;
     const res = await (await fetch(url)).json();
     setTotalRearch(res.total_results);
     setApiData(res.results);
+
     setLoading(false);
   };
 
   const readMoreGetApi = async () => {
-    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&${typeYear}&page=${page}`;
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}.desc&${typeYear}&page=${page}`;
     const res = await (await fetch(url)).json();
     setApiData([...apiData, ...res.results]);
     setLoading(false);
@@ -47,11 +71,18 @@ function AdvancedSearch() {
 
   useEffect(() => {
     getToday();
-  }, []);
+    pushYear();
+  }, [release]);
+
+  useEffect(() => {
+    if (totalRearch !== undefined) {
+      getApi();
+    }
+  }, [sortBy]);
 
   useEffect(() => {
     if (setReadMore === true) {
-      setPage(page + 1);
+      setPage((prev) => prev + 1);
     }
   }, [setReadMore]);
 
@@ -60,6 +91,16 @@ function AdvancedSearch() {
       readMoreGetApi();
     }
   }, [page]);
+
+  const pushYear = () => {
+    const year = [];
+    const start = release === "lte" ? 2022 : 2030;
+    const end = release === "lte" ? 1991 : 2022;
+    for (let i = start; i >= end; i--) {
+      year.push(i);
+    }
+    setYearList(year);
+  };
 
   const getToday = () => {
     const date = new Date();
@@ -79,20 +120,26 @@ function AdvancedSearch() {
   };
 
   const onYear = (event) => {
-    if (event.target.innerText === year || event.target.innerText === "ALL") {
-      setYear(undefined);
+    if (event.target.innerText === "ALL") {
+      setYear([]);
     } else {
-      setYear(event.target.innerText);
+      if (year.includes(String(event.target.innerText))) {
+        setYear(year.filter((data) => data !== String(event.target.innerText)));
+        console.log(
+          year.filter((data) => data !== String(event.target.innerText))
+        );
+      } else {
+        setYear([...year, event.target.innerText]);
+      }
     }
   };
 
   const onRelease = (event) => {
     setRelease(event.target.id);
   };
-
   const search = () => {
     if (type !== undefined) {
-      console.log(page);
+      setPage(1);
       getApi();
     }
   };
@@ -105,69 +152,82 @@ function AdvancedSearch() {
             <h3>분류</h3>
             <hr />
 
-            <div
+            <button
               onClick={onType}
-              className={[`${type === "movie" ? "year-click" : null}`]}
+              className={[
+                `${type === "movie" ? "AdvancedSearch-click" : null}`,
+              ]}
               id="movie"
             >
               영화
-            </div>
+            </button>
 
-            <div
+            <button
               onClick={onType}
-              className={[`${type === "tv" ? "year-click" : null}`]}
+              className={[`${type === "tv" ? "AdvancedSearch-click" : null}`]}
               id="tv"
             >
               TV
-            </div>
+            </button>
           </section>
 
           <section className="AdvancedSearch-section">
             <h3>상태</h3>
             <hr />
 
-            <div
+            <button
               onClick={onRelease}
-              className={[`${release === "lte" ? "year-click" : null}`]}
+              className={[
+                `${release === "lte" ? "AdvancedSearch-click" : null}`,
+              ]}
               id="lte"
             >
               공개됨
-            </div>
+            </button>
 
-            <div
+            <button
               onClick={onRelease}
-              className={[`${release === "gte" ? "year-click" : null}`]}
+              className={[
+                `${release === "gte" ? "AdvancedSearch-click" : null}`,
+              ]}
               id="gte"
             >
               공개예정
-            </div>
+            </button>
           </section>
 
           <section className="AdvancedSearch-section">
             <h3>연도</h3>
             <hr />
-
-            <div
-              onClick={onYear}
-              className={year === undefined ? "year-click" : null}
-            >
-              ALL
-            </div>
-
-            {yearList.map((data, index) => (
-              <div
-                key={index}
+            <div className="AdvancedSearch-year">
+              <button
                 onClick={onYear}
-                className={[
-                  `${parseInt(year) === parseInt(data) ? "year-click" : null}`,
-                ].join()}
+                className={year.length === 0 ? "AdvancedSearch-click" : null}
               >
-                {data}
-              </div>
-            ))}
+                ALL
+              </button>
+
+              {yearList.map((data, index) => (
+                <button
+                  key={index}
+                  onClick={onYear}
+                  className={[
+                    `${
+                      year.includes(String(data))
+                        ? "AdvancedSearch-click"
+                        : null
+                    }`,
+                  ].join()}
+                >
+                  {data}
+                </button>
+              ))}
+            </div>
           </section>
 
-          <button onClick={search}>찾기</button>
+          <button className="AdvancedSearch-btn" onClick={search}>
+            찾기
+          </button>
         </div>
 
         {loading ? (
@@ -176,7 +236,18 @@ function AdvancedSearch() {
           </div>
         ) : (
           <div className="AdvancedSearch-movicCard">
-            <div>총 {totalRearch}개 검색</div>
+            <div className="AdvancedSearch-header">
+              <div>총 {totalRearch}개 검색</div>
+              <SelectBox
+                data={sortName}
+                setSelectValue={setSelectValue}
+                selectValue={selectValue}
+                setSortBy={setSortBy}
+                getApi={getApi}
+                type={type}
+                AdvancedSearch={true}
+              />
+            </div>
             <MovieCard data={apiData} AdvancedSearch={true} />
           </div>
         )}

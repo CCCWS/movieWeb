@@ -24,6 +24,7 @@
     "redux": "^4.1.2",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.4.1",
+    "smooth-scrollbar": "^8.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

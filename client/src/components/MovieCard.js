@@ -42,8 +42,6 @@ function MovieCard({
       //modal창이 켜져있다면 닫기
       onModal && setModalOpen(false);
     }
-
-    console.log(event);
   };
 
   // useEffect(() => {

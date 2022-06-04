@@ -19,7 +19,7 @@ function MovieMain() {
   const [pageCount, setPageCount] = useState(1);
   const [year, setYear] = useState(2022);
 
-  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&primary_release_year=${year}&region=KR`;
+  const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&region=KR`;
   // const url = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}`;
 
   const getMovie = async () => {
@@ -53,24 +53,24 @@ function MovieMain() {
           <LoadingOutlined />
         </div>
       ) : (
-        <div className="MainPage">
+        <div className="MainPage" id="test">
           <div>
             <ImageCarousel movieData={movie.slice(0, 5)} movie={true} />
           </div>
 
           <div>
-            <div>{year} Popular</div>
+            <div>Popular</div>
             <hr />
           </div>
 
           <div className="popular-main">
-            <SelectYear
+            {/* <SelectYear
               year={year}
               setYear={setYear}
               setData={setMovie}
               setPageCount={setPageCount}
               setLoading={setLoading}
-            />
+            /> */}
 
             <MovieCard data={movie} IMG_URL={IMG_URL} />
           </div>

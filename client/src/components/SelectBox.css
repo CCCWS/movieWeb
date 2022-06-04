@@ -1,0 +1,87 @@
+.seasonSelectBox {
+  font-size: 16px;
+  height: 35px;
+  position: relative;
+  background-color: rgba(77, 77, 77, 0.623);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.width200 {
+  width: 150px;
+}
+
+.width400 {
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.seasonSelectBox:hover {
+  cursor: pointer;
+  border: 2px solid rgba(255, 0, 0, 0.507);
+  transition: all ease 0.3s;
+}
+
+.seasonSelect {
+  width: 100%;
+  top: 40px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  overflow: auto;
+  transition: all ease 0.2s;
+  overflow: overlay;
+}
+
+.seasonSelect:hover::-webkit-scrollbar {
+  width: 5px;
+}
+
+.seasonSelect::-webkit-scrollbar {
+  width: 0px; /* Chrome, Safari, Opera*/
+}
+
+.seasonSelectClose {
+  max-height: 0px;
+  padding: 0px 20px 0px 20px;
+}
+
+.seasonSelectOpen {
+  max-height: 500px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+}
+
+.seasonSelectValue {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.seasonSelectValue:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: rgba(240, 248, 255, 0.212);
+}
+
+@media (max-width: 800px) {
+  .width400 {
+    width: 100%;
+  }
+}

@@ -3,10 +3,11 @@
   width: 100%;
   display: flex;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
 .mainPoster {
-  width: 350px;
+  width: 300px;
   border-radius: 5px;
 }
 

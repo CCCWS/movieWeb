@@ -2,8 +2,8 @@
 
 /* detail 페이지 내부 항목을 모두 감싸는 틀 */
 .movieDetail {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
   margin-top: 20px;
   /* backdrop-filter: blur(5px); */
 }
@@ -83,7 +83,7 @@
   height: 65%;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .productionLogo img {
     height: 50%;
   }
