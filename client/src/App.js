@@ -33,6 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <PageTop />
       <Routes>
         <Route path={`/test`} element={Auth(Main, null)} />
         <Route path={`/`} element={Auth(MovieMain, null)} />

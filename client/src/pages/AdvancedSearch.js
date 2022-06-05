@@ -4,6 +4,7 @@ import { API_URL, API_KEY, IMG_URL } from "../config";
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import SelectBox from "../components/SelectBox";
 import MovieCard from "../components/MovieCard";
+import GoTop from "../components/GoTop";
 import "./AdvancedSearch.css";
 
 function AdvancedSearch() {
@@ -13,10 +14,11 @@ function AdvancedSearch() {
   const [apiData, setApiData] = useState([]);
   const [today, setToday] = useState();
   const [totalRearch, setTotalRearch] = useState();
-
+  const [totalPage, setTotalPage] = useState();
   const [page, setPage] = useState(1);
+  const [genres, setGenres] = useState([]);
 
-  const [genres, setGenres] = useState();
+  const [genre, setGenre] = useState([]);
   const [sortBy, setSortBy] = useState("popularity.desc");
   const [year, setYear] = useState([]);
   const [type, setType] = useState("movie");
@@ -51,19 +53,28 @@ function AdvancedSearch() {
 
   const test = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&region=KR&sort_by=popularity.desc&primary_release_date.lte=2021-05-30`;
 
+  const getGenres = async () => {
+    const url = `${API_URL}genre/${type}/list?api_key=${API_KEY}&language=ko`;
+    const res = await (await fetch(url)).json();
+    setGenres(res.genres);
+  };
+
   const getApi = async () => {
     setLoading(true);
-    console.log(year);
-    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}&${typeYear}&page=1`;
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}&${typeYear}&page=1&with_genres=${genre.join(
+      ", "
+    )}`;
     const res = await (await fetch(url)).json();
     setTotalRearch(res.total_results);
+    setTotalPage(res.total_pages);
     setApiData(res.results);
-
     setLoading(false);
   };
 
   const readMoreGetApi = async () => {
-    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}.desc&${typeYear}&page=${page}`;
+    const url = `${API_URL}discover/${type}?api_key=${API_KEY}&language=ko&sort_by=${sortBy}.desc&${typeYear}&page=${page}&with_genres=${genre.join(
+      ", "
+    )}`;
     const res = await (await fetch(url)).json();
     setApiData([...apiData, ...res.results]);
     setLoading(false);
@@ -71,11 +82,24 @@ function AdvancedSearch() {
 
   useEffect(() => {
     getToday();
+  }, []);
+
+  useEffect(() => {
+    getGenres();
+  }, [type]);
+
+  useEffect(() => {
     pushYear();
+    setYear([]);
   }, [release]);
 
   useEffect(() => {
+    setGenre([]);
+  }, [type]);
+
+  useEffect(() => {
     if (totalRearch !== undefined) {
+      setPage(1);
       getApi();
     }
   }, [sortBy]);
@@ -125,11 +149,20 @@ function AdvancedSearch() {
     } else {
       if (year.includes(String(event.target.innerText))) {
         setYear(year.filter((data) => data !== String(event.target.innerText)));
-        console.log(
-          year.filter((data) => data !== String(event.target.innerText))
-        );
       } else {
         setYear([...year, event.target.innerText]);
+      }
+    }
+  };
+
+  const onGenre = (event) => {
+    if (event.target.innerText === "ALL") {
+      setGenre([]);
+    } else {
+      if (genre.includes(String(event.target.id))) {
+        setGenre(genre.filter((data) => data !== String(event.target.id)));
+      } else {
+        setGenre([...genre, event.target.id]);
       }
     }
   };
@@ -197,6 +230,35 @@ function AdvancedSearch() {
           </section>
 
           <section className="AdvancedSearch-section">
+            <h3>장르</h3>
+            <hr />
+            <div className="AdvancedSearch-genres">
+              <button
+                onClick={onGenre}
+                className={genre.length === 0 ? "AdvancedSearch-click" : null}
+              >
+                ALL
+              </button>
+              {genres.map((data, index) => (
+                <button
+                  key={index}
+                  onClick={onGenre}
+                  id={data.id}
+                  className={[
+                    `${
+                      genre.includes(String(data.id))
+                        ? "AdvancedSearch-click"
+                        : null
+                    }`,
+                  ]}
+                >
+                  {data.name}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="AdvancedSearch-section">
             <h3>연도</h3>
             <hr />
             <div className="AdvancedSearch-year">
@@ -217,7 +279,7 @@ function AdvancedSearch() {
                         ? "AdvancedSearch-click"
                         : null
                     }`,
-                  ].join()}
+                  ]}
                 >
                   {data}
                 </button>
@@ -254,11 +316,17 @@ function AdvancedSearch() {
       </div>
 
       {loading ? null : (
-        <div className="showScroll">
-          <DoubleRightOutlined rotate={90} />
-          <div ref={readMore}></div>
-        </div>
+        <>
+          {totalPage === 0 || totalPage === page ? null : (
+            <div className="showScroll">
+              <DoubleRightOutlined rotate={90} />
+              <div ref={readMore}></div>
+            </div>
+          )}
+        </>
       )}
+
+      <GoTop />
     </>
   );
 }

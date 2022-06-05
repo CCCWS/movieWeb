@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { API_KEY, API_URL, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
+import GoTop from "../components/GoTop";
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 import "./SeachResult.css";
@@ -216,6 +217,7 @@ function SeachResult() {
           ) : null}
         </>
       )}
+      <GoTop />
     </div>
   );
 }

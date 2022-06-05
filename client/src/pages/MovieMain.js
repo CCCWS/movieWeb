@@ -7,6 +7,7 @@ import { API_URL, API_KEY, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
 import SelectYear from "../components/SelectYear";
+import GoTop from "../components/GoTop";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -80,11 +81,7 @@ function MovieMain() {
             <span ref={readMore}></span>
           </div>
 
-          {parseInt(pageCount) >= 2 ? (
-            <div className="goTop" onClick={goTop}>
-              <DoubleRightOutlined rotate={-90} />
-            </div>
-          ) : null}
+          <GoTop />
         </div>
       )}
     </>

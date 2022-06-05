@@ -16,14 +16,15 @@ function Category() {
 
   const getApi = async () => {
     setLoading(true);
-    const movieGenreUrl = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=ko&region=KR`;
-    const tvGenreUrl = `${API_URL}genre/tv/list?api_key=${API_KEY}&language=ko&region=KR`;
+    const movieGenreUrl = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=ko`;
+    const tvGenreUrl = `${API_URL}genre/tv/list?api_key=${API_KEY}&language=ko`;
 
     const resMovie = await (await fetch(movieGenreUrl)).json();
     const resTv = await (await fetch(tvGenreUrl)).json();
 
     setMovieGenre(resMovie.genres);
     setTvGenre(resTv.genres);
+
 
     setLoading(false);
   };

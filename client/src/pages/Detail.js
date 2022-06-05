@@ -119,13 +119,13 @@ function Detail() {
 
   return (
     <div className="detailPage">
-      <MovieHeader />
       {loading ? (
         <div className="loading">
           <LoadingOutlined />
         </div>
       ) : (
         <>
+          <MovieHeader />
           <Modal
             setModalOpen={setModalOpen}
             modalOpen={modalOpen}
@@ -157,9 +157,9 @@ function Detail() {
           <div
             id="2"
             className="movieDetail"
-            data-aos="fade-right"
-            data-aos-duration="500"
-            data-aos-once="true"
+            // data-aos="fade-right"
+            // data-aos-duration="500"
+            // data-aos-once="true"
           >
             <MovieInfo
               {...movieInfo}

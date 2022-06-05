@@ -7,6 +7,7 @@ import { API_URL, API_KEY, IMG_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
 import SelectYear from "../components/SelectYear";
+import GoTop from "../components/GoTop";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,10 +38,6 @@ function TvMain() {
       setPageCount((prev) => prev + 1);
     }
   }, [setReadMore]);
-
-  const goTop = () => {
-    window.scrollTo(0, 0);
-  };
 
   useEffect(() => {
     AOS.init();
@@ -80,11 +77,7 @@ function TvMain() {
             <div ref={readMore}></div>
           </div>
 
-          {parseInt(pageCount) >= 2 ? (
-            <div className="goTop" onClick={goTop}>
-              <DoubleRightOutlined rotate={-90} />
-            </div>
-          ) : null}
+          <GoTop />
         </div>
       )}
     </>

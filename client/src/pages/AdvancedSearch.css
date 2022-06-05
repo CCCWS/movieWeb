@@ -4,24 +4,19 @@
   justify-content: center;
 }
 
-/* .AdvancedSearch-left {
-  display: block;
-  width: 400px;
-  background-color: rebeccapurple;
-} */
-
 .AdvancedSearch-option {
   position: sticky;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: rgba(117, 117, 117, 0.438);
+
   top: 47px;
   width: 200px;
-  height: 700px;
+  height: 90vh;
   border-radius: 5px;
   padding: 10px;
   overflow: overlay;
+  font-size: 14px;
 }
 
 .AdvancedSearch-option h3 {
@@ -29,9 +24,6 @@
 }
 
 .AdvancedSearch-option button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 2px solid transparent;
   border-radius: 5px;
   background-color: rgb(247, 247, 247);
@@ -51,6 +43,12 @@
 .AdvancedSearch-section {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.AdvancedSearch-year button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .AdvancedSearch-year {
