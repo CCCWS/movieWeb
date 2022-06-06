@@ -17,7 +17,7 @@
   backdrop-filter: blur(20px);
   /* background-color: red; */
   width: 100%;
-  z-index: 2;
+  z-index: 20;
 }
 
 .logoImg {

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_KEY, API_URL, IMG_URL } from "../config";
+import { API_KEY, API_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
 
-import { IoMdArrowRoundBack } from "react-icons/io";
 import "./CategoryResult.css";
 
 function CategoryResultTv() {
@@ -56,7 +55,7 @@ function CategoryResultTv() {
   return (
     <div className="category-result">
       <div className="goBack" onClick={goBack}>
-        <IoMdArrowRoundBack /> {value}
+        <ArrowLeftOutlined /> {value}
       </div>
       {loading ? (
         <div className="loading">

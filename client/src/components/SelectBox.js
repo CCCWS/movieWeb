@@ -52,7 +52,7 @@ function SelectBox({
       ref={selectRef1}
     >
       {data[selectValue].name}
-      {click ? <CaretUpFilled /> : <CaretDownFilled />}
+      <div className="caret-filled"> {click ? <CaretUpFilled /> : <CaretDownFilled />} </div>
       <ul
         className={[
           `seasonSelect ${click ? "seasonSelectOpen" : "seasonSelectClose"}`,

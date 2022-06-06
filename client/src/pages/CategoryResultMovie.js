@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_KEY, API_URL, IMG_URL } from "../config";
+import { API_KEY, API_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 
 import Pagination from "../components/Pagination";
 import MovieCard from "../components/MovieCard";
 
-import { IoMdArrowRoundBack } from "react-icons/io";
 import "./CategoryResult.css";
 
 function CategoryResultMovie() {
@@ -20,12 +19,8 @@ function CategoryResultMovie() {
   const [today, setToday] = useState();
 
   const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&primary_release_date.lte=${today}&language=ko&with_genres=${id}&page=${page}`;
-  const test = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=primary_release_date.desc&primary_release_date.lte=2022-05-30&language=ko&with_genres=${id}&page=${page}&region=KR`;
 
   const getApi = async () => {
-    if (today === undefined) {
-      getToday();
-    }
     setLoading(true);
     const res = await (await fetch(url)).json();
     setMovie(res.results);
@@ -46,6 +41,10 @@ function CategoryResultMovie() {
   };
 
   useEffect(() => {
+    getToday();
+  }, []);
+
+  useEffect(() => {
     getApi();
   }, [page, today]);
 
@@ -56,7 +55,7 @@ function CategoryResultMovie() {
   return (
     <div className="category-result">
       <div className="goBack" onClick={goBack}>
-        <IoMdArrowRoundBack /> {value}
+        <ArrowLeftOutlined /> {value}
       </div>
 
       {loading ? (

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import { API_URL, API_KEY, IMG_URL } from "../config";
+import { API_URL, API_KEY } from "../config";
 
 import MovieCard from "../components/MovieCard";
 import ImageCarousel from "../components/ImageCarousel";
-import SelectYear from "../components/SelectYear";
 import GoTop from "../components/GoTop";
 
 import AOS from "aos";

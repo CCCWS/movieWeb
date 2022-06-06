@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { FiMonitor, FiSearch } from "react-icons/fi";
-import { MdLocalMovies } from "react-icons/md";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiCategory } from "react-icons/bi";
-
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
 
@@ -48,9 +43,9 @@ function Header() {
     nav("/login");
   };
 
-  const registerPage = () => {
-    nav("/register");
-  };
+  // const registerPage = () => {
+  //   nav("/register");
+  // };
 
   const mainPage = () => {
     setMenuClick(false);
@@ -83,26 +78,22 @@ function Header() {
         <span className="logoImg">로고</span>
 
         <button className="headerBtn" onClick={mainPage}>
-          <MdLocalMovies />
           영화
         </button>
 
         <button className="headerBtn" onClick={TvMainPage}>
-          <FiMonitor /> TV
+          TV
         </button>
 
         <button className="headerBtn" onClick={categoryPage}>
-          <BiCategory />
           카테고리
         </button>
 
         <button className="headerBtn" onClick={advancedSearchPage}>
-          <FiSearch />
           상세검색
         </button>
 
         <button className="headerBtn" onClick={favoritePage}>
-          <AiOutlineStar />
           즐겨찾기
         </button>
       </div>

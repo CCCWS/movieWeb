@@ -4,10 +4,9 @@ import "./SeasonInfo.css";
 import { useNavigate } from "react-router-dom";
 import SelectBox from "./SelectBox";
 
-function SeasonInfo({ season, IMG_URL, name, setSortBy }) {
+function SeasonInfo({ season, IMG_URL, name }) {
   const nav = useNavigate();
   const [selectValue, setSelectValue] = useState(0);
-  console.log(season);
   const goDetail = (event) => {
     nav(`${event.target.id}`, { state: name });
   };

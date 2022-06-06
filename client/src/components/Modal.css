@@ -32,7 +32,7 @@
   /* justify-content: center; */
   background-color: rgba(31, 31, 31, 0.404);
   border: 2px solid rgba(255, 0, 0, 0.459);
-  width: 80%;
+  width: 800px;
   height: 80%;
   border-radius: 30px;
   padding-top: 20px;
@@ -72,6 +72,10 @@
 @media (max-width: 800px) {
   .stillCutModal {
     width: 100%;
+  }
+
+  .item {
+    width: 80%;
   }
 }
 

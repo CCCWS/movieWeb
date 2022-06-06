@@ -15,4 +15,4 @@ function GoTop() {
   );
 }
 
-export default GoTop;
+export default React.memo(GoTop);

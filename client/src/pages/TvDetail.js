@@ -38,9 +38,6 @@ function TvDetail() {
   const info = `${API_URL}tv/${id}?api_key=${API_KEY}&language=ko`; //영화 정보
   const actor = `${API_URL}tv/${id}/credits?api_key=${API_KEY}&language=ko`; //영화 출연 배우
   const reviews = `${API_URL}tv/${id}/reviews?api_key=${API_KEY}`; //영화 리뷰
-  const test1 = `${API_URL}person/${"배우id"}?api_key=${API_KEY}`; //배우 상세정보
-  const test2 = `${API_URL}person/${"배우id"}/credits?api_key=${API_KEY}`; //배우 출연작
-  const test3 = `${API_URL}movie/${id}/similar?api_key=${API_KEY}`; //비슷한 영화?
   const trailer = `${API_URL}tv/${id}/videos?api_key=${API_KEY}&language=ko`; //트레일러 유튜브
   const logo = `${API_URL}tv/${id}/images?api_key=${API_KEY}`;
 

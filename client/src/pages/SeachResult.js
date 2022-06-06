@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import { useInView } from "react-intersection-observer";
-import { API_KEY, API_URL, IMG_URL } from "../config";
+import { API_KEY, API_URL } from "../config";
 import MovieCard from "../components/MovieCard";
 import GoTop from "../components/GoTop";
 import { LoadingOutlined, DoubleRightOutlined } from "@ant-design/icons";

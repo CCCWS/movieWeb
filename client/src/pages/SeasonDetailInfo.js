@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 import { API_KEY, API_URL, IMG_URL } from "../config";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import img from "../img/still_none.PNG";
 import "./SeasonDetailInfo.css";
 
@@ -44,7 +43,7 @@ function SeasonDetailInfo() {
       ) : (
         <div className="SeasonDetailInfo">
           <div onClick={goBack} className="season-title">
-            <IoMdArrowRoundBack />
+            <ArrowLeftOutlined />
             {`${state} ${seasonName}`}
           </div>
 

@@ -18,11 +18,6 @@ function SelectYear({ year, setYear, setData, setPageCount, setLoading }) {
     }
   };
 
-  //   const select = (event) => {
-  //     setYear(event.target.innerText);
-  //     setClick(false);
-  //   };
-
   const open = () => {
     setClick(true);
   };

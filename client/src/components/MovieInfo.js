@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import MovieScore from "./MovieScore";
 import FavoriteBtn from "./FavoriteBtn";
-
-import { Image } from "antd";
 import img from "../img/poster_none.PNG";
 import "./MovieInfo.css";
 
@@ -39,7 +37,7 @@ function MovieInfo({
   return (
     <div className="MovieInfo">
       <div>
-        <Image
+        <img
           className="mainPoster"
           src={poster_path ? `${IMG_URL}original${poster_path}` : `${img}`}
         />

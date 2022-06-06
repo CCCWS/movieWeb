@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieScore from "./MovieScore";
-import { SearchOutlined } from "@ant-design/icons";
 import { useInView } from "react-intersection-observer";
-import { API_URL, API_KEY, IMG_URL } from "../config";
+import { IMG_URL } from "../config";
 
 import img from "../img/poster_none.PNG";
 import "./MovieCard.css";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
-import {
-  StarOutlined,
-  StarFilled,
-  DoubleRightOutlined,
-} from "@ant-design/icons";
-
 function MovieCard({
   data,
-  id,
   name,
   title,
   setModalOpen,
-  first_air_date,
   onModal,
   AdvancedSearch,
 }) {
-  const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
-
   const nav = useNavigate();
   const [click, setClick] = useState(false);
 
   const goDitail = (event) => {
-    // //movie와 tv는 first_air_date의 유무로 판단
     if (event.target.id === "") {
       nav(`/detail/${event.target.accessKey}`);
     } else {
@@ -43,10 +29,6 @@ function MovieCard({
       onModal && setModalOpen(false);
     }
   };
-
-  // useEffect(() => {
-  //   AOS.init();
-  // }, []);
 
   useEffect(() => {
     const get = JSON.parse(localStorage.getItem("favorite"));
@@ -73,21 +55,11 @@ function MovieCard({
         {data.map((data, index) => (
           <div className="movieCardItem" key={index} id={data.first_air_date}>
             <div className="movieCarePoster">
-              <div
-                className="hoverPoster"
-                onClick={goDitail}
-                // id={data.first_air_date}
-              >
+              <div className="hoverPoster" onClick={goDitail}>
                 <div id={data.first_air_date} accessKey={data.id}>
                   {data.title}
                   {data.name}
                 </div>
-
-                {/* {click && (
-                <div>
-                  <StarFilled />
-                </div>
-              )} */}
               </div>
 
               <div className="movieCardScore">

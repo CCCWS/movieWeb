@@ -2,10 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 
 import "./SideMenu.css";
-import { FiMonitor, FiSearch } from "react-icons/fi";
-import { MdLocalMovies } from "react-icons/md";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiCategory } from "react-icons/bi";
 
 function SideMenu({
   menuClick,
@@ -83,25 +79,22 @@ function SideMenu({
               )}
 
               <button className="side-menu-btn" onClick={mainPage}>
-                <MdLocalMovies /> 영화
+                영화
               </button>
 
               <button className="side-menu-btn" onClick={TvMainPage}>
-                <FiMonitor /> TV
+                TV
               </button>
 
               <button className="side-menu-btn" onClick={categoryPage}>
-                <BiCategory />
                 카테고리
               </button>
 
               <button className="side-menu-btn" onClick={advancedSearchPage}>
-                <FiSearch />
                 상세검색
               </button>
 
               <button className="side-menu-btn" onClick={favoritePage}>
-                <AiOutlineStar />
                 즐겨찾기
               </button>
             </div>

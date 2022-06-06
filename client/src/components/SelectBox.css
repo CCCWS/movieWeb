@@ -25,6 +25,11 @@
   transition: all ease 0.3s;
 }
 
+.caret-filled {
+  position: absolute;
+  right: 5px;
+}
+
 .seasonSelect {
   width: 100%;
   top: 40px;
