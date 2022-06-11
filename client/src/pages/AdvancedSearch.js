@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { API_URL, API_KEY } from "../config";
 import {
@@ -211,11 +211,6 @@ function AdvancedSearch() {
     }
   };
 
-  const search = (event) => {
-    setPage(1);
-    getApi();
-  };
-
   const onOption = () => {
     setOptionOpen(!optionOpen);
   };
@@ -341,18 +336,12 @@ function AdvancedSearch() {
               <h3>점수</h3>
               <hr />
               <div className="AdvancedSearch-score">
-                <input
-                  value={scoreGte}
-                  onChange={onGte}
-                  placeholder="0이상"
-                  onSubmit={search}
-                />
+                <input value={scoreGte} onChange={onGte} placeholder="0이상" />
                 <div> ~ </div>
                 <input
                   value={scoreLte}
                   onChange={onLte}
                   placeholder="100이하"
-                  onSubmit={search}
                 />
               </div>
             </div>

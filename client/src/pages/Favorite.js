@@ -8,8 +8,6 @@ function Favorite() {
     setLocalData(JSON.parse(localStorage.getItem("favorite")));
   }, []);
 
-  console.log(localData === null);
-
   const clearRecent = () => {
     if (localData !== null) {
       setLocalData([]);
