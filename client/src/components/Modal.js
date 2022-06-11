@@ -16,7 +16,6 @@ function Modal({
   API_KEY,
   IMG_URL,
 }) {
-  const open = modalOpen ? "modal_open" : null;
   const body = document.querySelector("body");
   const [actorDetail, setActorDetail] = useState();
   const [actorMovie, setActorMovie] = useState();
@@ -97,59 +96,70 @@ function Modal({
   };
 
   return (
-    <div className={[`modal ${open}`].join(" ")} onClick={modalClose}>
-      <button onClick={modalCloseBtn} className="modalCloseBtn">
-        <CloseOutlined />
-      </button>
-      <div className="item">
-        {loading ? (
-          <div className="loading">
-            <LoadingOutlined />
-          </div>
-        ) : (
-          <>
-            <ActorOne
-              data={actorDetail}
-              IMG_URL={IMG_URL}
-              img={img}
-              onModal={true}
-            />
-
-            <div>
-              <button
-                className={[`modalSectionBtn ${click ? null : "close"}`].join()}
-                onClick={clickMovie}
-              >
-                영화 {actorMovie.length}
-              </button>
-              <button
-                className={[`modalSectionBtn ${click ? "close" : null}`].join()}
-                onClick={clickTv}
-              >
-                TV {actorTv.length}
-              </button>
-            </div>
-
-            {click ? (
-              <>
-                <MovieCard
-                  data={actorMovie}
-                  onModal={true}
-                  setModalOpen={setModalOpen}
-                />
-              </>
+    <div
+      className={[`modal ${modalOpen ? "modal_open" : null}`].join(" ")}
+      onClick={modalClose}
+    >
+      {modalOpen && (
+        <>
+          <button onClick={modalCloseBtn} className="modalCloseBtn">
+            <CloseOutlined />
+          </button>
+          <div className="item">
+            {loading ? (
+              <div className="loading">
+                <LoadingOutlined />
+              </div>
             ) : (
               <>
-                <MovieCard
-                  data={actorTv}
+                <ActorOne
+                  data={actorDetail}
+                  IMG_URL={IMG_URL}
+                  img={img}
                   onModal={true}
-                  setModalOpen={setModalOpen}
                 />
+
+                <div>
+                  <button
+                    className={[
+                      `modalSectionBtn ${click ? null : "close"}`,
+                    ].join()}
+                    onClick={clickMovie}
+                  >
+                    영화 {actorMovie.length}
+                  </button>
+                  <button
+                    className={[
+                      `modalSectionBtn ${click ? "close" : null}`,
+                    ].join()}
+                    onClick={clickTv}
+                  >
+                    TV {actorTv.length}
+                  </button>
+                </div>
+
+                {click ? (
+                  <>
+                    <MovieCard
+                      data={actorMovie}
+                      onModal={true}
+                      setModalOpen={setModalOpen}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <MovieCard
+                      data={actorTv}
+                      onModal={true}
+                      setModalOpen={setModalOpen}
+                    />
+                  </>
+                )}
               </>
             )}
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

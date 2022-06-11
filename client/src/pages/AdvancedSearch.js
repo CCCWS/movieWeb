@@ -22,7 +22,6 @@ function AdvancedSearch() {
   const [totalPage, setTotalPage] = useState();
   const [page, setPage] = useState(1);
   const [genres, setGenres] = useState([]);
-
   const [genre, setGenre] = useState([]);
   const [sortBy, setSortBy] = useState("popularity.desc");
   const [year, setYear] = useState([]);
@@ -70,6 +69,8 @@ function AdvancedSearch() {
   )}&vote_average.gte=${
     scoreGte !== "" ? scoreGte / 10 : ""
   }&vote_average.lte=${scoreLte !== "" ? scoreLte / 10 : ""}`;
+
+  const url1 = `${API_URL}discover/tv?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&region=KR`;
 
   const getGenres = async () => {
     const url = `${API_URL}genre/${type}/list?api_key=${API_KEY}&language=ko`;
@@ -157,7 +158,7 @@ function AdvancedSearch() {
       date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
     }`;
     const day = `${
-      date.getDate() < 10 ? `0${date.getDate()}` : date.getMonth()
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
     }`;
 
     setToday(`${year}-${month}-${day}`);

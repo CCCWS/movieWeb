@@ -9,39 +9,31 @@ import ImageCarousel from "../components/ImageCarousel";
 // import SelectYear from "../components/SelectYear";
 import GoTop from "../components/GoTop";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 function MovieMain() {
   const [readMore, setReadMore] = useInView(); //ref로 지정한 태그를 만나면 true반환
 
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
-  const [year, setYear] = useState(2022);
+  // const [year, setYear] = useState(2022);
 
   const url = `${API_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=ko&page=${pageCount}&region=KR`;
 
   const getMovie = async () => {
     const res = await (await fetch(url)).json();
     setMovie([...movie, ...res.results]); //페이지 카운터가 증가했을때 기존 데이터에 추가 데이터를 합침
-    console.log(res);
     setLoading(false);
   };
 
   useEffect(() => {
     getMovie();
-  }, [pageCount, year]);
+  }, [pageCount]);
 
   useEffect(() => {
-    if (setReadMore === true) {
+    if (setReadMore) {
       setPageCount((prev) => prev + 1);
     }
   }, [setReadMore]);
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   return (
     <>

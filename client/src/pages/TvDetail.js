@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { API_KEY, API_URL, IMG_URL } from "../config";
+
 import MovieHeader from "../components/Header/MovieHeader";
 import TitleLargeImg from "../components/TitleLargeImg";
 import ActorList from "../components/ActorList";
@@ -15,7 +16,6 @@ import ProductionLogo from "../components/ProductionLogo";
 import TrailerAndStillCut from "../components/TrailerAndStillCut";
 import Review from "../components/Review";
 import SeasonInfo from "../components/SeasonInfo";
-
 import Modal from "../components/Modal";
 import TrailerModal from "../components/TrailerModal";
 
@@ -30,7 +30,6 @@ function TvDetail() {
   const [movieTrailer, setMovieTrailer] = useState([]); //트레일러 영상
   const [logoImg, setLogoImg] = useState([]);
   const [review, setReview] = useState([]);
-
   const [stillCut, setStillCut] = useState();
 
   const { id } = useParams();

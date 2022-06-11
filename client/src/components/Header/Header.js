@@ -5,14 +5,15 @@ import { useSelector } from "react-redux";
 
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
+import LoginModal from "./LoginModal";
 
 import "./Header.css";
 
 function Header() {
   const nav = useNavigate();
   const [menuClick, setMenuClick] = useState(false);
-
   const [userAuth, setUserAuth] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [userName, setUserName] = useState("");
   const state = useSelector((auth_user) => auth_user.user.userData); //redux에 담긴 데이터를 가져옴
 
@@ -39,13 +40,8 @@ function Header() {
   };
 
   const logInPage = () => {
-    setMenuClick(false);
-    nav("/login");
+    setModalOpen(true);
   };
-
-  // const registerPage = () => {
-  //   nav("/register");
-  // };
 
   const mainPage = () => {
     setMenuClick(false);
@@ -73,63 +69,71 @@ function Header() {
   };
 
   return (
-    <div className="header" id="1">
-      <div className="header-left">
-        <span className="logoImg">로고</span>
+    <>
+      <LoginModal
+        setModalOpen={setModalOpen}
+        modalOpen={modalOpen}
+        menuClick={menuClick}
+      />
 
-        <button className="headerBtn" onClick={mainPage}>
-          영화
-        </button>
+      <div className="header" id="1">
+        <div className="header-left">
+          <span className="logoImg">로고</span>
 
-        <button className="headerBtn" onClick={TvMainPage}>
-          TV
-        </button>
+          <button className="headerBtn" onClick={mainPage}>
+            영화
+          </button>
 
-        <button className="headerBtn" onClick={categoryPage}>
-          카테고리
-        </button>
+          <button className="headerBtn" onClick={TvMainPage}>
+            TV
+          </button>
 
-        <button className="headerBtn" onClick={advancedSearchPage}>
-          상세검색
-        </button>
+          <button className="headerBtn" onClick={categoryPage}>
+            카테고리
+          </button>
 
-        <button className="headerBtn" onClick={favoritePage}>
-          즐겨찾기
-        </button>
-      </div>
+          <button className="headerBtn" onClick={advancedSearchPage}>
+            상세검색
+          </button>
 
-      <div className="header-right">
-        <SearchBar />
-        {userAuth ? (
-          <>
-            <button className="headerBtn" onClick={logOut}>
-              로그아웃
-            </button>
-          </>
-        ) : (
-          <>
-            <button className="headerBtn" onClick={logInPage}>
-              로그인
-            </button>
-            {/* <button className="headerBtn" onClick={registerPage}>
+          <button className="headerBtn" onClick={favoritePage}>
+            즐겨찾기
+          </button>
+        </div>
+
+        <div className="header-right">
+          <SearchBar />
+          {userAuth ? (
+            <>
+              <button className="headerBtn" onClick={logOut}>
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="headerBtn" onClick={logInPage}>
+                로그인
+              </button>
+              {/* <button className="headerBtn" onClick={registerPage}>
                 회원가입
               </button> */}
-          </>
-        )}
-        <SideMenu
-          logInPage={logInPage}
-          logOut={logOut}
-          mainPage={mainPage}
-          TvMainPage={TvMainPage}
-          menuClick={menuClick}
-          setMenuClick={setMenuClick}
-          userAuth={userAuth}
-          categoryPage={categoryPage}
-          favoritePage={favoritePage}
-          advancedSearchPage={advancedSearchPage}
-        />
+            </>
+          )}
+          <SideMenu
+            logInPage={logInPage}
+            logOut={logOut}
+            mainPage={mainPage}
+            TvMainPage={TvMainPage}
+            menuClick={menuClick}
+            setMenuClick={setMenuClick}
+            userAuth={userAuth}
+            categoryPage={categoryPage}
+            favoritePage={favoritePage}
+            advancedSearchPage={advancedSearchPage}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
