@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { registerInfo } from "../_action/user_action";
 import { useNavigate } from "react-router-dom";
 
-
-
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ function Register() {
   const emailSave = (event) => {
     setEmail(event.target.value);
   };
- 
+
   const nameSave = (event) => {
     setName(event.target.value);
   };
@@ -43,8 +41,6 @@ function Register() {
       password: password,
     };
 
-    //Axios.post('/api/user/register', body) 리덕스 사용 안하면
-
     dispatch(registerInfo(data)).then((response) => {
       if (response.payload.success) {
         navigate("/LoginPage");
@@ -56,7 +52,6 @@ function Register() {
 
   return (
     <>
-
       <div className="register">
         <form onSubmit={register} className="registerBox">
           <label>email</label>

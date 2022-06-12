@@ -1,16 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
-import LoginModal from "./LoginModal";
+import LoginModal from "./LoginModal/LoginModal";
 import { HeaderBtn, HeaderLogInBtn } from "./HeaderBtn";
 
 import "./Header.css";
 
 function Header() {
+  const [userAuth, setUserAuth] = useState(false);
+  const [userName, setUserName] = useState("");
+  const state = useSelector((auth_user) => auth_user.user.userData); //redux에 담긴 데이터를 가져옴
+
   const [menuClick, setMenuClick] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [pageWidth, setPageWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    if (state !== undefined) {
+      setUserName(state.name);
+      setUserAuth(state.isAuth);
+    }
+  }, [state]);
+
+  // console.log(userAuth);
+
+  const logOut = () => {
+    axios.get("/api/user/logout").then((response) => {
+      if (response.data.success) {
+        setUserAuth(false);
+        setUserName("");
+        localStorage.removeItem("userId");
+        window.location.reload();
+      } else {
+        alert("fail");
+      }
+    });
+  };
 
   window.onresize = () => {
     setPageWidth(window.innerWidth);
@@ -35,7 +63,11 @@ function Header() {
           <SearchBar />
           {pageWidth >= 800 ? (
             <>
-              <HeaderLogInBtn setModalOpen={setModalOpen} />
+              <HeaderLogInBtn
+                setModalOpen={setModalOpen}
+                userAuth={userAuth}
+                logOut={logOut}
+              />
             </>
           ) : (
             <>
@@ -43,6 +75,8 @@ function Header() {
                 menuClick={menuClick}
                 setMenuClick={setMenuClick}
                 setModalOpen={setModalOpen}
+                userAuth={userAuth}
+                logOut={logOut}
               />
             </>
           )}

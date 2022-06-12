@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useSelector } from "react-redux";
+
 
 export function HeaderBtn({ onSideMenu, setMenuClick }) {
   const nav = useNavigate();
@@ -52,31 +51,7 @@ export function HeaderBtn({ onSideMenu, setMenuClick }) {
   );
 }
 
-export function HeaderLogInBtn({ onSideMenu, setModalOpen }) {
-  const [userAuth, setUserAuth] = useState(false);
-  const [userName, setUserName] = useState("");
-  const state = useSelector((auth_user) => auth_user.user.userData); //redux에 담긴 데이터를 가져옴
-
-  useEffect(() => {
-    if (state !== undefined) {
-      setUserName(state.name);
-      setUserAuth(state.isAuth);
-    }
-  }, [state]);
-
-  const logOut = () => {
-    axios.get("/api/user/logout").then((response) => {
-      if (response.data.success) {
-        setUserAuth(false);
-        setUserName("");
-        localStorage.removeItem("userId");
-        window.location.reload();
-      } else {
-        alert("fail");
-      }
-    });
-  };
-
+export function HeaderLogInBtn({ onSideMenu, setModalOpen, userAuth, logOut }) {
   const onLogIn = () => {
     setModalOpen(true);
   };

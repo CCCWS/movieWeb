@@ -5,7 +5,7 @@ import { MenuOutlined } from "@ant-design/icons";
 
 import "./SideMenu.css";
 
-function SideMenu({ menuClick, setMenuClick, setModalOpen }) {
+function SideMenu({ menuClick, setMenuClick, setModalOpen, userAuth, logOut }) {
   const openMenu = () => {
     setMenuClick(true);
   };
@@ -40,7 +40,12 @@ function SideMenu({ menuClick, setMenuClick, setModalOpen }) {
         <div className={menuClick ? "side-menu-open2" : "side-menu-close2"}>
           {menuClick ? (
             <div className="side-menu-item">
-              <HeaderLogInBtn onSideMenu={true} setModalOpen={setModalOpen} />
+              <HeaderLogInBtn
+                onSideMenu={true}
+                setModalOpen={setModalOpen}
+                userAuth={userAuth}
+                logOut={logOut}
+              />
               <HeaderBtn onSideMenu={true} setMenuClick={setMenuClick} />
             </div>
           ) : null}
