@@ -9,7 +9,6 @@ import "./LoginModal.css";
 
 function LoginModal({ setModalOpen, modalOpen, menuClick }) {
   const dispatch = useDispatch();
-  const nav = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +48,7 @@ function LoginModal({ setModalOpen, modalOpen, menuClick }) {
   }, [modalOpen]);
 
   const modalClose = (event) => {
-    if (event.target.className === "modal modal_open") {
+    if (event.target.className === "login-modal login-modal-open") {
       setModalOpen(false);
       if (menuClick !== true) {
         document.querySelector("body").classList.toggle("not-scroll");
@@ -66,7 +65,9 @@ function LoginModal({ setModalOpen, modalOpen, menuClick }) {
 
   return (
     <div
-      className={[`modal ${modalOpen ? "modal_open" : null}`].join(" ")}
+      className={[`login-modal ${modalOpen ? "login-modal-open" : null}`].join(
+        " "
+      )}
       onClick={modalClose}
     >
       {modalOpen && (
@@ -74,7 +75,7 @@ function LoginModal({ setModalOpen, modalOpen, menuClick }) {
           <button onClick={modalCloseBtn} className="modalCloseBtn">
             <CloseOutlined />
           </button>
-          <div className="item">
+          <div className="login-item">
             <div className="loginPage">
               <form onSubmit={login} className="loginBox">
                 <label>Email</label>
@@ -93,8 +94,10 @@ function LoginModal({ setModalOpen, modalOpen, menuClick }) {
                 />
 
                 <br />
-                <button type="submit">로그인</button>
-                <button>회원가입</button>
+                <button type="submit" onSubmit={login}>
+                  로그인
+                </button>
+                {/* <button>회원가입</button> */}
               </form>
             </div>
           </div>

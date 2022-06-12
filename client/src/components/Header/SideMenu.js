@@ -1,20 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
+
+import { HeaderBtn, HeaderLogInBtn } from "./HeaderBtn";
 import { MenuOutlined } from "@ant-design/icons";
 
 import "./SideMenu.css";
 
-function SideMenu({
-  menuClick,
-  setMenuClick,
-  logInPage,
-  logOut,
-  mainPage,
-  TvMainPage,
-  userAuth,
-  categoryPage,
-  favoritePage,
-  advancedSearchPage,
-}) {
+function SideMenu({ menuClick, setMenuClick, setModalOpen }) {
   const openMenu = () => {
     setMenuClick(true);
   };
@@ -49,39 +40,8 @@ function SideMenu({
         <div className={menuClick ? "side-menu-open2" : "side-menu-close2"}>
           {menuClick ? (
             <div className="side-menu-item">
-              {userAuth ? (
-                <>
-                  <button className="side-menu-btn" onClick={logOut}>
-                    로그아웃
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button className="side-menu-btn" onClick={logInPage}>
-                    로그인·가입
-                  </button>
-                </>
-              )}
-
-              <button className="side-menu-btn" onClick={mainPage}>
-                영화
-              </button>
-
-              <button className="side-menu-btn" onClick={TvMainPage}>
-                TV
-              </button>
-
-              <button className="side-menu-btn" onClick={categoryPage}>
-                카테고리
-              </button>
-
-              <button className="side-menu-btn" onClick={advancedSearchPage}>
-                상세검색
-              </button>
-
-              <button className="side-menu-btn" onClick={favoritePage}>
-                즐겨찾기
-              </button>
+              <HeaderLogInBtn onSideMenu={true} setModalOpen={setModalOpen} />
+              <HeaderBtn onSideMenu={true} setMenuClick={setMenuClick} />
             </div>
           ) : null}
         </div>

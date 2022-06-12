@@ -1,71 +1,19 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
 import LoginModal from "./LoginModal";
+import { HeaderBtn, HeaderLogInBtn } from "./HeaderBtn";
 
 import "./Header.css";
 
 function Header() {
-  const nav = useNavigate();
   const [menuClick, setMenuClick] = useState(false);
-  const [userAuth, setUserAuth] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [userName, setUserName] = useState("");
-  const state = useSelector((auth_user) => auth_user.user.userData); //redux에 담긴 데이터를 가져옴
+  const [pageWidth, setPageWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    if (state !== undefined || state === true || state === false) {
-      setUserName(state.name);
-      setUserAuth(state.isAuth);
-    }
-  }, [state]);
-
-  const logOut = () => {
-    axios.get("/api/user/logout").then((response) => {
-      if (response.data.success) {
-        nav("/");
-        setUserAuth(false);
-        setUserName("");
-        localStorage.removeItem("userId");
-        setMenuClick(false);
-        alert("로그아웃");
-      } else {
-        alert("fail");
-      }
-    });
-  };
-
-  const logInPage = () => {
-    setModalOpen(true);
-  };
-
-  const mainPage = () => {
-    setMenuClick(false);
-    nav("/");
-  };
-
-  const TvMainPage = () => {
-    setMenuClick(false);
-    nav("/tv");
-  };
-
-  const categoryPage = () => {
-    setMenuClick(false);
-    nav("/category");
-  };
-
-  const favoritePage = () => {
-    setMenuClick(false);
-    nav("/favorite");
-  };
-
-  const advancedSearchPage = () => {
-    setMenuClick(false);
-    nav("/advancedSearch");
+  window.onresize = () => {
+    setPageWidth(window.innerWidth);
   };
 
   return (
@@ -80,57 +28,24 @@ function Header() {
         <div className="header-left">
           <span className="logoImg">로고</span>
 
-          <button className="headerBtn" onClick={mainPage}>
-            영화
-          </button>
-
-          <button className="headerBtn" onClick={TvMainPage}>
-            TV
-          </button>
-
-          <button className="headerBtn" onClick={categoryPage}>
-            카테고리
-          </button>
-
-          <button className="headerBtn" onClick={advancedSearchPage}>
-            상세검색
-          </button>
-
-          <button className="headerBtn" onClick={favoritePage}>
-            즐겨찾기
-          </button>
+          {pageWidth >= 800 && <HeaderBtn />}
         </div>
 
         <div className="header-right">
           <SearchBar />
-          {userAuth ? (
+          {pageWidth >= 800 ? (
             <>
-              <button className="headerBtn" onClick={logOut}>
-                로그아웃
-              </button>
+              <HeaderLogInBtn setModalOpen={setModalOpen} />
             </>
           ) : (
             <>
-              <button className="headerBtn" onClick={logInPage}>
-                로그인
-              </button>
-              {/* <button className="headerBtn" onClick={registerPage}>
-                회원가입
-              </button> */}
+              <SideMenu
+                menuClick={menuClick}
+                setMenuClick={setMenuClick}
+                setModalOpen={setModalOpen}
+              />
             </>
           )}
-          <SideMenu
-            logInPage={logInPage}
-            logOut={logOut}
-            mainPage={mainPage}
-            TvMainPage={TvMainPage}
-            menuClick={menuClick}
-            setMenuClick={setMenuClick}
-            userAuth={userAuth}
-            categoryPage={categoryPage}
-            favoritePage={favoritePage}
-            advancedSearchPage={advancedSearchPage}
-          />
         </div>
       </div>
     </>
