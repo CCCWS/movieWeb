@@ -2,6 +2,7 @@ import React from "react";
 import "./MovieScore.css";
 
 function MovieScore({ vote_average, MovieCard }) {
+  console.log(vote_average);
   const vote_average_color = () => {
     if (vote_average >= 7) {
       return "vote_average_green";
@@ -21,7 +22,7 @@ function MovieScore({ vote_average, MovieCard }) {
           }`,
         ].join(" ")}
       >
-        {vote_average * 10}
+        {Math.floor(vote_average * 10)}
       </div>
     </>
   );

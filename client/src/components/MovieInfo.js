@@ -27,6 +27,8 @@ function MovieInfo({
 }) {
   const nav = useNavigate();
 
+  console.log(vote_average)
+
   const goCategort = (event) => {
     if (movie === true) {
       nav(`/category/movie/${event.target.textContent}/${event.target.title}`);
